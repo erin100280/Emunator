@@ -1,0 +1,5 @@
+c:\dev\projects\Emunator\CPU\CPU.Base\bin\Debug\CPU.Base.dll
+c:\dev\projects\Emunator\CPU\CPU.Base\bin\Debug\CPU.Base.pdb
+c:\dev\projects\Emunator\CPU\CPU.Base\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\dev\projects\Emunator\CPU\CPU.Base\obj\x86\Debug\CPU.Base.dll
+c:\dev\projects\Emunator\CPU\CPU.Base\obj\x86\Debug\CPU.Base.pdb

@@ -1,0 +1,7 @@
+c:\dev\projects\Emunator\CPU\CPU.Chip8\bin\Debug\CPU.Chip8.dll
+c:\dev\projects\Emunator\CPU\CPU.Chip8\bin\Debug\CPU.Chip8.pdb
+c:\dev\projects\Emunator\CPU\CPU.Chip8\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\dev\projects\Emunator\CPU\CPU.Chip8\obj\x86\Debug\CPU.Chip8.dll
+c:\dev\projects\Emunator\CPU\CPU.Chip8\obj\x86\Debug\CPU.Chip8.pdb
+c:\dev\projects\Emunator\CPU\CPU.Chip8\bin\Debug\CPU.Base.dll
+c:\dev\projects\Emunator\CPU\CPU.Chip8\bin\Debug\CPU.Base.pdb

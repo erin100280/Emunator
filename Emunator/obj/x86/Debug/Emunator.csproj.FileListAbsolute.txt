@@ -1,0 +1,5 @@
+c:\dev\projects\Emunator\Emunator\bin\Debug\Emunator.exe
+c:\dev\projects\Emunator\Emunator\bin\Debug\Emunator.pdb
+c:\dev\projects\Emunator\Emunator\obj\x86\Debug\ResolveAssemblyReference.cache
+c:\dev\projects\Emunator\Emunator\obj\x86\Debug\Emunator.exe
+c:\dev\projects\Emunator\Emunator\obj\x86\Debug\Emunator.pdb

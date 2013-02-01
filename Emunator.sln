@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 # SharpDevelop 4.2.2.8818
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emunator", "Emunator\Emunator.csproj", "{AF85776D-7D25-4720-8BC4-FA415F55A812}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CPU", "CPU", "{24C4AFAC-39A5-47B6-9E0A-41703265DFAC}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
@@ -11,6 +9,22 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPU.Chip8", "CPU\CPU.Chip8\CPU.Chip8.csproj", "{B9A36969-43DA-4EA5-9EC8-18955FB03B08}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPU.Base", "CPU\CPU.Base\CPU.Base.csproj", "{5FF4A9D1-D9B8-4372-80EF-0547B99FD600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emunator", "Emunator\Emunator.csproj", "{AF85776D-7D25-4720-8BC4-FA415F55A812}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Video", "Video", "{B44799CF-C5F4-489C-B528-C73B4D9D7FC6}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Video.Base", "Video\Video.Base\Video.Base.csproj", "{F45CC884-F06B-42D8-ACD9-49A84921FCFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Display", "Display\Display.csproj", "{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Machine", "Machine", "{C970A632-E906-4D5A-ACF6-CD6D1C464E8B}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Machine.Base", "Machine\Machine.Base\Machine.Base.csproj", "{6861530C-932A-4E40-8E37-F45C7CAB8A61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,9 +44,23 @@ Global
 		{5FF4A9D1-D9B8-4372-80EF-0547B99FD600}.Debug|x86.ActiveCfg = Debug|x86
 		{5FF4A9D1-D9B8-4372-80EF-0547B99FD600}.Release|x86.Build.0 = Release|x86
 		{5FF4A9D1-D9B8-4372-80EF-0547B99FD600}.Release|x86.ActiveCfg = Release|x86
+		{F45CC884-F06B-42D8-ACD9-49A84921FCFB}.Debug|x86.Build.0 = Debug|x86
+		{F45CC884-F06B-42D8-ACD9-49A84921FCFB}.Debug|x86.ActiveCfg = Debug|x86
+		{F45CC884-F06B-42D8-ACD9-49A84921FCFB}.Release|x86.Build.0 = Release|x86
+		{F45CC884-F06B-42D8-ACD9-49A84921FCFB}.Release|x86.ActiveCfg = Release|x86
+		{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}.Debug|x86.Build.0 = Debug|x86
+		{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}.Debug|x86.ActiveCfg = Debug|x86
+		{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}.Release|x86.Build.0 = Release|x86
+		{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}.Release|x86.ActiveCfg = Release|x86
+		{6861530C-932A-4E40-8E37-F45C7CAB8A61}.Debug|x86.Build.0 = Debug|x86
+		{6861530C-932A-4E40-8E37-F45C7CAB8A61}.Debug|x86.ActiveCfg = Debug|x86
+		{6861530C-932A-4E40-8E37-F45C7CAB8A61}.Release|x86.Build.0 = Release|x86
+		{6861530C-932A-4E40-8E37-F45C7CAB8A61}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B9A36969-43DA-4EA5-9EC8-18955FB03B08} = {24C4AFAC-39A5-47B6-9E0A-41703265DFAC}
 		{5FF4A9D1-D9B8-4372-80EF-0547B99FD600} = {24C4AFAC-39A5-47B6-9E0A-41703265DFAC}
+		{F45CC884-F06B-42D8-ACD9-49A84921FCFB} = {B44799CF-C5F4-489C-B528-C73B4D9D7FC6}
+		{6861530C-932A-4E40-8E37-F45C7CAB8A61} = {C970A632-E906-4D5A-ACF6-CD6D1C464E8B}
 	EndGlobalSection
 EndGlobal

@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CPU {
+namespace Emu.CPU {
 	public class C_Chip8 : C_Base {
 		#region vars
 		protected byte[] m_memory;
@@ -38,7 +38,6 @@ namespace CPU {
 			m_opcode=0;
 			m_stack=new ushort[16];
 			m_stackPointer=0;
-		
 			m_delayTimer=0;
 			m_soundTimer=0;
 		}

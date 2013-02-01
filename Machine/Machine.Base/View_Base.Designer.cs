@@ -1,10 +1,10 @@
 ﻿/* User: Erin
- * Date: 1/30/2013
- * Time: 8:57 AM
+ * Date: 1/31/2013
+ * Time: 6:21 AM
  */
-namespace Emunator
+namespace 
 {
-	partial class MainForm
+	partial class View_Base
 	{
 		/// <summary>
 		/// Designer variable used to keep track of non-visual components.
@@ -12,7 +12,7 @@ namespace Emunator
 		private System.ComponentModel.IContainer components = null;
 		
 		/// <summary>
-		/// Disposes resources used by the form.
+		/// Disposes resources used by the control.
 		/// </summary>
 		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
@@ -32,17 +32,11 @@ namespace Emunator
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.SuspendLayout();
 			// 
-			// MainForm
+			// View_Base
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(292, 266);
-			this.Name = "MainForm";
-			this.Text = "Emunator";
-			this.ResumeLayout(false);
+			this.Name = "View_Base";
 		}
 	}
 }

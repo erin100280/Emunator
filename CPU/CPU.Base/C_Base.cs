@@ -5,7 +5,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CPU {
+namespace Emu.CPU {
 	public class C_Base {
 		#region vars
 		#endregion

@@ -63,6 +63,15 @@
       <Project>{B9A36969-43DA-4EA5-9EC8-18955FB03B08}</Project>
       <Name>CPU.Chip8</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Display\Display.csproj">
+      <Project>{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}</Project>
+      <Name>Display</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

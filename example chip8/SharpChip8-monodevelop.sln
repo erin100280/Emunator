@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpChip8", "SharpChip8\SharpChip8.csproj", "{94F8717B-0C84-4C3C-B904-101F7D2383DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpChip-8-gtksharp", "SharpChip-8-gtksharp\SharpChip-8-gtksharp.csproj", "{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpChip8-CLI", "SharpChip8-OTK\SharpChip8-CLI.csproj", "{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Debug|x86.Build.0 = Debug|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Release|x86.ActiveCfg = Release|Any CPU
+		{0BB56A6C-5A74-40E5-B3B9-84CE02AE459C}.Release|x86.Build.0 = Release|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{94F8717B-0C84-4C3C-B904-101F7D2383DB}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Debug|x86.Build.0 = Debug|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Release|x86.ActiveCfg = Release|Any CPU
+		{EC06B68F-A813-4E8F-9A5E-7CC6D805EE6C}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = SharpChip8-OTK\SharpChip8-CLI.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

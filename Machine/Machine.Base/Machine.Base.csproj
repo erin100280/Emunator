@@ -49,9 +49,6 @@
     <Compile Include="M_Base.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View_Base.cs" />
-    <Compile Include="View_Base.Designer.cs">
-      <DependentUpon>View_Base.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

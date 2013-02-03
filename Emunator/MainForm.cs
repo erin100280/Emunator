@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Emunator {
 	public partial class MainForm : Form {
 		#region vars
-		Emu.CPU.C_Chip8 cpu=null;
+		//Emu.CPU.C_Chip8 cpu=null;
 		#endregion
 		public MainForm() {
 			InitializeComponent();

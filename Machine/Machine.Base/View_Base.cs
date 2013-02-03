@@ -9,8 +9,6 @@ using System.Windows.Forms;
 
 namespace Emu.Machine {
 	public partial class View_Base : UserControl {
-		public View_Base() {
-			InitializeComponent();
-		}
+		public View_Base() {}
 	}
 }

@@ -43,5 +43,15 @@
     <Compile Include="C_Base.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Memory\Memory.Base\Memory.Base.csproj">
+      <Project>{3C3673A3-E59E-46EC-A4C7-FC68A430EF34}</Project>
+      <Name>Memory.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Video\Video.Base\Video.Base.csproj">
+      <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
+      <Name>Video.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

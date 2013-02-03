@@ -1,0 +1,12 @@
+Thumbs.db
+*.suo
+*.cachefile
+*.user
+*.pidb
+*.userprefs
+*.DS_Store
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/

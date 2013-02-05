@@ -41,13 +41,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="V_Base.cs" />
+    <Compile Include="Vid_Base.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Display\Display.csproj">
-      <Project>{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}</Project>
-      <Name>Display</Name>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{943F9711-92BC-42BE-A558-C364A29E70D8}</Project>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />

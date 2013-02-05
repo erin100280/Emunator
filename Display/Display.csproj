@@ -51,5 +51,15 @@
     <Compile Include="Display.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{943F9711-92BC-42BE-A558-C364A29E70D8}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Video\Video.Base\Video.Base.csproj">
+      <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
+      <Name>Video.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

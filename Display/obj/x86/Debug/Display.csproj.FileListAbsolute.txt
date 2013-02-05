@@ -7,3 +7,7 @@ C:\Dev\Projects\Emunator\Display\bin\Debug\Tao.Sdl.xml
 C:\Dev\Projects\Emunator\Display\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Dev\Projects\Emunator\Display\obj\x86\Debug\Emu.Display.dll
 C:\Dev\Projects\Emunator\Display\obj\x86\Debug\Emu.Display.pdb
+C:\Dev\Projects\Emunator\Display\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\Display\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\Display\bin\Debug\Emu.Video.dll
+C:\Dev\Projects\Emunator\Display\bin\Debug\Emu.Video.pdb

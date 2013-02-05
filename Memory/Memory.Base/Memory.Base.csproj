@@ -42,5 +42,11 @@
   <ItemGroup>
     <Compile Include="Mem_Base.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{943F9711-92BC-42BE-A558-C364A29E70D8}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

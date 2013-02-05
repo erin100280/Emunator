@@ -44,6 +44,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{943F9711-92BC-42BE-A558-C364A29E70D8}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Memory\Memory.Base\Memory.Base.csproj">
       <Project>{3C3673A3-E59E-46EC-A4C7-FC68A430EF34}</Project>
       <Name>Memory.Base</Name>

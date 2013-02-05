@@ -1,7 +1,7 @@
 C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Video.dll
 C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Video.pdb
-C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Display.dll
-C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Display.pdb
 C:\Dev\Projects\Emunator\Video\Video.Base\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Dev\Projects\Emunator\Video\Video.Base\obj\x86\Debug\Emu.Video.dll
 C:\Dev\Projects\Emunator\Video\Video.Base\obj\x86\Debug\Emu.Video.pdb
+C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Core.pdb

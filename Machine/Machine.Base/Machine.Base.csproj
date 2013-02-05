@@ -50,5 +50,27 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View_Base.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{943F9711-92BC-42BE-A558-C364A29E70D8}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CPU\CPU.Base\CPU.Base.csproj">
+      <Project>{5FF4A9D1-D9B8-4372-80EF-0547B99FD600}</Project>
+      <Name>CPU.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Display\Display.csproj">
+      <Project>{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}</Project>
+      <Name>Display</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Memory\Memory.Base\Memory.Base.csproj">
+      <Project>{3C3673A3-E59E-46EC-A4C7-FC68A430EF34}</Project>
+      <Name>Memory.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Video\Video.Base\Video.Base.csproj">
+      <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
+      <Name>Video.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

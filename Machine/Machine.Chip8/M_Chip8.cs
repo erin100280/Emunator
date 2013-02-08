@@ -6,6 +6,7 @@ using Emu;
 using Emu.Core;
 using Emu.Core.States;
 using Emu.CPU;
+using Emu.Display;
 using Emu.Memory;
 using Emu.Video;
 using System;
@@ -22,12 +23,13 @@ namespace Emu.Machine {
 			m_memory=new Mem_Chip8();
 			m_video=new Vid_Chip8();
 			m_cpu=new C_Chip8(m_memory, m_video);
-			m_display=new Display(m_video);
+			m_display=new Disp_Raster(m_video);
 		}
 		#endregion
 		#region events
 		#endregion
 		#region properties
+		
 		#endregion
 		#region On....
 		#endregion

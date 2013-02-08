@@ -3,6 +3,8 @@
  * Time: 5:43 PM
  */
 using System;
+using System.IO;
+
 namespace Emu.Memory {
 	public class Mem_Base {
 		#region vars
@@ -29,6 +31,22 @@ namespace Emu.Memory {
 		public virtual uint size{ get { return m_size; } }
 		public virtual byte[] bank{ get { return m_bank; } }
 		#endregion
+		public virtual void SetMemory(byte[] val, int startPos) {
+			for(uint i = 0, l = (uint)val.Length; i < l; i++)
+				m_bank[startPos + i] = val[i];
+		}
+		public virtual void SetMemory(BinaryReader val, int startPos) {
+			uint i = 0;
+			int byt = val.Read();
+			
+			try {
+				while(true) {
+					m_bank[startPos + i] = val.ReadByte();
+					i++;
+				}
+			}
+			catch(Exception ex) { if(ex.Data == null) {} }
+		}
 		public virtual void Reset() {}
 	}
 }

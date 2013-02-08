@@ -26,8 +26,15 @@ namespace Emunator
 		[STAThread]
 		private static void Main(string[] args)
 		{
+			InitProgram();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
+			Application.Run(new MainForm());
+		}
+
+		private static void InitProgram() {}
+		
+		public static void test01() {
 			byte bt1=0x000F;
 			byte bt2=0x00E0;
 			byte bt3=0x0000;
@@ -45,7 +52,7 @@ namespace Emunator
 			+	"bt7="+bt7.ToString()+"\n"
 				
 			);
-			//Application.Run(new MainForm());
+
 		}
 		
 	}

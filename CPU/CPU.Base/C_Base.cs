@@ -14,6 +14,7 @@ namespace Emu.CPU {
 
 	public class C_Base {
 		#region vars
+		//protected byte[] m_buffer=null;
 		protected byte m_delayTimer;
 		protected byte m_soundTimer;
 		protected byte[] m_key;
@@ -25,6 +26,11 @@ namespace Emu.CPU {
 		protected ushort m_stackSize;
 		protected ushort[] m_stack;
 		protected ushort m_stackCount;
+
+		protected int m_ramSize;
+		protected ushort m_startAddress;
+		protected ushort m_ramStartAddress;
+		protected ushort m_romStartAddress;
 
 		protected string m_name;
 		protected metaData m_meta=null;
@@ -43,8 +49,8 @@ namespace Emu.CPU {
 		protected virtual void InitC_Base(string name="", Mem_Base mem=null
 					, Vid_Base vid=null) {
 			m_meta=new metaData(name);
-			m_memory=mem;
-			m_video=vid;
+			memory=mem;
+			video=vid;
 		}
 		#endregion
 		#region events

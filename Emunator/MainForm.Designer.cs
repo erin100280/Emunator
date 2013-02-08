@@ -32,17 +32,29 @@ namespace Emunator
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.theMainControl_main = new Emunator.Controls.theMainControl();
 			this.SuspendLayout();
+			// 
+			// theMainControl_main
+			// 
+			this.theMainControl_main.BackColor = System.Drawing.Color.Black;
+			this.theMainControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.theMainControl_main.Location = new System.Drawing.Point(0, 0);
+			this.theMainControl_main.Name = "theMainControl_main";
+			this.theMainControl_main.Size = new System.Drawing.Size(569, 220);
+			this.theMainControl_main.TabIndex = 0;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(292, 266);
+			this.ClientSize = new System.Drawing.Size(569, 220);
+			this.Controls.Add(this.theMainControl_main);
 			this.Name = "MainForm";
 			this.Text = "Emunator";
 			this.ResumeLayout(false);
 		}
+		private Emunator.Controls.theMainControl theMainControl_main;
 	}
 }

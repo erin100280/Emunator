@@ -1,0 +1,3 @@
+C:\Dev\Projects\Emunator\Display\Display.OLD\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Display\Display.OLD\obj\x86\Debug\Emu.Display.dll
+C:\Dev\Projects\Emunator\Display\Display.OLD\obj\x86\Debug\Emu.Display.pdb

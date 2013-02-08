@@ -4,8 +4,10 @@
  */
 using Emu;
 using Emu.Core;
+using Emu.Core.FileSystem;
 using Emu.Core.States;
 using Emu.CPU;
+using Emu.Display;
 using Emu.Memory;
 using Emu.Video;
 using System;
@@ -15,7 +17,7 @@ namespace Emu.Machine {
 		#region vars
 		protected bool m_running=false;
 		protected bool m_paused=false;
-		protected Display m_display=null;
+		protected Disp_Base m_display=null;
 		protected metaData m_meta=null;
 		protected C_Base m_cpu=null;
 		protected Mem_Base m_memory=null;
@@ -23,15 +25,15 @@ namespace Emu.Machine {
 		#endregion
 		#region constructors
 		public M_Base(string name) { InitM_Base(name); }
-		public M_Base(string name, Display disp) {
+		public M_Base(string name, Disp_Base disp) {
 			InitM_Base(name, null, null, null, disp);
 		}
 		public M_Base(string name, C_Base cpu, Mem_Base mem
-					, Vid_Base vid, Display disp) {
+					, Vid_Base vid, Disp_Base disp) {
 			InitM_Base(name, cpu, mem, vid, disp);
 		}
 		protected virtual void InitM_Base(string name="", C_Base cpu=null
-					, Mem_Base mem=null, Vid_Base vid=null, Display disp=null) {
+					, Mem_Base mem=null, Vid_Base vid=null, Disp_Base disp=null) {
 
 			m_meta=new metaData(name);
 			m_cpu=cpu;
@@ -44,7 +46,7 @@ namespace Emu.Machine {
 		#region properties
 		public virtual bool running{ get { return m_running; } }
 		public virtual bool paused{ get { return m_paused; } }
-		public virtual Display display{
+		public virtual Disp_Base display{
 			get { return m_display; }
 			set {
 				if(m_display!=value) {
@@ -125,6 +127,22 @@ namespace Emu.Machine {
 			return new machineState();
 		}
 		protected virtual void SetMachineState(machineState state) {}
+		#endregion
+		#region function: LoadRom
+		public virtual void LoadRom(string filename) {
+			file fil = file.LoadBinaryStream(filename);
+			
+		}
+		#endregion
+		#region function: Unload
+		public virtual void Unload() {
+			if(m_display != null) {
+				if(m_display.Parent != null)
+					m_display.Parent.Controls.Remove(m_display);
+				m_display.Dispose();
+				m_display = null;
+			}
+		}
 		#endregion
 	}
 }

@@ -47,6 +47,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\theMainControl.cs" />
+    <Compile Include="Controls\theMainControl.Designer.cs">
+      <DependentUpon>theMainControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -67,15 +71,41 @@
       <Project>{B9A36969-43DA-4EA5-9EC8-18955FB03B08}</Project>
       <Name>CPU.Chip8</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Display\Display.csproj">
-      <Project>{82F51B22-1B83-4BF9-9416-2C2B2BF7954E}</Project>
-      <Name>Display</Name>
+    <ProjectReference Include="..\Display\Display.Base\Display.Base.csproj">
+      <Project>{912701EF-767E-4E73-A4F3-128645712D27}</Project>
+      <Name>Display.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Display\Display.Raster\Display.Raster.csproj">
+      <Project>{CDF7B856-8F30-455D-B705-287DF63CF7F7}</Project>
+      <Name>Display.Raster</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Display\Display.Raster\Display.Raster.csproj">
+      <Project>{CDF7B856-8F30-455D-B705-287DF63CF7F7}</Project>
+      <Name>Display.Raster</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Machine\Machine.Base\Machine.Base.csproj">
+      <Project>{6861530C-932A-4E40-8E37-F45C7CAB8A61}</Project>
+      <Name>Machine.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Machine\Machine.Chip8\Machine.Chip8.csproj">
+      <Project>{EF514086-7F1B-4036-91D9-BEB7F6B01424}</Project>
+      <Name>Machine.Chip8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Video\Video.Base\Video.Base.csproj">
+      <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
+      <Name>Video.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\theMainControl.resx">
+      <DependentUpon>theMainControl.Designer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

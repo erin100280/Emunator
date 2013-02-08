@@ -1,0 +1,11 @@
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Display.Raster2D.dll
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Display.Raster2D.pdb
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Display.Base.dll
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Video.dll
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Video.pdb
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\bin\Debug\Emu.Display.Base.pdb
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\obj\x86\Debug\Emu.Display.Raster2D.dll
+C:\Dev\Projects\Emunator\Display\Display.Raster2D\obj\x86\Debug\Emu.Display.Raster2D.pdb

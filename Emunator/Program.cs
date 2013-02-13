@@ -1,12 +1,4 @@
-﻿		#region vars
-		#endregion
-		#region constructors
-		#endregion
-		#region events
-		#endregion
-		#region On....
-		#endregion
-/* User: Erin
+﻿/* User: Erin
  * Date: 1/30/2013
  * Time: 8:57 AM
  */

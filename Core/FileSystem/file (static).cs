@@ -23,12 +23,14 @@ namespace Emu.Core.FileSystem {
 		#region static function: LoadBinaryStream
 		public static file LoadBinaryStream(string filename) {
 			file rv = GetFileInfo(filename);
-			rv.fileStream = new FileStream(
-			  filename
-			, FileMode.Open
-			, FileAccess.Read
-			);
-			rv.binaryReader = new BinaryReader(rv.fileStream);
+			if(rv.exists) {
+				rv.fileStream = new FileStream(
+				  filename
+				, FileMode.Open
+				, FileAccess.Read
+				);
+				rv.binaryReader = new BinaryReader(rv.fileStream);
+			}
 			return rv;
 		}
 		#endregion

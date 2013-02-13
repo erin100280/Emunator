@@ -20,6 +20,8 @@ namespace Emu.Machine {
 		#region constructors
 		public M_Chip8(): base("Chip8 Machine") { InitM_Chip8(); }
 		protected virtual void InitM_Chip8() {
+			interval = 100;
+			
 			m_memory=new Mem_Chip8();
 			m_video=new Vid_Chip8();
 			m_cpu=new C_Chip8(m_memory, m_video);
@@ -33,7 +35,10 @@ namespace Emu.Machine {
 		#endregion
 		#region On....
 		#endregion
-		#region function: blah
+		#region function: Reset
+		public override void Reset() {
+			base.Reset();
+		}
 		#endregion
 	}
 }

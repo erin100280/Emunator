@@ -34,6 +34,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memory.Base", "Memory\Memor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memory.Chip8", "Memory\Memory.Chip8\Memory.Chip8.csproj", "{C23FB55A-B6F0-4575-A082-CC988E1BC20A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Display", "Display", "{3A1A5510-99AE-438D-A91C-9124C287E8A2}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Display.Base", "Display\Display.Base\Display.Base.csproj", "{912701EF-767E-4E73-A4F3-128645712D27}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Display.Raster", "Display\Display.Raster\Display.Raster.csproj", "{CDF7B856-8F30-455D-B705-287DF63CF7F7}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emunator", "Emunator\Emunator.csproj", "{AF85776D-7D25-4720-8BC4-FA415F55A812}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpChip8", "example chip8\SharpChip8\SharpChip8.csproj", "{94F8717B-0C84-4C3C-B904-101F7D2383DB}"
@@ -42,13 +50,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpChip-8-wf", "example c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{943F9711-92BC-42BE-A558-C364A29E70D8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Display", "Display", "{3A1A5510-99AE-438D-A91C-9124C287E8A2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1BC3C15D-4019-403A-976C-AB417B72A924}"
 	ProjectSection(SolutionItems) = postProject
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Display.Base", "Display\Display.Base\Display.Base.csproj", "{912701EF-767E-4E73-A4F3-128645712D27}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Be.HexEditor Lib", "Be.HexEditor Lib", "{90110DC5-006E-4E10-9A67-0483D0742102}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Display.Raster", "Display\Display.Raster\Display.Raster.csproj", "{CDF7B856-8F30-455D-B705-287DF63CF7F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.HexEditor", "Tools\Be.HexEditor Lib\Be.HexEditor\Be.HexEditor.csproj", "{FF4ADB46-210E-429E-9176-68613F5CBE90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Be.Windows.Forms.HexBox", "Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\Be.Windows.Forms.HexBox.csproj", "{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -150,6 +162,22 @@ Global
 		{CDF7B856-8F30-455D-B705-287DF63CF7F7}.Release|x86.ActiveCfg = Release|x86
 		{CDF7B856-8F30-455D-B705-287DF63CF7F7}.Release|Any CPU.Build.0 = Release|x86
 		{CDF7B856-8F30-455D-B705-287DF63CF7F7}.Release|Any CPU.ActiveCfg = Release|x86
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Debug|x86.Build.0 = Debug|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Release|x86.Build.0 = Release|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Release|x86.ActiveCfg = Release|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF4ADB46-210E-429E-9176-68613F5CBE90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Debug|x86.Build.0 = Debug|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Release|x86.Build.0 = Release|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Release|x86.ActiveCfg = Release|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B9A36969-43DA-4EA5-9EC8-18955FB03B08} = {24C4AFAC-39A5-47B6-9E0A-41703265DFAC}
@@ -162,5 +190,8 @@ Global
 		{C23FB55A-B6F0-4575-A082-CC988E1BC20A} = {85D4624C-54C1-4025-A290-4AF449F71DB5}
 		{912701EF-767E-4E73-A4F3-128645712D27} = {3A1A5510-99AE-438D-A91C-9124C287E8A2}
 		{CDF7B856-8F30-455D-B705-287DF63CF7F7} = {3A1A5510-99AE-438D-A91C-9124C287E8A2}
+		{90110DC5-006E-4E10-9A67-0483D0742102} = {1BC3C15D-4019-403A-976C-AB417B72A924}
+		{FF4ADB46-210E-429E-9176-68613F5CBE90} = {90110DC5-006E-4E10-9A67-0483D0742102}
+		{26C5F25F-B450-4CAF-AD8B-B8D11AE73457} = {90110DC5-006E-4E10-9A67-0483D0742102}
 	EndGlobalSection
 EndGlobal

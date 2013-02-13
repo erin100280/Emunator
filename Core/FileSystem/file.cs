@@ -38,6 +38,20 @@ namespace Emu.Core.FileSystem {
 			hasInfo = false;
 		}
 		#endregion
+		#region function: Read....
+		public virtual byte ReadByte() {
+			BinaryReader br=binaryReader;
+			if(br == null) br = GetBinaryReader();
+			return br.ReadByte();
+		}
+		#endregion
+		#region function: GetBinaryReader
+		protected virtual BinaryReader GetBinaryReader() {
+			if(binaryReader == null && fileStream != null)
+				binaryReader = new BinaryReader(fileStream);
+			return binaryReader;
+		}
+		#endregion
 	}
 
 

@@ -28,9 +28,9 @@ namespace Emu.CPU {
 		protected ushort m_stackCount;
 
 		protected int m_ramSize;
-		protected ushort m_startAddress;
-		protected ushort m_ramStartAddress;
-		protected ushort m_romStartAddress;
+		protected UInt64 m_startAddress;
+		protected UInt64 m_ramStartAddress;
+		protected UInt64 m_romStartAddress;
 
 		protected string m_name;
 		protected metaData m_meta=null;
@@ -99,6 +99,8 @@ namespace Emu.CPU {
 			}
 		}
 		public virtual metaData meta{ get { return m_meta; } }
+		public virtual UInt64 ramStartAddress { get { return m_ramStartAddress; } }
+		public virtual UInt64 romStartAddress { get { return m_romStartAddress; } }
 		
 		#endregion
 		#region On....

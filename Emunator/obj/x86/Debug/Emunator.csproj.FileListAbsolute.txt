@@ -25,7 +25,6 @@ C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Display.Raster2D.pdb
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\SdlDotNet.xml
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Tao.Sdl.xml
 C:\Dev\Projects\Emunator\Emunator\obj\x86\Debug\Emunator.Controls.theMainControl.resources
-C:\Dev\Projects\Emunator\Emunator\obj\x86\Debug\GenerateResource.read.4.tlog
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Machine.Base.dll
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Machine.Chip8.dll
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Memory.Chip8.dll
@@ -34,3 +33,15 @@ C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Machine.Base.pdb
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Machine.Chip8.pdb
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Memory.Chip8.pdb
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Video.Chip8.pdb
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Be.HexEditor.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Be.Windows.Forms.HexBox.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Be.HexEditor.pdb
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Be.Windows.Forms.HexBox.pdb
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Be.Windows.Forms.HexBox.xml
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\de\Be.HexEditor.resources.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\it\Be.HexEditor.resources.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\ja\Be.HexEditor.resources.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\ru\Be.HexEditor.resources.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\zh-Hans\Be.HexEditor.resources.dll
+C:\Dev\Projects\Emunator\Emunator\obj\x86\Debug\GenerateResource.read.0.tlog
+C:\Dev\Projects\Emunator\Emunator\obj\x86\Debug\GenerateResource.write.0.tlog

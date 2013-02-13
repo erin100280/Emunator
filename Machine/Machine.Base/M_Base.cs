@@ -209,6 +209,20 @@ namespace Emu.Machine {
 			_timer.Start();
 			OnEmulationStarted(new EventArgs());
 		}
+		public virtual void Step() {
+			if(running && !paused) {
+				_pauseNow = true;
+				return;
+			}
+			else if(!running) {
+				running = true;
+				paused = true;
+				OnEmulationStarted(new EventArgs());
+			}
+			DoInput();
+			DoCycle();
+			DoGraphics();
+		}
 		public virtual void Stop() {
 			if(running) {
 				_stopNow = true;
@@ -224,6 +238,7 @@ namespace Emu.Machine {
 		#endregion
 		#region function: LoadRom
 		public virtual void LoadRom(string filename) {
+			//sg.Box("m_cpu.romStartAddress = " + m_cpu.romStartAddress);
 			file fil = file.LoadBinaryStream(filename);
 			m_memory.Reset();
 			m_memory.SetMemory(fil, m_cpu.romStartAddress);

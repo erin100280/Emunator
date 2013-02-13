@@ -1,7 +1,10 @@
-﻿/* User: Erin
+﻿#region header
+/* User: Erin
  * Date: 1/30/2013
  * Time: 9:06 AM
  */
+#endregion
+#region using....
 using Emu;
 using Emu.Core;
 using Emu.Core.States;
@@ -9,9 +12,10 @@ using Emu.Memory;
 using Emu.Video;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+#endregion
 
 namespace Emu.CPU {
-
 	public class C_Base {
 		#region vars
 		//protected byte[] m_buffer=null;
@@ -117,6 +121,42 @@ namespace Emu.CPU {
 		#region function GetState, SetState
 		protected virtual cpuState GetState() { return new cpuState(); }
 		protected virtual void SetState(cpuState state) {}
+		#endregion
+		#region function: WriteDoCycle
+		public virtual void WriteDoCycle(string op, string desc) {
+			WriteDoCycle(m_counter, op, desc);
+		}
+		public virtual void WriteDoCycle(UInt64 counter, string op, string desc) {
+			string val = ("DoCycle"
+			+	"["
+			+		"PC=" + counter.ToString().PadLeft(3, '0')
+			+	", "
+			+		"$=" + (m_romStartAddress + counter)
+								.ToString().PadLeft(4, '0')
+			+	"]"
+			);
+			
+			if(op != "") val +=	" - " + op;
+			if(desc != "") val +=	" - " + desc;
+			Debug.WriteLine(val);
+		}
+		public virtual void WriteDoCycle(UInt16 counter, string op, string desc) {
+			WriteDoCycle((UInt64)counter, op, desc);
+		}
+		public virtual void WriteDoCycle(int counter, string op, string desc) {
+			WriteDoCycle((UInt64)counter, op, desc);
+		}
+
+		public virtual string regInfoString(UInt16 reg, bool brackets = true) {
+			string rv = "";
+			if(brackets) rv += "[";
+			rv += "#:" + reg + ", val:" + m_vRegisters[reg];
+			if(brackets) rv += "]";
+			return rv;
+		}
+		public virtual string regInfoString(int reg, bool brackets = true) {
+			return regInfoString((UInt16)reg, brackets);
+		}
 		#endregion
 		protected virtual void DoRuntimeError(string err) {
 			OnRuntimeError(new errorEventArgs(err));

@@ -1,7 +1,10 @@
-﻿/* User: Erin
+﻿#region header
+/* User: Erin
  * Date: 2/4/2013
  * Time: 10:19 PM
  */
+#endregion
+#region using....
 using Emu;
 using Emu.Core;
 using Emu.Core.States;
@@ -11,9 +14,9 @@ using Emu.Memory;
 using Emu.Video;
 using System;
 using System.Collections.Generic;
+#endregion
 
 namespace Emu.Machine {
-
 	public class M_Chip8 : M_Base {
 		#region vars
 		#endregion

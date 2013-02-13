@@ -1,7 +1,10 @@
-﻿/* User: Erin
+﻿#region header
+/* User: Erin
  * Date: 2/7/2013
  * Time: 9:12 PM
  */
+#endregion
+#region using....
 using Be.HexEditor;
 using Be.Windows.Forms;
 using Emu.Core;
@@ -11,6 +14,7 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+#endregion
 
 namespace Emunator.Controls {
 	#region meta
@@ -18,8 +22,7 @@ namespace Emunator.Controls {
 	/// theMainControl is the main control.
 	/// </summary>
 	#endregion
-	public partial class theMainControl : UserControl
-	{
+	public partial class theMainControl : UserControl {
 		#region vars
 		
 		#endregion
@@ -42,8 +45,64 @@ namespace Emunator.Controls {
 			if(dr == DialogResult.OK) {
 				LoadMachine_Chip8();
 				machine.LoadRom(openFileDialog.FileName);
-				machine.Run();
+				//machine.Run();
 			}
+		}
+		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
+			HexEditorToolStripMenuItemClick(sender, e);
+			hexEditor.OpenMemory(new Be.Windows.Forms.DynamicByteProvider(machine.memory.bank));
+		}
+		void PauseToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) machine.Pause();
+		}
+		void ResumeToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) machine.Resume();
+		}
+		void HexEditorToolStripMenuItemClick(object sender, EventArgs e) {
+			FormHexEditor frm =  new FormHexEditor();
+			if(ParentForm != null) frm.Show(ParentForm);
+			else frm.Show();
+		}
+		void EditMemoryToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) {
+				hexEditorOptions ops = new hexEditorOptions();
+				ops.byteProvider = new DynamicByteProvider(machine.memory.bank);
+				ops.showMnuItm_File_Open = false;
+				ops.showMnuItm_File_Recent = false;
+				ops.showMnuItm_File_Save = false;
+				
+				FormHexEditor frm =  new FormHexEditor(ops);
+				if(ParentForm != null) frm.Show(ParentForm);
+				else frm.Show();
+			}
+		}
+		void EditVideoMemoryToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) {
+				hexEditorOptions ops = new hexEditorOptions();
+				ops.byteProvider = new DynamicByteProvider(machine.video.buffer);
+				ops.showMnuItm_File_Open = false;
+				ops.showMnuItm_File_Recent = false;
+				ops.showMnuItm_File_Save = false;
+				
+				FormHexEditor frm =  new FormHexEditor(ops);
+				if(ParentForm != null) frm.Show(ParentForm);
+				else frm.Show();
+			}
+		}
+		void RunToolStripMenuItemClick(object sender, EventArgs e) {
+			machine.Run();
+		}
+		void StepToolStripMenuItemClick(object sender, EventArgs e) {
+			machine.Step();
+		}
+		void StopToolStripMenuItemClick(object sender, EventArgs e) {
+			machine.Stop();
+		}
+		void ResetToolStripMenuItemClick(object sender, EventArgs e) {
+			machine.Reset();
+		}
+		void TSMnuItm_File_ExitClick(object sender, EventArgs e) {
+			Application.Exit();
 		}
 		#endregion
 		#region properties
@@ -89,37 +148,5 @@ namespace Emunator.Controls {
 		}
 		#endregion
 		
-		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
-			HexEditorToolStripMenuItemClick(sender, e);
-			hexEditor.OpenMemory(new Be.Windows.Forms.DynamicByteProvider(machine.memory.bank));
-		}
-		
-		void PauseToolStripMenuItemClick(object sender, EventArgs e) {
-			if(machine != null) machine.Pause();
-		}
-		
-		void ResumeToolStripMenuItemClick(object sender, EventArgs e) {
-			if(machine != null) machine.Resume();
-		}
-		
-		void HexEditorToolStripMenuItemClick(object sender, EventArgs e) {
-			FormHexEditor frm =  new FormHexEditor();
-			if(ParentForm != null) frm.Show(ParentForm);
-			else frm.Show();
-		}
-		
-		void EditMemoryToolStripMenuItemClick(object sender, EventArgs e) {
-			if(machine != null) {
-				hexEditorOptions ops = new hexEditorOptions();
-				ops.byteProvider = new DynamicByteProvider(machine.memory.bank);
-				ops.showMnuItm_File_Open = false;
-				ops.showMnuItm_File_Recent = false;
-				ops.showMnuItm_File_Save = false;
-				
-				FormHexEditor frm =  new FormHexEditor(ops);
-				if(ParentForm != null) frm.Show(ParentForm);
-				else frm.Show();
-			}
-		}
 	}
 }

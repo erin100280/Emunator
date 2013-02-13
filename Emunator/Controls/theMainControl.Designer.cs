@@ -38,10 +38,16 @@ namespace Emunator.Controls
 			this.TSSep_File_1 = new System.Windows.Forms.ToolStripSeparator();
 			this.TSMnuItm_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
 			this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pauseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resumeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.dumpMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.editMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.editVideoMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.hexEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,7 +56,6 @@ namespace Emunator.Controls
 			this.picSep = new System.Windows.Forms.PictureBox();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.pnl_display = new System.Windows.Forms.Panel();
-			this.editMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picSep)).BeginInit();
 			this.SuspendLayout();
@@ -84,49 +89,88 @@ namespace Emunator.Controls
 			// TSMnuItm_File_Open
 			// 
 			this.TSMnuItm_File_Open.Name = "TSMnuItm_File_Open";
-			this.TSMnuItm_File_Open.Size = new System.Drawing.Size(111, 22);
+			this.TSMnuItm_File_Open.Size = new System.Drawing.Size(143, 22);
 			this.TSMnuItm_File_Open.Text = "&Open";
 			// 
 			// TSSep_File_1
 			// 
 			this.TSSep_File_1.Name = "TSSep_File_1";
-			this.TSSep_File_1.Size = new System.Drawing.Size(108, 6);
+			this.TSSep_File_1.Size = new System.Drawing.Size(140, 6);
 			// 
 			// TSMnuItm_File_Exit
 			// 
 			this.TSMnuItm_File_Exit.Name = "TSMnuItm_File_Exit";
-			this.TSMnuItm_File_Exit.Size = new System.Drawing.Size(111, 22);
+			this.TSMnuItm_File_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
+			this.TSMnuItm_File_Exit.Size = new System.Drawing.Size(143, 22);
 			this.TSMnuItm_File_Exit.Text = "E&xit";
+			this.TSMnuItm_File_Exit.Click += new System.EventHandler(this.TSMnuItm_File_ExitClick);
 			// 
 			// machineToolStripMenuItem
 			// 
 			this.machineToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.runToolStripMenuItem,
 									this.pauseToolStripMenuItem,
-									this.resumeToolStripMenuItem});
+									this.stepToolStripMenuItem,
+									this.resumeToolStripMenuItem,
+									this.stopToolStripMenuItem,
+									this.resetToolStripMenuItem});
 			this.machineToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.machineToolStripMenuItem.Name = "machineToolStripMenuItem";
 			this.machineToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
 			this.machineToolStripMenuItem.Text = "&Machine";
 			// 
+			// runToolStripMenuItem
+			// 
+			this.runToolStripMenuItem.Name = "runToolStripMenuItem";
+			this.runToolStripMenuItem.ShortcutKeyDisplayString = "";
+			this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
+			this.runToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.runToolStripMenuItem.Text = "&Run";
+			this.runToolStripMenuItem.Click += new System.EventHandler(this.RunToolStripMenuItemClick);
+			// 
 			// pauseToolStripMenuItem
 			// 
 			this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-			this.pauseToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+			this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.pauseToolStripMenuItem.Text = "&Pause";
 			this.pauseToolStripMenuItem.Click += new System.EventHandler(this.PauseToolStripMenuItemClick);
+			// 
+			// stepToolStripMenuItem
+			// 
+			this.stepToolStripMenuItem.Name = "stepToolStripMenuItem";
+			this.stepToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
+			this.stepToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.stepToolStripMenuItem.Text = "&Step";
+			this.stepToolStripMenuItem.Click += new System.EventHandler(this.StepToolStripMenuItemClick);
 			// 
 			// resumeToolStripMenuItem
 			// 
 			this.resumeToolStripMenuItem.Name = "resumeToolStripMenuItem";
-			this.resumeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+			this.resumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.resumeToolStripMenuItem.Text = "Resu&me";
 			this.resumeToolStripMenuItem.Click += new System.EventHandler(this.ResumeToolStripMenuItemClick);
+			// 
+			// stopToolStripMenuItem
+			// 
+			this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
+			this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.stopToolStripMenuItem.Text = "&Stop";
+			this.stopToolStripMenuItem.Click += new System.EventHandler(this.StopToolStripMenuItemClick);
+			// 
+			// resetToolStripMenuItem
+			// 
+			this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
+			this.resetToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+			this.resetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.resetToolStripMenuItem.Text = "Rese&t";
+			this.resetToolStripMenuItem.Click += new System.EventHandler(this.ResetToolStripMenuItemClick);
 			// 
 			// debugToolStripMenuItem
 			// 
 			this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.dumpMemoryToolStripMenuItem,
-									this.editMemoryToolStripMenuItem});
+									this.editMemoryToolStripMenuItem,
+									this.editVideoMemoryToolStripMenuItem});
 			this.debugToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
 			this.debugToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -135,8 +179,22 @@ namespace Emunator.Controls
 			// dumpMemoryToolStripMenuItem
 			// 
 			this.dumpMemoryToolStripMenuItem.Name = "dumpMemoryToolStripMenuItem";
-			this.dumpMemoryToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+			this.dumpMemoryToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
 			this.dumpMemoryToolStripMenuItem.Text = "&Dump Memory";
+			// 
+			// editMemoryToolStripMenuItem
+			// 
+			this.editMemoryToolStripMenuItem.Name = "editMemoryToolStripMenuItem";
+			this.editMemoryToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+			this.editMemoryToolStripMenuItem.Text = "&Edit Memory";
+			this.editMemoryToolStripMenuItem.Click += new System.EventHandler(this.EditMemoryToolStripMenuItemClick);
+			// 
+			// editVideoMemoryToolStripMenuItem
+			// 
+			this.editVideoMemoryToolStripMenuItem.Name = "editVideoMemoryToolStripMenuItem";
+			this.editVideoMemoryToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+			this.editVideoMemoryToolStripMenuItem.Text = "Edit Video Memory";
+			this.editVideoMemoryToolStripMenuItem.Click += new System.EventHandler(this.EditVideoMemoryToolStripMenuItemClick);
 			// 
 			// toolsToolStripMenuItem
 			// 
@@ -203,13 +261,6 @@ namespace Emunator.Controls
 			this.pnl_display.Size = new System.Drawing.Size(540, 159);
 			this.pnl_display.TabIndex = 4;
 			// 
-			// editMemoryToolStripMenuItem
-			// 
-			this.editMemoryToolStripMenuItem.Name = "editMemoryToolStripMenuItem";
-			this.editMemoryToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-			this.editMemoryToolStripMenuItem.Text = "&Edit Memory";
-			this.editMemoryToolStripMenuItem.Click += new System.EventHandler(this.EditMemoryToolStripMenuItemClick);
-			// 
 			// theMainControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +277,11 @@ namespace Emunator.Controls
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem editVideoMemoryToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stepToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem runToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editMemoryToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem hexEditorToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;

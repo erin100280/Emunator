@@ -63,9 +63,7 @@ namespace Emu.CPU {
 			InitC_Chip8();
 		}
 		protected virtual void InitC_Chip8() {
-			m_vRegisters = new byte[16];
-			m_ramStartAddress = (UInt64) 0x200;
-			m_romStartAddress = (UInt64) 0x200;
+			Reset();
 		}
 		#endregion
 		#region state stuff
@@ -80,8 +78,10 @@ namespace Emu.CPU {
 			byte[] regs = m_vRegisters;
 			//byte bt;
 			UInt64 romSA = m_romStartAddress;
-			ushort oc=m_opcode=(ushort)(m_bank[m_romStartAddress+m_counter] << 8
-						| m_bank[m_romStartAddress+m_counter+1]);
+			//ushort oc=m_opcode=(ushort)(m_bank[m_romStartAddress+m_counter] << 8
+			//			| m_bank[m_romStartAddress+m_counter+1]);
+			ushort oc=m_opcode=(ushort)(m_bank[m_counter] << 8
+						| m_bank[m_counter+1]);
 			ushort x, y, h, pxl, I = m_indexRegister;
 
 			m_lastCounter=m_counter;
@@ -130,7 +130,8 @@ namespace Emu.CPU {
 				#endif
 				#endregion
 				//m_counter=(ushort)((int)romSA + (oc & 0x0FFF));
-				m_counter=(ushort)((int)(oc & 0x0FFF) - (int)m_romStartAddress);
+				//m_counter=(ushort)((int)(oc & 0x0FFF) - (int)m_romStartAddress);
+				m_counter=(ushort)(oc & 0x0FFF);
       		break;
 			#endregion
 			#region 0x2NNN - run sub at NNN
@@ -142,7 +143,8 @@ namespace Emu.CPU {
 				#endregion
       		m_stack[m_stackCount]=m_counter;
       		++m_stackCount;
-      		m_counter=(ushort)((int)romSA + (oc & 0x0FFF));
+      		//m_counter=(ushort)((int)romSA + (oc & 0x0FFF));
+      		m_counter=(ushort)(oc & 0x0FFF);
       		break;
 			#endregion
 			#region 0x3XNN - skip next instruction if VX == NN
@@ -214,7 +216,9 @@ namespace Emu.CPU {
 					);
 				#endif
 				#endregion
-      		regs[(oc & 0x0F00) >> 8] += (byte)(oc & 0x00FF);
+      		i = regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF);
+      		if(i > 255) i -= 255;
+      		regs[(oc & 0x0F00) >> 8] = (byte)i;
 				break;
 			#endregion
       	#region 0x8...  0x8XY0 - 0x8XY7, 0x8XYE
@@ -244,7 +248,10 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		regs[(oc & 0x0F00) >> 8] |= regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] | regs[(oc & 0x00F0) >> 4];
+         		if(i > 255) i -= 255;
+         		if(i < 0) i += 256;
+         		regs[(oc & 0x0F00) >> 8] = (byte)i;
          		break;
 				#endregion
 				#region 0x8XY2 - set VX to VX-AND-VY
@@ -258,7 +265,10 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		regs[(oc & 0x0F00) >> 8] &= regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] & regs[(oc & 0x00F0) >> 4];
+         		if(i > 255) i -= 255;
+         		if(i < 0) i += 256;
+         		regs[(oc & 0x0F00) >> 8] = (byte)i;
          		break;
 				#endregion
 				#region 0x8XY3 - set VX to VX-XOR-VY
@@ -272,7 +282,10 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		regs[(oc & 0x0F00) >> 8] ^= regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] ^ regs[(oc & 0x00F0) >> 4];
+         		if(i > 255) i -= 255;
+         		if(i < 0) i += 256;
+         		regs[(oc & 0x0F00) >> 8] = (byte)i;
          		break;
 				#endregion
    			#region 0x8XY4 - add VY to VX.
@@ -294,12 +307,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		if(regs[(oc & 0x00F0) >> 4]
-								> (0xFF-regs[(oc & 0x0F00) >> 8]))
-						regs[0xF]=1;
-					else
-						regs[0xF]=0;
-	         		regs[(oc & 0x0F00) >> 8] += regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] + regs[(oc & 0x00F0) >> 4];
+         		if(i > 255) {
+         			regs[0xF] = 1;
+         			i -= 255;
+         		}
+         		else regs[0xF] = 0;
+         		regs[(oc & 0x0F00) >> 8] = (byte)i;
          		break;
    			#endregion
 				#region 0x8XY5 - set VX to (VX - VY).
@@ -320,12 +334,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		if(regs[(oc & 0x00F0) >> 4]
-							   > (regs[(oc & 0x0F00) >> 8]))
-						regs[0xF]=0;
-					else
-						regs[0xF]=1;
-	         		regs[(oc & 0x0F00) >> 8] -= regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] - regs[(oc & 0x00F0) >> 4];
+         		if(i < 0) {
+         			regs[0xF]=0;
+         			i += 256;
+         		}
+         		else regs[0xF]=1;
+         		regs[(oc & 0x0F00) >> 8] = (byte)i;
          		break;
 				#endregion
 				#region 0x8XY6 - shift VX right 1. set VF to lsb
@@ -362,13 +377,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		if(regs[(oc & 0x0F00) >> 8]
-							   > (regs[(oc & 0x00F0) >> 4]))
-						regs[0xF]=0;
-					else
-						regs[0xF]=1;
-         		regs[(oc & 0x0F00) >> 8] = (byte)(regs[(oc & 0x00F0) >> 4]
-								- regs[(oc & 0x0F00) >> 8]);
+         		i = (regs[(oc & 0x00F0) >> 4] - regs[(oc & 0x0F00) >> 8]);
+         		if(i < 0) {
+         			regs[0xF]=0;
+         			i += 256;
+         		}
+         		else regs[0xF]=1;
+         		regs[(oc & 0x0F00) >> 8] = (byte)i;
          		break;
 				#endregion
 				#region 0x8XYE - shift VX left 1. set VF to msb
@@ -429,7 +444,7 @@ namespace Emu.CPU {
 					);
 				#endif
 				#endregion
-				m_indexRegister=(ushort)((int)romSA + (oc & 0x0FFF));
+				m_indexRegister=(ushort)(oc & 0x0FFF);
 				break;
 			#endregion
 			#region 0xBNNN - jump to address (NNN + V0)
@@ -443,23 +458,24 @@ namespace Emu.CPU {
 					);
 				#endif
 				#endregion
-				m_counter=(ushort)((int)romSA + ((oc & 0x0FFF) + regs[0]));
+				//m_counter=(ushort)((int)romSA + ((oc & 0x0FFF) + regs[0]));
+				m_counter=(ushort)((oc & 0x0FFF) + regs[0]);
 				break;
 			#endregion
 			#region 0xCXYN - set VX to (randomNumber & NN)
 			case 0xC000:
+				i = ((rand.Next() % 0xFF) & (oc & 0x00FF));
 				#region DBG
 				#if (DBG_SHOW_COMMAND)
 					WriteDoCycle("0xCXYN"
 					,	"set VX" + regInfoString((oc & 0x0F00) >> 8)
 					+	" to rnd +"
 					+	" NN[" + (oc & 0x00FF) + "]"
-					+	" - val=" + ((rand.Next() % 0xFF) & (oc & 0x00FF))
+					+	" - val=" + i
 					);
 				#endif
 				#endregion
-				regs[(oc & 0x0F00) >> 8]
-							= (byte)((rand.Next() % 0xFF) & (oc & 0x00FF));
+				regs[(oc & 0x0F00) >> 8] = (byte)i;
 				break;
 			#endregion
 			#region 0xDXYN - draw sprite at VX,VY with height of N
@@ -611,11 +627,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					if((m_indexRegister + regs[(oc & 0x0F00) >> 8]) > 0xFFF)
+					i = m_indexRegister + regs[(oc & 0x0F00) >> 8];
+					if(i > 3840) {
 						regs[0xF] = 1;
-					else
-						regs[0xF] = 0;
-					m_indexRegister += regs[(oc & 0x0F00) >> 8];
+						i -= 3840;
+					}
+					else regs[0xF] = 0;
+					m_indexRegister = (UInt16)i;
 					break;
 				#endregion
 				#region 0xFX29 - set I to address of font data for key hex val VX
@@ -733,7 +751,7 @@ namespace Emu.CPU {
 			base.Reset();
 			m_vRegisters=new byte[16];
 			m_key=new byte[16];
-			m_counter=0;
+			m_counter=0x200;
 			m_indexRegister=0;
 			m_opcode=0;
 			m_stackSize=16;

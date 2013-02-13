@@ -124,7 +124,7 @@ namespace Emu.CPU {
 		#endregion
 		#region function: WriteDoCycle
 		public virtual void WriteDoCycle(string op, string desc) {
-			WriteDoCycle(m_counter, op, desc);
+			WriteDoCycle(m_lastCounter, op, desc);
 		}
 		public virtual void WriteDoCycle(UInt64 counter, string op, string desc) {
 			string val = ("DoCycle"

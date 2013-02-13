@@ -46,7 +46,8 @@ namespace Emu.Memory {
 		#endregion
 		public override void Reset(bool clearBank = true) {
 			base.Reset(false);
-
+			UInt16 i;
+			
 			_size=4096;
 			_startAddress=0x200; // 512
 			_romSize=0x1FF;
@@ -56,8 +57,10 @@ namespace Emu.Memory {
 			_startRamAddress=0x200;
 			
 			if(clearBank) ClearBank();
-			for(UInt16 i = 0; i < 80; i++)
+			for(i = 0; i < 80; i++)
 				_bank[i] = _fontSet[i];
+			for(i = 80; i < 160; i++)
+				_bank[i] = _fontSet[i - 80];
 			
 		}
 	}

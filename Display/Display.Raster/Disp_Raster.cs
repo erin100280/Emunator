@@ -1,8 +1,9 @@
-﻿/* User: Erin
+﻿#region header
+/* User: Erin
  * Date: 2/6/2013
  * Time: 5:22 PM
  */
-
+#endregion
 #region using
 using Emu.Video;
 using SdlDotNet;
@@ -21,7 +22,7 @@ namespace Emu.Display {
 		#region vars
 		protected SurfaceControl _frontBuffer = null;
 		protected Surface _backBuffer = null;
-		protected Size _defaultSize = new Size(64, 32);
+		protected Size _defaultSize = new Size(164, 32);
 		protected Surface _background = null;
 		protected Box _backgroundBox;
 		protected Int32 _black = Color.Black.ToArgb();
@@ -101,23 +102,27 @@ namespace Emu.Display {
 		#endregion
 		#region override function Refresh
 		public override void Refresh() {
-			switch(_displayMode) {
-				case displayMode.original:
-					_frontBuffer.Size = _defaultSize;
-					_frontBuffer.MaximumSize = _defaultSize;
-					_frontBuffer.MinimumSize = _defaultSize;
-					
-					break;
-
-				default:
-					break;
-			}
-			
-			_frontBuffer.Location = new Point(
-				((ClientSize.Width / 2) - (_frontBuffer.Width / 2))
-			,	((ClientSize.Height / 2) - (_frontBuffer.Height / 2))
-			);
 			base.Refresh();
+			if(video != null) {
+				SurfaceControl fb = _frontBuffer;
+				Size res = video.resolution;
+				switch(_displayMode) {
+					#region displayMode.original
+					case displayMode.original:
+						fb.Size = fb.MaximumSize = fb.MinimumSize = res;
+						break;
+					#endregion
+					#region default	
+					default:
+						break;
+					#endregion
+				}
+				
+				fb.Location = new Point(
+					((ClientSize.Width / 2) - (fb.Width / 2))
+				,	((ClientSize.Height / 2) - (fb.Height / 2))
+				);
+			}
 		}
 		#endregion
 		#region override function: RefreshScreen, UpdateScreen

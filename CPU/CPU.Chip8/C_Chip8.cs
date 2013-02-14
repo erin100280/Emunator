@@ -111,7 +111,7 @@ namespace Emu.CPU {
 					#endif
 					#endregion
    				if(m_stackCount>0) {
-   					m_counter=m_stack[romSA + m_stackCount-1];
+   					m_counter=m_stack[m_stackCount-1];
    					m_stackCount--;
    				}
    				break;
@@ -741,7 +741,7 @@ namespace Emu.CPU {
 			
 		}
 		#endregion
-		#region function: Initialize, Reset
+		#region function: Initialize, Reset, SoftReset
 		public override void Initialize() {
 			Reset();
 			if(m_fontSet==null) m_fontSet=C_Chip8.m_defaultFontSet;
@@ -762,6 +762,21 @@ namespace Emu.CPU {
 		
 			m_ramStartAddress=0x200;
 			m_romStartAddress=0x200;
+		}
+		public override void SoftReset() {
+			base.SoftReset();
+			int i;
+			for(i = 0; i < 16; i++) {
+				m_key[i] = 0;
+				m_stack[i] = 0;
+				m_vRegisters[i] = 0;
+			}
+			m_counter = 0x200;
+			m_indexRegister = 0;
+			m_opcode = 0;
+			m_stackCount = 0;
+			m_delayTimer = 0;
+			m_soundTimer = 0;
 		}
 		#endregion
 	}

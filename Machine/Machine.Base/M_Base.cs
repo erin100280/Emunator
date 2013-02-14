@@ -15,16 +15,19 @@ using Emu.Memory;
 using Emu.Video;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Timers;
 #endregion
 
 namespace Emu.Machine {
 	public class M_Base {
 		#region vars
+		protected Thread _thread = null;
+		protected ThreadStart _threadStart = null;
 		protected UInt64 _cycleCount = 0;
 		protected bool _stopNow = false;
 		protected bool _pauseNow = false;
-		protected Timer _timer = null;
+		protected System.Timers.Timer _timer = null;
 		protected Disp_Base m_display=null;
 		protected C_Base m_cpu=null;
 		protected Mem_Base m_memory=null;
@@ -44,7 +47,7 @@ namespace Emu.Machine {
 					, Mem_Base mem=null, Vid_Base vid=null, Disp_Base disp=null) {
 
 			meta = new metaData(name);
-			_timer = new Timer();
+			_timer = new System.Timers.Timer();
 			_timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);
 			
 			m_cpu = cpu;
@@ -52,6 +55,10 @@ namespace Emu.Machine {
 			m_video = vid;
 			m_display = disp;
 
+			//ThreadStart ts = new ThreadStart(
+			
+			_threadStart = new ThreadStart(this.Runner);
+			
 		}
 		#endregion
 		#region properties
@@ -203,18 +210,18 @@ namespace Emu.Machine {
 			if(m_cpu!=null) m_video.Reset();
 		}
 		public virtual void Resume() {
-			if(running && paused) {
-				paused=false;
-				_timer.Start();
-				OnEmulationResumed(new EventArgs());
-			}
+			if(running && paused) return;
+			_thread = CreateThread();
+			paused = false;
+			_thread.Start();
+			OnEmulationResumed(new EventArgs());
 		}
 		public virtual void Run() {
 			if(running) return;
-			_stopNow = false;
+			_thread = CreateThread();
 			running = true;
-			_timer.Interval = interval;
-			_timer.Start();
+			paused = false;
+			_thread.Start();
 			OnEmulationStarted(new EventArgs());
 		}
 		public virtual void Step() {
@@ -285,9 +292,33 @@ namespace Emu.Machine {
 			}
 		}
 		#endregion
-		#region protected function: Runner
+		#region protected function: CreateThread, Runner
+		protected virtual Thread CreateThread() {
+			//if(_thread != null) {}
+			return new Thread(_threadStart);
+		}
 		protected virtual void Runner() {
-			if(m_cpu != null) m_cpu.DoCycle();
+			//if(m_cpu != null) m_cpu.DoCycle();
+			bool go = true;
+			//UInt64 ui = 0;
+			while(go) {
+				if(true) {
+					if(_stopNow) {
+						_pauseNow = _stopNow = go = false;
+						running = false;
+						this.cpu.SoftReset();
+					}
+					else if(_pauseNow) {
+						_pauseNow = _stopNow = go = false;
+						paused = true;
+					}
+					else {
+						this.DoInput();
+						this.DoCycle();
+						this.DoGraphics();
+					}
+				}
+			}
 		}
 		#endregion
 	}

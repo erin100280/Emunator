@@ -165,6 +165,7 @@ namespace Emu.CPU {
 		public delegate void DoCycle_delegate();
 		public virtual void DoCycle() {}
 		public virtual void Reset() {}
+		public virtual void SoftReset() {}
 	}
 
 }

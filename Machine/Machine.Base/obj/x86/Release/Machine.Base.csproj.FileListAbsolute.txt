@@ -1,0 +1,8 @@
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Release\Emu.Machine.Base.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Release\Emu.Core.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Release\Emu.CPU.Base.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Release\Emu.Display.Base.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Release\Emu.Memory.Base.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Release\Emu.Video.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Machine\Machine.Base\obj\x86\Release\Emu.Machine.Base.dll

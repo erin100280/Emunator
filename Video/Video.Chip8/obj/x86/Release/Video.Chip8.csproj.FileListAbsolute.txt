@@ -1,0 +1,5 @@
+C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Release\Emu.Video.Chip8.dll
+C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Release\Emu.Video.dll
+C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Release\Emu.Core.dll
+C:\Dev\Projects\Emunator\Video\Video.Chip8\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Video\Video.Chip8\obj\x86\Release\Emu.Video.Chip8.dll

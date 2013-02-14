@@ -49,8 +49,9 @@ namespace Emunator.Controls {
 			}
 		}
 		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
-			HexEditorToolStripMenuItemClick(sender, e);
-			hexEditor.OpenMemory(new Be.Windows.Forms.DynamicByteProvider(machine.memory.bank));
+			display.displayArg = 2;
+			display.displayMode = displayMode.times;
+			display.Refresh();
 		}
 		void PauseToolStripMenuItemClick(object sender, EventArgs e) {
 			if(machine != null) machine.Pause();

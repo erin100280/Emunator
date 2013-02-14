@@ -124,14 +124,14 @@ namespace Emunator.Controls
 			this.runToolStripMenuItem.Name = "runToolStripMenuItem";
 			this.runToolStripMenuItem.ShortcutKeyDisplayString = "";
 			this.runToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-			this.runToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.runToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.runToolStripMenuItem.Text = "&Run";
 			this.runToolStripMenuItem.Click += new System.EventHandler(this.RunToolStripMenuItemClick);
 			// 
 			// pauseToolStripMenuItem
 			// 
 			this.pauseToolStripMenuItem.Name = "pauseToolStripMenuItem";
-			this.pauseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.pauseToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.pauseToolStripMenuItem.Text = "&Pause";
 			this.pauseToolStripMenuItem.Click += new System.EventHandler(this.PauseToolStripMenuItemClick);
 			// 
@@ -139,21 +139,21 @@ namespace Emunator.Controls
 			// 
 			this.stepToolStripMenuItem.Name = "stepToolStripMenuItem";
 			this.stepToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
-			this.stepToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.stepToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.stepToolStripMenuItem.Text = "&Step";
 			this.stepToolStripMenuItem.Click += new System.EventHandler(this.StepToolStripMenuItemClick);
 			// 
 			// resumeToolStripMenuItem
 			// 
 			this.resumeToolStripMenuItem.Name = "resumeToolStripMenuItem";
-			this.resumeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.resumeToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.resumeToolStripMenuItem.Text = "Resu&me";
 			this.resumeToolStripMenuItem.Click += new System.EventHandler(this.ResumeToolStripMenuItemClick);
 			// 
 			// stopToolStripMenuItem
 			// 
 			this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-			this.stopToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.stopToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.stopToolStripMenuItem.Text = "&Stop";
 			this.stopToolStripMenuItem.Click += new System.EventHandler(this.StopToolStripMenuItemClick);
 			// 
@@ -161,7 +161,7 @@ namespace Emunator.Controls
 			// 
 			this.resetToolStripMenuItem.Name = "resetToolStripMenuItem";
 			this.resetToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-			this.resetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.resetToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
 			this.resetToolStripMenuItem.Text = "Rese&t";
 			this.resetToolStripMenuItem.Click += new System.EventHandler(this.ResetToolStripMenuItemClick);
 			// 
@@ -225,14 +225,14 @@ namespace Emunator.Controls
 			// loadRomToolStripMenuItem
 			// 
 			this.loadRomToolStripMenuItem.Name = "loadRomToolStripMenuItem";
-			this.loadRomToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.loadRomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.loadRomToolStripMenuItem.Text = "load rom";
 			this.loadRomToolStripMenuItem.Click += new System.EventHandler(this.LoadRomToolStripMenuItemClick);
 			// 
 			// tstyToolStripMenuItem
 			// 
 			this.tstyToolStripMenuItem.Name = "tstyToolStripMenuItem";
-			this.tstyToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+			this.tstyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.tstyToolStripMenuItem.Text = "tsty";
 			this.tstyToolStripMenuItem.Click += new System.EventHandler(this.TstyToolStripMenuItemClick);
 			// 
@@ -255,6 +255,7 @@ namespace Emunator.Controls
 			// 
 			// pnl_display
 			// 
+			this.pnl_display.BackColor = System.Drawing.Color.Silver;
 			this.pnl_display.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnl_display.Location = new System.Drawing.Point(0, 25);
 			this.pnl_display.Name = "pnl_display";

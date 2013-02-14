@@ -68,6 +68,14 @@ namespace Emu.Machine {
 				}
 			}
 		}
+		public virtual Int32 displayArg {
+			get { return m_display.displayArg; }
+			set { m_display.displayArg = value; }
+		}
+		public virtual displayMode displayMode {
+			get { return m_display.displayMode; }
+			set { m_display.displayMode = value; }
+		}
 		public virtual C_Base cpu {
 			get { return m_cpu; }
 			set {

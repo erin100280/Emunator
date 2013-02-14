@@ -12,7 +12,9 @@ using System.Windows.Forms;
 namespace Emu.Display {
 	public class Disp_Base : UserControl {
 		#region vars
+		protected Int32 _displayArg =2;
 		protected displayMode _displayMode = displayMode.original;
+		protected Size _curResolution;
 		protected byte[] m_buffer = null;
 		protected uint m_bufferSize = 0;
 		protected Vid_Base m_video = null;
@@ -25,12 +27,21 @@ namespace Emu.Display {
 			InitDisplay(name, vid);
 		}
 		protected virtual void InitDisplay(string name, Vid_Base vid) {
-			BackColor=Color.Black;
+			BackColor=Color.Orange;
 			m_meta = new metaData(name);
 			video = vid;
 		}
 		#endregion
 		#region properties
+		public Int32 displayArg {
+			get { return _displayArg; }
+			set {
+				if(_displayArg != value) {
+					_displayArg = value;
+					OnDisplayArgChanged(new EventArgs());
+				}
+			}
+		}
 		public displayMode displayMode {
 			get { return _displayMode; }
 			set {
@@ -61,10 +72,14 @@ namespace Emu.Display {
 		public metaData meta { get { return m_meta; } }
 		#endregion
 		#region events
+		public event EventHandler DisplayArgChanged;
 		public event EventHandler DisplayModeChanged;
 		public event EventHandler VideoChanged;
 		#endregion
 		#region On....
+		protected virtual void OnDisplayArgChanged(EventArgs e) {
+			if(DisplayArgChanged != null) DisplayArgChanged(this, e);
+		}
 		protected virtual void OnDisplayModeChanged(EventArgs e) {
 			if(DisplayModeChanged != null) DisplayModeChanged(this, e);
 		}

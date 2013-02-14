@@ -50,6 +50,10 @@ namespace Emu.Display {
 		#region properties
 		#endregion
 		#region On....
+		protected override void OnDisplayArgChanged(EventArgs e) {
+			Refresh();
+			base.OnDisplayArgChanged(e);
+		}
 		protected override void OnDisplayModeChanged(EventArgs e) {
 			Refresh();
 			base.OnDisplayModeChanged(e);
@@ -66,15 +70,26 @@ namespace Emu.Display {
 			
 		}
 		protected override void RenderScreen() {
-			unsafe {
-				Int32 *pxls = (Int32 *)_backBuffer.Pixels;
-				for(int i = 0; i < m_bufferSize; i++) {
-					if(m_buffer[i] == 0)
-						pxls[i] = _black;
-					else
-						pxls[i] = _white;
-				}
-				//essageBox.Show("RenderScreen");
+			switch(_displayMode) {
+				#region displayMode - original, times
+				case displayMode.original: case displayMode.times:
+					unsafe {
+						Int32 *pxls = (Int32 *)_backBuffer.Pixels;
+						for(int i = 0; i < m_bufferSize; i++) {
+							if(m_buffer[i] == 0)
+								pxls[i] = _black;
+							else
+								pxls[i] = _white;
+						}
+						//essageBox.Show("RenderScreen");
+					}
+					break;
+				#endregion
+				#region
+				case displayMode.stretch:
+				
+					break;
+				#endregion
 			}
 		}
 		public virtual void RenderScreen_OLD() {
@@ -104,12 +119,29 @@ namespace Emu.Display {
 		public override void Refresh() {
 			base.Refresh();
 			if(video != null) {
+				Surface bb = _backBuffer;
 				SurfaceControl fb = _frontBuffer;
 				Size res = video.resolution;
 				switch(_displayMode) {
 					#region displayMode.original
 					case displayMode.original:
-						fb.Size = fb.MaximumSize = fb.MinimumSize = res;
+						if(bb.Size != res) {
+							bb.Dispose();
+							bb = _backBuffer = new Surface(res);
+							fb.Size = fb.MaximumSize = fb.MinimumSize = res;
+						}
+						break;
+					#endregion
+					#region displayMode.original
+					case displayMode.times:
+						Int32 da = _displayArg;
+						if(da < 1) da = 1;
+						Size sz = new Size(res.Width * da, res.Height * da);
+						if(bb.Size != sz) {
+							bb.Dispose();
+							bb = _backBuffer = new Surface(sz);
+							fb.Size = fb.MaximumSize = fb.MinimumSize = sz;
+						}
 						break;
 					#endregion
 					#region default	

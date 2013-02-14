@@ -5,11 +5,13 @@
 using Emu.Core;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Emu.Video {
 	public class Vid_Base {
 		#region vars
 		public bool updated=false;
+		protected Size _resolution = new Size(2, 2);
 		protected byte[] m_buffer=null;
 		protected UInt32 m_bufferSize;
 		protected metaData m_meta=null;
@@ -17,11 +19,14 @@ namespace Emu.Video {
 		protected byte[] m_videoRegisters=null;
 		#endregion
 		#region constructors
-		public Vid_Base(string name="") { InitVid_Base(name); }
+		public Vid_Base(string name="") { InitVid_Base(name, 0, 0, _resolution); }
 		public Vid_Base(string name, UInt32 bufferSize, UInt32 registerCount) {
-			InitVid_Base(name, bufferSize, registerCount);
+			InitVid_Base(name, bufferSize, registerCount, _resolution);
 		}
-		protected virtual void InitVid_Base(string name="", UInt32 bufferSize=0, UInt32 registerCount=0) {
+		public Vid_Base(string name, Size res, UInt32 registerCount) {
+			InitVid_Base(name, (UInt32)(res.Width*res.Height), registerCount, res);
+		}
+		protected virtual void InitVid_Base(string name, UInt32 bufferSize, UInt32 registerCount, Size res) {
 			m_meta=new metaData(name);
 			
 			m_bufferSize=bufferSize;
@@ -31,9 +36,21 @@ namespace Emu.Video {
 			m_videoRegisterCount=registerCount;
 			if(registerCount>0)
 				m_videoRegisters=new byte[registerCount];
+			
+			_resolution = res;
+			
 		}
 		#endregion
 		#region properties
+		public virtual Size resolution {
+			get { return _resolution; }
+			set {
+				if(_resolution != value) {
+					_resolution = value;
+					OnResolutionChanged(new EventArgs());
+				}
+			}
+		}
 		public virtual byte[] buffer{ get { return m_buffer; } }
 		public virtual UInt32 bufferSize{ get { return m_bufferSize; } }
 		public virtual UInt32 videoRegisterCount {
@@ -43,6 +60,12 @@ namespace Emu.Video {
 		#endregion
 		#region events
 		//public event EventHandler VideoUpdated;
+		public event EventHandler ResolutionChanged;
+		#endregion
+		#region On....
+		protected virtual void OnResolutionChanged(EventArgs e) {
+			if(ResolutionChanged != null) ResolutionChanged(this, e);
+		}
 		#endregion
 		#region function: ClearBuffer
 		public virtual void ClearBuffer() {

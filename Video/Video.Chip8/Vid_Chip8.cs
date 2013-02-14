@@ -4,11 +4,12 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Emu.Video {
 	public class Vid_Chip8 : Vid_Base {
 		#region constructors
-		public Vid_Chip8(): base("Chip8 Video", 64*32, 16) {}
+		public Vid_Chip8(): base("Chip8 Video", new Size(64, 32), 16) {}
 		#endregion
 		public override void Reset() {
 			for(UInt32 i=0; i<16; i++)

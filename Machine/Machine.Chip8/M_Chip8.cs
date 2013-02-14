@@ -23,7 +23,9 @@ namespace Emu.Machine {
 		#region constructors
 		public M_Chip8(): base("Chip8 Machine") { InitM_Chip8(); }
 		protected virtual void InitM_Chip8() {
-			interval = 16.666666666666666666666666666667;
+			//interval = 16.666666666666666666666666666667;
+			//interval = 6.6;
+			interval = 0.02;
 			
 			m_memory=new Mem_Chip8();
 			m_video=new Vid_Chip8();

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+	x:Class="Windows.test" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	Title="Windows"
+	Width="436"
+	Height="353">
+	<Grid>
+		<Menu
+			HorizontalContentAlignment="Left"
+			Name="MainMenu"
+			Grid.Column="0"
+			Grid.Row="0"
+			Height="21"
+			VerticalAlignment="Top"
+			Width="400"
+			HorizontalAlignment="Left"
+			Margin="1,0,0,0">
+			<MenuItem
+				Name="MnuItm_File"
+				Header="_File" />
+			<MenuItem
+				Name="MnuItm_View"
+				Header="_View" />
+			<MenuItem
+				Name="MnuItm_Machine"
+				Header="_Machine" />
+			<MenuItem
+				Name="MnuItm_Debug"
+				Header="_Debug" />
+			<MenuItem
+				Name="MnuItm_Test"
+				Header="_Test" />
+		</Menu>
+	</Grid>
+</Window>

@@ -225,14 +225,14 @@ namespace Emunator.Controls
 			// loadRomToolStripMenuItem
 			// 
 			this.loadRomToolStripMenuItem.Name = "loadRomToolStripMenuItem";
-			this.loadRomToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.loadRomToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
 			this.loadRomToolStripMenuItem.Text = "load rom";
 			this.loadRomToolStripMenuItem.Click += new System.EventHandler(this.LoadRomToolStripMenuItemClick);
 			// 
 			// tstyToolStripMenuItem
 			// 
 			this.tstyToolStripMenuItem.Name = "tstyToolStripMenuItem";
-			this.tstyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.tstyToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
 			this.tstyToolStripMenuItem.Text = "tsty";
 			this.tstyToolStripMenuItem.Click += new System.EventHandler(this.TstyToolStripMenuItemClick);
 			// 
@@ -255,7 +255,7 @@ namespace Emunator.Controls
 			// 
 			// pnl_display
 			// 
-			this.pnl_display.BackColor = System.Drawing.Color.Silver;
+			this.pnl_display.BackColor = System.Drawing.Color.Black;
 			this.pnl_display.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.pnl_display.Location = new System.Drawing.Point(0, 25);
 			this.pnl_display.Name = "pnl_display";

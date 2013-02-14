@@ -3,11 +3,19 @@
  * Time: 4:52 PM
  */
 using System;
+using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace Emu.Core {
 	public class Msg {
 		public static void Box(string val) {
-			System.Windows.Forms.MessageBox.Show(val);
+			MessageBox.Show(val);
+		}
+		public static void Dbg(string val) {
+			Debug.WriteLine(val);
+		}
+		public static void _Dbg(string val) {
+			Debug.Write(val);
 		}
 	}
 }

@@ -49,7 +49,7 @@ namespace Emunator.Controls {
 			}
 		}
 		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
-			display.displayArg = 2;
+			display.displayArg = 6;
 			display.displayMode = displayMode.times;
 			display.Refresh();
 		}

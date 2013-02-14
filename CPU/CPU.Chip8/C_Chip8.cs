@@ -10,7 +10,7 @@
  */
 #endregion
 #region defs
-#define DBG_SHOW_COMMAND
+#define zDBG_SHOW_COMMAND
 #endregion
 #region using....
 using Emu.Core;

@@ -22,8 +22,8 @@ namespace Emunator {
 		#region On....
 		protected override void OnLoad(EventArgs e) {
 			base.OnLoad(e);
-			
 		}
+		
 		#endregion
 		#region menu handlers
 		#endregion

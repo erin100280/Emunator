@@ -1,0 +1,12 @@
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\App.g.cs
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Emunator.WPF_MarkupCompile.cache
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Emunator.WPF.g.resources
+C:\Dev\Projects\Emunator\Emunator.WPF\bin\Debug\Emunator.WPF.exe
+C:\Dev\Projects\Emunator\Emunator.WPF\bin\Debug\Emunator.WPF.pdb
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Emunator.WPF.exe
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Emunator.WPF.pdb
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Windows\MainWindow.baml
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Windows\MainWindow.g.cs
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Windows\test.baml
+C:\Dev\Projects\Emunator\Emunator.WPF\obj\x86\Debug\Windows\test.g.cs

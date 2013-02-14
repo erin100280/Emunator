@@ -162,6 +162,7 @@ namespace Emu.CPU {
 			OnRuntimeError(new errorEventArgs(err));
 		}
 		public virtual void Initialize() {}
+		public delegate void DoCycle_delegate();
 		public virtual void DoCycle() {}
 		public virtual void Reset() {}
 	}

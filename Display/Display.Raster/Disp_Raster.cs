@@ -5,6 +5,7 @@
  */
 #endregion
 #region using
+using Emu.Core;
 using Emu.Video;
 using SdlDotNet;
 using SdlDotNet.Core;
@@ -12,6 +13,7 @@ using SdlDotNet.Graphics;
 using SdlDotNet.Graphics.Primitives;
 using SdlDotNet.Windows;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Tao.Sdl;
@@ -20,10 +22,10 @@ using Tao.Sdl;
 namespace Emu.Display {
 	public class Disp_Raster : Disp_Base {
 		#region vars
-		protected SurfaceControl _frontBuffer = null;
-		protected Surface _backBuffer = null;
+		protected sdlSurfaceControl _frontBuffer = null;
+		protected sdlSurface _backBuffer = null;
 		protected Size _defaultSize = new Size(364, 32);
-		protected Surface _background = null;
+		protected sdlSurface _background = null;
 		protected Box _backgroundBox;
 		protected Int32 _black = Color.Black.ToArgb();
 		protected Int32 _white = Color.White.ToArgb();
@@ -36,11 +38,11 @@ namespace Emu.Display {
 		protected virtual void InitDisp_Raster() {
 			SdlDotNet.Graphics.Video.Initialize();
 			//Sdl.SDL_Init(
-			_frontBuffer = new SurfaceControl();
+			_frontBuffer = new sdlSurfaceControl();
 			_frontBuffer.BackColor = Color.Pink;
 			if(video != null) _frontBuffer.Size = video.resolution;
 			else _frontBuffer.Size = _defaultSize;
-			_backBuffer = new Surface(_frontBuffer.Size);
+			_backBuffer = new sdlSurface(_frontBuffer.Size);
 			Controls.Add(_frontBuffer);
 			Refresh();
 		}
@@ -62,12 +64,19 @@ namespace Emu.Display {
 			Refresh();
 			base.OnResize(e);
 		}
+
+
 		#endregion
 		#region override protected function: PaintStreen, RenderScreen
 		protected override void PaintScreen() {
-			_frontBuffer.Blit(_backBuffer);
-			//essageBox.Show("PaintScreen");
-			
+			if(_frontBuffer.Size == _backBuffer.Size)
+				_frontBuffer.Blit(_backBuffer);
+			else {
+				_frontBuffer.Blit(
+							_backBuffer.CreateStretchedSurface(_frontBuffer.Size));
+				
+			}
+			//Debug.//riteLine("PaintScreen");
 		}
 		protected override void RenderScreen() {
 			switch(_displayMode) {
@@ -91,6 +100,7 @@ namespace Emu.Display {
 					break;
 				#endregion
 			}
+			//Debug.//riteLine("RenderScreen");
 		}
 		public virtual void RenderScreen_OLD() {
 			unsafe {
@@ -119,29 +129,28 @@ namespace Emu.Display {
 		public override void Refresh() {
 			base.Refresh();
 			if(video != null) {
-				Surface bb = _backBuffer;
-				SurfaceControl fb = _frontBuffer;
+				sdlSurface bb = _backBuffer;
+				sdlSurfaceControl fb = _frontBuffer;
 				Size res = video.resolution;
+				Size sz = res;
+				
+				if(bb.Size != res) {
+					bb.Dispose();
+					bb = _backBuffer = new sdlSurface(res);
+				}
+
 				switch(_displayMode) {
 					#region displayMode.original
 					case displayMode.original:
-						if(bb.Size != res) {
-							bb.Dispose();
-							bb = _backBuffer = new Surface(res);
-							fb.Size = fb.MaximumSize = fb.MinimumSize = res;
-						}
 						break;
 					#endregion
-					#region displayMode.original
+					#region displayMode.stretch
 					case displayMode.times:
-						Int32 da = _displayArg;
-						if(da < 1) da = 1;
-						Size sz = new Size(res.Width * da, res.Height * da);
-						if(bb.Size != sz) {
-							bb.Dispose();
-							bb = _backBuffer = new Surface(sz);
-							fb.Size = fb.MaximumSize = fb.MinimumSize = sz;
-						}
+						if(_displayArg < 1) _displayArg = 1;
+						sz = new Size(
+							res.Width * _displayArg
+						,	res.Height * _displayArg
+						);
 						break;
 					#endregion
 					#region default	
@@ -149,6 +158,8 @@ namespace Emu.Display {
 						break;
 					#endregion
 				}
+
+				fb.Size = fb.MaximumSize = fb.MinimumSize = sz;
 				
 				fb.Location = new Point(
 					((ClientSize.Width / 2) - (fb.Width / 2))
@@ -160,7 +171,6 @@ namespace Emu.Display {
 		#region override function: RefreshScreen, UpdateScreen
 		
 		#endregion
-		
 	}
 }
 

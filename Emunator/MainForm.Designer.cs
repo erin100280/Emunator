@@ -41,7 +41,7 @@ namespace Emunator
 			this.theMainControl_main.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.theMainControl_main.Location = new System.Drawing.Point(0, 0);
 			this.theMainControl_main.Name = "theMainControl_main";
-			this.theMainControl_main.Size = new System.Drawing.Size(569, 220);
+			this.theMainControl_main.Size = new System.Drawing.Size(863, 490);
 			this.theMainControl_main.TabIndex = 0;
 			// 
 			// MainForm
@@ -49,7 +49,7 @@ namespace Emunator
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.SystemColors.Control;
-			this.ClientSize = new System.Drawing.Size(569, 220);
+			this.ClientSize = new System.Drawing.Size(863, 490);
 			this.Controls.Add(this.theMainControl_main);
 			this.Name = "MainForm";
 			this.Text = "Emunator";

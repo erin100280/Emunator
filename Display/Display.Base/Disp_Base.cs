@@ -27,7 +27,7 @@ namespace Emu.Display {
 			InitDisplay(name, vid);
 		}
 		protected virtual void InitDisplay(string name, Vid_Base vid) {
-			BackColor=Color.Orange;
+			BackColor=Color.Black;
 			m_meta = new metaData(name);
 			video = vid;
 		}

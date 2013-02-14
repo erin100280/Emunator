@@ -68,7 +68,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Disp_Raster.cs" />
+    <Compile Include="sdlSurfaceControl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sdlSurface.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj">

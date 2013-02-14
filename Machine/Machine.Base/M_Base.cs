@@ -267,13 +267,27 @@ namespace Emu.Machine {
 			OnTimerElapsed(e);
 		}
 		#endregion
+		#region delegates
+		public delegate void DoCycle_delegate();
+		public delegate void DoInput_delegate();
+		public delegate void DoGraphics_delegate();
+		public delegate void Runner_delegate();
+		#endregion
 		#region protected function: Do....
 		protected virtual void DoCycle() {
 			if(m_cpu != null) m_cpu.DoCycle();
 		}
 		protected virtual void DoInput() {}
 		protected virtual void DoGraphics() {
-			if(display != null) display.UpdateScreen();
+			if(display != null && video.updated) {
+				display.UpdateScreen();
+				video.updated = false;
+			}
+		}
+		#endregion
+		#region protected function: Runner
+		protected virtual void Runner() {
+			if(m_cpu != null) m_cpu.DoCycle();
 		}
 		#endregion
 	}

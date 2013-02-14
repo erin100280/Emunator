@@ -40,6 +40,18 @@ namespace Emu.Machine {
 		#endregion
 		#region On....
 		#endregion
+		#region function: Do....
+		protected override void DoCycle() {
+			if(m_cpu != null) {
+				Int64 v = ((Int64)cpu.romStartAddress + memory.romSize);
+				if(cpu.m_counter >= (v - 2)) {
+					Msg.Box("assssa");
+					Stop();
+			   }
+				else m_cpu.DoCycle();
+			}
+		}
+		#endregion
 		#region function: Reset
 		public override void Reset() {
 			base.Reset();

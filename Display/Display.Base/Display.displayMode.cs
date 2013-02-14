@@ -9,5 +9,6 @@ namespace Emu.Display {
 	,	original
 	,	percent
 	,	stretch
+	,	times
 	}
 }

@@ -23,7 +23,7 @@ namespace Emu.CPU {
 		protected byte m_soundTimer;
 		protected byte[] m_key;
 		protected byte[] m_vRegisters=null;
-		protected ushort m_counter;
+		public ushort m_counter;
 		protected ushort m_lastCounter;
 		protected ushort m_indexRegister;
 		protected ushort m_opcode;
@@ -130,9 +130,9 @@ namespace Emu.CPU {
 			string val = ("DoCycle"
 			+	"["
 			+		"PC=" + counter.ToString().PadLeft(3, '0')
-			+	", "
-			+		"$=" + (m_romStartAddress + counter)
-								.ToString().PadLeft(4, '0')
+			//+	", "
+			//+		"$=" + (m_romStartAddress + counter)
+			//					.ToString().PadLeft(4, '0')
 			+	"]"
 			);
 			

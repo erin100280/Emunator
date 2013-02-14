@@ -12,7 +12,7 @@ namespace Emu.Memory {
 		protected byte[] _bank;
 		protected UInt64 _size;
 		protected ushort _startAddress;
-		protected int _romSize;
+		protected Int64 _romSize;
 		protected int _startRomAddress;
 		protected int _stopRomAddress;
 		protected int _ramSize;
@@ -29,8 +29,9 @@ namespace Emu.Memory {
 		}
 		#endregion
 		#region properties
-		public virtual UInt64 size{ get { return _size; } }
-		public virtual byte[] bank{ get { return _bank; } }
+		public virtual UInt64 size { get { return _size; } }
+		public virtual byte[] bank { get { return _bank; } }
+		public virtual Int64 romSize { get { return _romSize; } }
 		#endregion
 		public virtual void SetMemory(byte[] val, UInt64 startPos) {
 			for(uint i = 0, l = (uint)val.Length; i < l; i++)
@@ -50,6 +51,7 @@ namespace Emu.Memory {
 		}
 		public virtual void SetMemory(file val, UInt64 startPos) {
 			if(val.exists) {
+				_romSize = val.fileSize;
 				for(UInt64 i = 0, l = (UInt64)val.fileSize; i < l; i++)
 					_bank[startPos + i] = val.ReadByte();
 			}

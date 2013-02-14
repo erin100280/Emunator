@@ -22,7 +22,7 @@ namespace Emu.Display {
 		#region vars
 		protected SurfaceControl _frontBuffer = null;
 		protected Surface _backBuffer = null;
-		protected Size _defaultSize = new Size(164, 32);
+		protected Size _defaultSize = new Size(364, 32);
 		protected Surface _background = null;
 		protected Box _backgroundBox;
 		protected Int32 _black = Color.Black.ToArgb();
@@ -40,7 +40,7 @@ namespace Emu.Display {
 			_frontBuffer.BackColor = Color.Pink;
 			if(video != null) _frontBuffer.Size = video.resolution;
 			else _frontBuffer.Size = _defaultSize;
-			_backBuffer = new Surface(_defaultSize);
+			_backBuffer = new Surface(_frontBuffer.Size);
 			Controls.Add(_frontBuffer);
 			Refresh();
 		}

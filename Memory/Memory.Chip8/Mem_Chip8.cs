@@ -59,8 +59,8 @@ namespace Emu.Memory {
 			if(clearBank) ClearBank();
 			for(i = 0; i < 80; i++)
 				_bank[i] = _fontSet[i];
-			for(i = 80; i < 160; i++)
-				_bank[i] = _fontSet[i - 80];
+			//for(i = 80; i < 160; i++)
+				//_bank[i] = _fontSet[i - 80];
 			
 		}
 	}

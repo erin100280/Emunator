@@ -207,8 +207,13 @@ namespace Be.Windows.Forms
 				_writes.Add(index, value);
 
 			OnChanged(EventArgs.Empty);
+			if(index == 10021980 && value == 0xB4) OnLengthChanged(new EventArgs());
 		}
 
+		protected virtual void OnLengthChanged(EventArgs e) {
+			if(LengthChanged != null) LengthChanged(this, e);
+		}
+		
 		/// <summary>
 		/// Not supported
 		/// </summary>

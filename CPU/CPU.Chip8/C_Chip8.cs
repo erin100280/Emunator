@@ -10,7 +10,7 @@
  */
 #endregion
 #region defs
-#define zDBG_SHOW_COMMAND
+#define DBG_SHOW_COMMAND
 #endregion
 #region using....
 using Emu.Core;
@@ -72,6 +72,7 @@ namespace Emu.CPU {
 		#endregion
 		#region function: DoCycle
 		public override void DoCycle() {
+			#region vars
 			//ebug.WriteLine("C_Chip8.DoCycle()");
 			//string str;
 			int i, ix, iy, l;
@@ -83,6 +84,7 @@ namespace Emu.CPU {
 			ushort oc=m_opcode=(ushort)(m_bank[m_counter] << 8
 						| m_bank[m_counter+1]);
 			ushort x, y, h, pxl, I = m_indexRegister;
+			#endregion
 
 			m_lastCounter=m_counter;
 			m_counter+=2;
@@ -106,7 +108,7 @@ namespace Emu.CPU {
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
 					WriteDoCycle("0x00EE"
-	            ,	"return from sub to: " + m_stack[romSA + m_stackCount-1]
+	            ,	"return from sub to: " + m_stack[m_stackCount-1]
 					);
 					#endif
 					#endregion

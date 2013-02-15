@@ -625,12 +625,12 @@ namespace Emu.CPU {
 					#if (DBG_SHOW_COMMAND)
 						i = 0;
 						if((m_indexRegister + regs[(oc & 0x0F00) >> 8]) > 0xFFF)
-							regs[0xF] = 1;
+							i = 1;
 						WriteDoCycle("0xFX1E"
 						,	"add VX" + regInfoString((oc & 0x0F00) >> 8)
 						+	"to I[" + m_indexRegister + "]"
-						+	"overflow=" + i
-						+	"val=" + m_indexRegister + regs[(oc & 0x0F00) >> 8]
+						+	" overflow=" + i
+						+	" val=" + (m_indexRegister + regs[(oc & 0x0F00) >> 8])
 						);
 					#endif
 					#endregion
@@ -699,15 +699,15 @@ namespace Emu.CPU {
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
 						WriteDoCycle("0xFX65"
-						,	"fiil V0" + regInfoString(0)
-						+	" to X[" + ((oc & 0x0F00) >> 8) + "]"
+						,	"fill V0" + regInfoString(0)
+						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
 						+	" with memory from addr I[" + I + "]"
 						+	" to addr (I+X[" + (I + ((oc & 0x0F00) >> 8)) + "]"
 						);
 					#endif
 					#endregion
 					for(i=0, l=(((oc & 0x0F00) >> 8) + 1); i < l; i++)
-						regs[i] = m_bank[(int)m_ramStartAddress + m_indexRegister + i];
+						regs[i] = m_bank[m_indexRegister + i];
 						
 						//for original interpreter
 						m_indexRegister += (ushort)l;

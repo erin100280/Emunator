@@ -119,6 +119,11 @@ namespace Emu.CPU {
    				break;
    				
 				default:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x0...", "ERROR - opcode = " + oc);
+					#endif
+					#endregion
    				DoRuntimeError("Invalid opcode");
    				break;
       		}
@@ -408,7 +413,7 @@ namespace Emu.CPU {
          	default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-						WriteDoCycle("0x8...", "ERROR");
+						WriteDoCycle("0x8...", "ERROR - opcode = " + oc);
 					#endif
 					#endregion
    				DoRuntimeError(
@@ -551,7 +556,7 @@ namespace Emu.CPU {
 				break;
 			#endregion
 			#region 0xF... - 0xFX07, 0xFX0A, FX15, FX18, FX1E, FX29, FX33, FX55, FX65
-			case 0x0F00:
+			case 0xF000:
 				switch(oc & 0x00FF) {
 				#region 0xFX07 - set VX to val of delay timer
 				case 0x0007:
@@ -712,7 +717,7 @@ namespace Emu.CPU {
          	default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-						WriteDoCycle("0xF...", "ERROR");
+					WriteDoCycle("0xF...", "ERROR - opcode = " + oc);
 					#endif
 					#endregion
    				DoRuntimeError(
@@ -728,7 +733,7 @@ namespace Emu.CPU {
       	default:
 				#region DBG
 				#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0xF...", "ERROR");
+					WriteDoCycle("no...", "ERROR - opcode = " + oc);
 				#endif
 				#endregion
 				DoRuntimeError(

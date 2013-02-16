@@ -27,3 +27,9 @@ C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Display.Base.pdb
 C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Display.Raster2D.pdb
 C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\SdlDotNet.xml
 C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Device.Base.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Base.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Device.Base.pdb
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Base.pdb
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Chip8.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Chip8.pdb

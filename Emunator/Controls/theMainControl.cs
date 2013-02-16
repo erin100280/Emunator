@@ -126,6 +126,9 @@ namespace Emunator.Controls {
 		}
 		public virtual void LoadMachine_Chip8() {
 			machine_Chip8 = (M_Chip8)LoadMachine(new M_Chip8());
+			machine.keyboard.ConnectTo(this);
+			//machine.keyboard.ConnectTo(this.ParentForm);
+			
 		}
 		#endregion
 		#region function: UnloadMachine

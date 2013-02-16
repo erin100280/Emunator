@@ -63,6 +63,7 @@ namespace Emu.CPU {
 		public event EventHandler<errorEventArgs> RuntimeError;
 		#endregion
 		#region properties
+		public virtual byte[] keys { get { return m_key; } }
 		public virtual cpuState state {
 			get { return GetState(); }
 			set { SetState(value); }

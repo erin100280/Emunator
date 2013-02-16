@@ -71,6 +71,14 @@
       <Project>{B9A36969-43DA-4EA5-9EC8-18955FB03B08}</Project>
       <Name>CPU.Chip8</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Device\Device.Base\Device.Base.csproj">
+      <Project>{CF25C8A8-281A-49B8-BECE-A9A1357F0639}</Project>
+      <Name>Device.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Device\Input\Keyboard\Keyboard.Base\Keyboard.Base.csproj">
+      <Project>{61D40706-669C-4EB0-BD78-4E0A7B8BE518}</Project>
+      <Name>Keyboard.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Display\Display.Base\Display.Base.csproj">
       <Project>{912701EF-767E-4E73-A4F3-128645712D27}</Project>
       <Name>Display.Base</Name>

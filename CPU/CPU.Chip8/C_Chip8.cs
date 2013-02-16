@@ -755,9 +755,14 @@ namespace Emu.CPU {
 
 		}
 		public override void Reset() {
+			Int16 ii;//, il;
+			
 			base.Reset();
-			m_vRegisters=new byte[16];
-			m_key=new byte[16];
+			if(m_vRegisters == null) m_vRegisters=new byte[16];
+			for(ii = 0; ii < 16; ii++) m_vRegisters[ii] = 0x00;
+			if(m_key == null) m_key=new byte[16];
+			for(ii = 0; ii < 16; ii++) m_key[ii] = 0x00;
+			
 			m_counter=0x200;
 			m_indexRegister=0;
 			m_opcode=0;

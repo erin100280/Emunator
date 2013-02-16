@@ -1,0 +1,15 @@
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Emu.Device.Input.Keyboard.Base.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Emu.Device.Input.Keyboard.Base.pdb
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Device.Base.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Emu.Device.Input.Base.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Device.Base.pdb
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Emu.Device.Input.Base.pdb
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\obj\x86\Debug\Emu.Device.Input.Keyboard.Base.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Base\obj\x86\Debug\Emu.Device.Input.Keyboard.Base.pdb

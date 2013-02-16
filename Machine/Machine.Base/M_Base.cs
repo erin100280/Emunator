@@ -10,6 +10,7 @@ using Emu.Core;
 using Emu.Core.FileSystem;
 using Emu.Core.States;
 using Emu.CPU;
+using Emu.Device.Input.Keyboard;
 using Emu.Display;
 using Emu.Memory;
 using Emu.Video;
@@ -22,6 +23,7 @@ using System.Timers;
 namespace Emu.Machine {
 	public class M_Base {
 		#region vars
+		protected Keyboard_Base _keyboard = null;
 		protected Thread _thread = null;
 		protected ThreadStart _threadStart = null;
 		protected UInt64 _cycleCount = 0;
@@ -65,6 +67,10 @@ namespace Emu.Machine {
 		public virtual bool running { get; protected set; }
 		public virtual bool paused { get; protected set; }
 		public virtual metaData meta { get; protected set; }
+		public virtual machineState state {
+			get { return GetMachineState(); }
+			set { SetMachineState(value); }
+		}
 
 		public virtual Disp_Base display{
 			get { return m_display; }
@@ -83,6 +89,7 @@ namespace Emu.Machine {
 			get { return m_display.displayMode; }
 			set { m_display.displayMode = value; }
 		}
+
 		public virtual C_Base cpu {
 			get { return m_cpu; }
 			set {
@@ -92,6 +99,7 @@ namespace Emu.Machine {
 				}
 			}
 		}
+		public virtual Keyboard_Base keyboard { get { return _keyboard; } }
 		public virtual Mem_Base memory {
 			get { return m_memory; }
 			set {
@@ -109,10 +117,6 @@ namespace Emu.Machine {
 					OnVideoChanged(new EventArgs());
 				}
 			}
-		}
-		public virtual machineState state {
-			get { return GetMachineState(); }
-			set { SetMachineState(value); }
 		}
 		
 		public virtual UInt64 defaultHertz { get; protected set; }

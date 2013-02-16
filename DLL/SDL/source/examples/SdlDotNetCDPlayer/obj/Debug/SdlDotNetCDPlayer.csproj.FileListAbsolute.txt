@@ -1,0 +1,12 @@
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\SdlDotNetExamples.CDPlayer.CDPlayerApp.resources
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\SdlDotNetExamples.CDPlayer.Properties.Resources.resources
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\GenerateResource.read.1.tlog
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\GenerateResource.write.1.tlog
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\bin\Debug\SdlDotNetCDPlayer.exe
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\bin\Debug\SdlDotNetCDPlayer.pdb
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\bin\Debug\SdlDotNet.dll
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\bin\Debug\Tao.Sdl.dll
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\GenerateResource.read.4.tlog
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\SdlDotNetCDPlayer.exe
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetCDPlayer\obj\Debug\SdlDotNetCDPlayer.pdb

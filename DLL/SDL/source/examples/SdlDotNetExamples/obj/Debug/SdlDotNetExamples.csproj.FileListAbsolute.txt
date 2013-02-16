@@ -1,0 +1,4 @@
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetExamples\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetExamples\obj\Debug\SdlDotNetExamples.Properties.Resources.resources
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetExamples\obj\Debug\GenerateResource.read.1.tlog
+C:\Dev\c# dll\sdldotnet-6.1.1beta\source\examples\SdlDotNetExamples\obj\Debug\GenerateResource.write.1.tlog

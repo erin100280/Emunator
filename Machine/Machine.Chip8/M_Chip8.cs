@@ -9,6 +9,7 @@ using Emu;
 using Emu.Core;
 using Emu.Core.States;
 using Emu.CPU;
+using Emu.Device.Input.Keyboard;
 using Emu.Display;
 using Emu.Memory;
 using Emu.Video;
@@ -30,7 +31,10 @@ namespace Emu.Machine {
 			m_memory=new Mem_Chip8();
 			m_video=new Vid_Chip8();
 			m_cpu=new C_Chip8(m_memory, m_video);
+			_keyboard = new Keyboard_Chip8(m_cpu.keys);
 			m_display=new Disp_Raster(m_video);
+			_keyboard.ConnectTo(m_display);
+			
 		}
 		#endregion
 		#region events
@@ -44,7 +48,7 @@ namespace Emu.Machine {
 		protected override void DoCycle() {
 			if(m_cpu != null) {
 				Int64 v = ((Int64)cpu.romStartAddress + memory.romSize);
-				if(cpu.m_counter >= (v - 2)) {
+				if(cpu.m_counter >= (v)) {
 					Msg.Box("assssa");
 					Stop();
 			   }
@@ -55,6 +59,12 @@ namespace Emu.Machine {
 		#region function: Reset
 		public override void Reset() {
 			base.Reset();
+		}
+		#endregion
+		#region function: Unload
+		public override void Unload() {
+			_keyboard.DisconnectFrom(m_display);
+			base.Unload();
 		}
 		#endregion
 	}

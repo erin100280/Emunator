@@ -46,7 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SdlDotNet">
-      <HintPath>..\..\..\..\c# dll\sdldotnet-6.1.1beta\bin\SdlDotNet.dll</HintPath>
+      <HintPath>..\..\DLL\SDL\bin\SdlDotNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -63,7 +63,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="Tao.Sdl">
-      <HintPath>..\..\..\..\c# dll\sdldotnet-6.1.1beta\bin\Tao.Sdl.dll</HintPath>
+      <HintPath>..\..\DLL\SDL\bin\Tao.Sdl.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -5,3 +5,6 @@ C:\Dev\Projects\Emunator\Core\obj\x86\Debug\Emu.Core.dll
 C:\Dev\Projects\Emunator\Core\obj\x86\Debug\Emu.Core.pdb
 C:\Dev\Projects\Emunator\Core\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\Core\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\Emu.Core.Controls.PropertyList.resources
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\GenerateResource.write.1.tlog

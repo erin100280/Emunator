@@ -17,8 +17,12 @@ using System.Diagnostics;
 
 namespace Emu.CPU {
 	public class C_Base {
+		#region delegates
+		public delegate void DoCycleDelegate();
+		#endregion
 		#region vars
 		//protected byte[] m_buffer=null;
+		public DoCycleDelegate DoCycle;
 		protected byte m_delayTimer;
 		protected byte m_soundTimer;
 		protected byte[] m_key;
@@ -52,6 +56,8 @@ namespace Emu.CPU {
 		}
 		protected virtual void InitC_Base(string name="", Mem_Base mem=null
 					, Vid_Base vid=null) {
+			DoCycle = new DoCycleDelegate(DoCycle_Main);
+			
 			m_meta=new metaData(name);
 			memory=mem;
 			video=vid;
@@ -164,7 +170,7 @@ namespace Emu.CPU {
 		}
 		public virtual void Initialize() {}
 		public delegate void DoCycle_delegate();
-		public virtual void DoCycle() {}
+		public virtual void DoCycle_Main() {}
 		public virtual void Reset() {}
 		public virtual void SoftReset() {}
 	}

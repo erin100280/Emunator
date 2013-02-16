@@ -111,6 +111,10 @@
       <Project>{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}</Project>
       <Name>Be.Windows.Forms.HexBox</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\Debugger\Debugger.csproj">
+      <Project>{E36DE0D1-C73B-4B22-9FFE-3BB2373B82E6}</Project>
+      <Name>Debugger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Video\Video.Base\Video.Base.csproj">
       <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
       <Name>Video.Base</Name>

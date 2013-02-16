@@ -286,7 +286,7 @@ namespace Emu.Machine {
 		#endregion
 		#region protected function: Do....
 		protected virtual void DoCycle() {
-			if(m_cpu != null) m_cpu.DoCycle();
+			if(m_cpu != null) m_cpu.DoCycle.Invoke();
 		}
 		protected virtual void DoInput() {}
 		protected virtual void DoGraphics() {

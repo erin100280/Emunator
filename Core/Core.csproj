@@ -37,6 +37,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq">
@@ -44,6 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\PropertyList.cs" />
+    <Compile Include="Controls\PropertyList.Designer.cs">
+      <DependentUpon>PropertyList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\propertyListItem.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Core.metaData.cs" />
     <Compile Include="Core.utils.cs" />
@@ -61,6 +67,11 @@
     <Folder Include="FileSystem" />
     <Folder Include="Controls" />
     <Folder Include="States" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\PropertyList.resx">
+      <DependentUpon>PropertyList.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

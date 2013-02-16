@@ -51,3 +51,5 @@ C:\Dev\Projects\Emunator\Emunator\bin\Debug\Device.Base.dll
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Device.Base.pdb
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Device.Input.Keyboard.Chip8.dll
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Device.Input.Keyboard.Chip8.pdb
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.pdb

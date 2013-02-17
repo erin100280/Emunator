@@ -94,6 +94,10 @@
       <Project>{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}</Project>
       <Name>Be.Windows.Forms.HexBox</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DebuggerModules\DebuggerModule.Base\DebuggerModule.Base.csproj">
+      <Project>{740C3E5B-9765-47BB-977A-A097675D5891}</Project>
+      <Name>DebuggerModule.Base</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\DebuggerPanel.resx">

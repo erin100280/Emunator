@@ -22,7 +22,7 @@ namespace Emu.Machine {
 		#region vars
 		#endregion
 		#region constructors
-		public M_Chip8(): base("Chip8 Machine") { InitM_Chip8(); }
+		public M_Chip8(): base("Machine.Chip8") { InitM_Chip8(); }
 		protected virtual void InitM_Chip8() {
 			//interval = 16.666666666666666666666666666667;
 			//interval = 6.6;

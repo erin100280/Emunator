@@ -55,3 +55,8 @@ C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.dll
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.pdb
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.Modules.DebuggerModule.Base.dll
 C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.Modules.DebuggerModule.Base.pdb
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.Modules.DebuggerModule.Chip8.dll
+C:\Dev\Projects\Emunator\Emunator\bin\Debug\Emu.Debugger.Modules.DebuggerModule.Chip8.pdb
+C:\Dev\Projects\Emunator\Emunator\obj\x86\Debug\Emunator.Forms.DebuggerForm.resources

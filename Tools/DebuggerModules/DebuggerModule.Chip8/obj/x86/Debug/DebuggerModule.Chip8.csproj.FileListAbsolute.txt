@@ -39,3 +39,8 @@ C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\Sd
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\Tao.Sdl.xml
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\obj\x86\Debug\Emu.Debugger.Modules.DebuggerModule.Chip8.dll
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\obj\x86\Debug\Emu.Debugger.Modules.DebuggerModule.Chip8.pdb
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\Be.Windows.Forms.HexBox.dll
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\Be.Windows.Forms.HexBox.pdb
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Chip8\bin\Debug\Be.Windows.Forms.HexBox.xml

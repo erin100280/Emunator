@@ -105,6 +105,10 @@
       <Project>{0C44CB2B-82F1-4759-9B71-9FA25A5E0471}</Project>
       <Name>Video.Chip8</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Be.HexEditor Lib\Be.Windows.Forms.HexBox\Be.Windows.Forms.HexBox.csproj">
+      <Project>{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}</Project>
+      <Name>Be.Windows.Forms.HexBox</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DebuggerModule.Base\DebuggerModule.Base.csproj">
       <Project>{740C3E5B-9765-47BB-977A-A097675D5891}</Project>
       <Name>DebuggerModule.Base</Name>

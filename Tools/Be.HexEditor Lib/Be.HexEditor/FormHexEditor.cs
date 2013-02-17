@@ -180,57 +180,60 @@ namespace Be.HexEditor {
         /// Opens a file.
         /// </summary>
         /// <param name="fileName">the file name of the file to open</param>
-        public void OpenFile(string fileName) {
-            if (!File.Exists(fileName)) {
-                Program.ShowMessage(strings.FileDoesNotExist);
-                return;
-            }
-
-            if (CloseFile() == DialogResult.Cancel)
-                return;
-
-            try {
-                DynamicFileByteProvider dynamicFileByteProvider;
-                try {
-                    // try to open in write mode
-                    dynamicFileByteProvider = new DynamicFileByteProvider(fileName);
-                    dynamicFileByteProvider.Changed += new EventHandler(byteProvider_Changed);
-                    dynamicFileByteProvider.LengthChanged += new EventHandler(byteProvider_LengthChanged);
-                }
-                catch (IOException) { // write mode failed
-                    try {
-                        // try to open in read-only mode
-                        dynamicFileByteProvider = new DynamicFileByteProvider(fileName, true);
-                        if (Program.ShowQuestion(strings.OpenReadonly) == DialogResult.No) {
-                            dynamicFileByteProvider.Dispose();
-                            return;
-                        }
-                    }
-                	catch (IOException) { // read-only also failed
-                        // file cannot be opened
-                        Program.ShowError(strings.OpenFailed);
-                        return;
-                    }
-                }
-
-                hexBox.ByteProvider = dynamicFileByteProvider;
-                _fileName = fileName;
-
-                DisplayText();
-
-                UpdateFileSizeStatus();
-
-                RecentFileHandler.AddFile(fileName);
-            }
-            catch (Exception ex1) {
-                Program.ShowError(ex1);
-                return;
-            }
-            finally {
-
-                ManageAbility();
-            }
-        }
+		public void OpenFile(string fileName) {
+		   if (!File.Exists(fileName)) {
+		       Program.ShowMessage(strings.FileDoesNotExist);
+		       return;
+		   }
+		
+		   if (CloseFile() == DialogResult.Cancel)
+		       return;
+		
+		   try {
+		       DynamicFileByteProvider dynamicFileByteProvider;
+		       try {
+		           // try to open in write mode
+		           dynamicFileByteProvider = new DynamicFileByteProvider(fileName);
+		           dynamicFileByteProvider.Changed += new EventHandler(byteProvider_Changed);
+		           dynamicFileByteProvider.LengthChanged += new EventHandler(byteProvider_LengthChanged);
+		       }
+		       catch (IOException) { // write mode failed
+		           try {
+		               // try to open in read-only mode
+		               dynamicFileByteProvider = new DynamicFileByteProvider(fileName, true);
+		               if (Program.ShowQuestion(strings.OpenReadonly) == DialogResult.No) {
+		                   dynamicFileByteProvider.Dispose();
+		                   return;
+		               }
+		           }
+		       	catch (IOException) { // read-only also failed
+		               // file cannot be opened
+		               Program.ShowError(strings.OpenFailed);
+		               return;
+		           }
+		       }
+		
+		       hexBox.ByteProvider = dynamicFileByteProvider;
+		       _fileName = fileName;
+		
+		       DisplayText();
+		
+		       UpdateFileSizeStatus();
+		
+		       RecentFileHandler.AddFile(fileName);
+		   }
+		   catch (Exception ex1) {
+		       Program.ShowError(ex1);
+		       return;
+		   }
+		   finally {
+		
+		       ManageAbility();
+		   }
+		}
+		public void OpenMemory(byte[] val) {
+        	OpenMemory(new DynamicByteProvider(val));
+		}
 		public void OpenMemory(IByteProvider bp) {
 			hexBox.ByteProvider = bp;
 			DisplayText();

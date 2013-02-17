@@ -617,7 +617,7 @@
     <value>hexBox</value>
   </data>
   <data name="&gt;&gt;hexBox.Type" xml:space="preserve">
-    <value>Be.Windows.Forms.HexBox, Be.Windows.Forms.HexBox, Version=1.5.0.9876, Culture=neutral, PublicKeyToken=null</value>
+    <value>Be.Windows.Forms.HexBox, Be.Windows.Forms.HexBox, Version=1.5.0.10665, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;hexBox.Parent" xml:space="preserve">
     <value>bodyPanel</value>
@@ -650,7 +650,7 @@
     <value>bitControl1</value>
   </data>
   <data name="&gt;&gt;bitControl1.Type" xml:space="preserve">
-    <value>Be.HexEditor.BitControl, Be.HexEditor, Version=1.5.0.10528, Culture=neutral, PublicKeyToken=null</value>
+    <value>Be.HexEditor.BitControl, Be.HexEditor, Version=1.5.0.1665, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;bitControl1.Parent" xml:space="preserve">
     <value>bodyPanel</value>
@@ -993,7 +993,7 @@
     <value>RecentFileHandler</value>
   </data>
   <data name="&gt;&gt;RecentFileHandler.Type" xml:space="preserve">
-    <value>Be.HexEditor.RecentFileHandler, Be.HexEditor, Version=1.5.0.10528, Culture=neutral, PublicKeyToken=null</value>
+    <value>Be.HexEditor.RecentFileHandler, Be.HexEditor, Version=1.5.0.1665, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FormHexEditor</value>

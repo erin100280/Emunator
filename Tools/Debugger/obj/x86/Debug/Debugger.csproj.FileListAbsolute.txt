@@ -1,5 +1,4 @@
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\Emu.Debugger.Controls.DebuggerPanel.resources
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.read.1.tlog
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.write.1.tlog
 C:\Dev\Projects\Emunator\Tools\Debugger\bin\Debug\Emu.Debugger.dll
@@ -35,3 +34,8 @@ C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\Emu.Debugger.dll
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\Emu.Debugger.pdb
 C:\Dev\Projects\Emunator\Tools\Debugger\bin\Debug\Emu.Debugger.Modules.DebuggerModule.Base.dll
 C:\Dev\Projects\Emunator\Tools\Debugger\bin\Debug\Emu.Debugger.Modules.DebuggerModule.Base.pdb
+C:\Dev\Projects\Emunator\Tools\Debugger\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Tools\Debugger\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.read.0.tlog
+C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.write.0.tlog
+C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\Emu.Debugger.Controls.DebuggerPanel.resources

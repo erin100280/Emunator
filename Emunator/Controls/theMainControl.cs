@@ -5,9 +5,13 @@
  */
 #endregion
 #region using....
+using Emunator.Forms;
 using Be.HexEditor;
 using Be.Windows.Forms;
 using Emu.Core;
+using Emu.Debugger;
+using Emu.Debugger.Controls;
+using Emu.Debugger.Modules;
 using Emu.Display;
 using Emu.Machine;
 using System;
@@ -24,7 +28,8 @@ namespace Emunator.Controls {
 	#endregion
 	public partial class theMainControl : UserControl {
 		#region vars
-		
+		protected DebuggerForm _debuggerForm = null;
+		protected DebuggerModule_Base _debuggerModule = null;
 		#endregion
 		#region constructors
 		public theMainControl() { InitTheMainControl(); }
@@ -152,5 +157,26 @@ namespace Emunator.Controls {
 		}
 		#endregion
 		
+		#region function: LoadDebugger....
+		public virtual void LoadDebugger() {
+			if(machine != null) {
+				switch(machine.meta.name) {
+					case "Machine.Chip8":
+						LoadDebugger_Chip8();
+						break;
+					default: break;
+				}
+			}
+		}
+		protected virtual void LoadDebugger_Chip8() {
+			machine.Pause();
+			_debuggerModule = new DebuggerModule_Chip8();
+			_debuggerForm = new DebuggerForm(machine, _debuggerModule);
+			_debuggerForm.ShowDialog();
+		}
+		#endregion
+		void DebuggerToolStripMenuItemClick(object sender, EventArgs e) {
+			LoadDebugger();
+		}
 	}
 }

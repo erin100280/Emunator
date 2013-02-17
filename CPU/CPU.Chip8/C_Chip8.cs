@@ -509,9 +509,11 @@ namespace Emu.CPU {
 					pxl=m_bank[m_indexRegister + iy];
 					for(ix=0; ix<8; ix++) {
 						if((pxl & (0x80 >> ix)) != 0) {
-							if(m_buffer[(x + ix + ((y + iy) * 64))] == 1)
-								regs[0xF] = 1;//collision occured
-							m_buffer[x + ix + ((y + iy) * 64)] ^= 1;
+							if((x + ix + ((y + iy) * 64)) < (64*32)) {
+								if(m_buffer[(x + ix + ((y + iy) * 64))] == 1)
+									regs[0xF] = 1;//collision occured
+								m_buffer[x + ix + ((y + iy) * 64)] ^= 1;
+							}
 						}
 					}
 				}

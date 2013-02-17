@@ -21,3 +21,8 @@ C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Emu
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Emu.Video.pdb
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\obj\x86\Debug\Emu.Debugger.Modules.DebuggerModule.Base.dll
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\obj\x86\Debug\Emu.Debugger.Modules.DebuggerModule.Base.pdb
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Be.Windows.Forms.HexBox.dll
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Be.Windows.Forms.HexBox.pdb
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Be.Windows.Forms.HexBox.xml

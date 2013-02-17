@@ -51,6 +51,10 @@
     <Compile Include="Controls\theMainControl.Designer.cs">
       <DependentUpon>theMainControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\DebuggerForm.cs" />
+    <Compile Include="Forms\DebuggerForm.Designer.cs">
+      <DependentUpon>DebuggerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -111,6 +115,18 @@
       <Project>{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}</Project>
       <Name>Be.Windows.Forms.HexBox</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\DebuggerModules\DebuggerModule.Base\DebuggerModule.Base.csproj">
+      <Project>{740C3E5B-9765-47BB-977A-A097675D5891}</Project>
+      <Name>DebuggerModule.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\DebuggerModules\DebuggerModule.Chip8\DebuggerModule.Chip8.csproj">
+      <Project>{65D31FF4-13E2-4A78-AF2E-CE0476D91D9E}</Project>
+      <Name>DebuggerModule.Chip8</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\Debugger\Debugger.csproj">
+      <Project>{E36DE0D1-C73B-4B22-9FFE-3BB2373B82E6}</Project>
+      <Name>Debugger</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Tools\Debugger\Debugger.csproj">
       <Project>{E36DE0D1-C73B-4B22-9FFE-3BB2373B82E6}</Project>
       <Name>Debugger</Name>
@@ -124,12 +140,16 @@
     <EmbeddedResource Include="Controls\theMainControl.resx">
       <DependentUpon>theMainControl.Designer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DebuggerForm.resx">
+      <DependentUpon>DebuggerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controls" />
+    <Folder Include="Forms" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

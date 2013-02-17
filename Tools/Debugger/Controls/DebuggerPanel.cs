@@ -5,6 +5,9 @@
  */
 #endregion
 #region using....
+using Be.Windows.Forms;
+using ConsoleControl;
+using Emu.Display;
 using Emu.Debugger.Modules;
 using Emu.Machine;
 using System;
@@ -21,6 +24,7 @@ namespace Emu.Debugger.Controls {
 	#endregion
 	public partial class DebuggerPanel : UserControl {
 		#region vars
+		protected Disp_Base _display = null;
 		protected DebuggerModule_Base _module = null;
 		protected M_Base _machine = null;
 		#endregion
@@ -35,6 +39,13 @@ namespace Emu.Debugger.Controls {
 		protected virtual void InitDebuggerPanel(M_Base _Machine
 		                                         , DebuggerModule_Base mod) {
 			InitializeComponent();
+			hexBox_memory_program.VScrollBarVisible = true;
+			hexBox_memory_program.StringViewVisible = true;
+			hexBox_memory_program.LineInfoVisible = true;
+			hexBox_memory_program.HexCasing = HexCasing.Upper;
+			hexBox_memory_program.GroupSeparatorVisible = true;
+			hexBox_memory_program.ColumnInfoVisible = true;
+
 			machine = _Machine;
 			module = mod;
 		}
@@ -71,11 +82,22 @@ namespace Emu.Debugger.Controls {
 			
 		}
 		protected virtual void OnMachineChanged(EventArgs e) {
-			
+			_display = machine.display;
+			if(_display != null) {
+				if(_display.Parent != null)
+					_display.Parent.Controls.Remove(_display);
+				groupBox_display.Controls.Add(_display);
+				_display.Dock = DockStyle.Fill;
+			}
 		}
 		protected virtual void OnModuleChanged(EventArgs e) {
 			if(_machine != null) {
-				//_module.Init(_machine, 
+				_module.Init(machine, new consoleRef(consoleControl_main));
+				propertyList_misc.Clear();
+				propertyList_registers.Clear();
+				_module.SetupMisc(propertyList_misc);
+				_module.SetupRegisters(propertyList_registers);
+				_module.UpdateGui_programMemory(hexBox_memory_program);
 			}
 		}
 		#endregion

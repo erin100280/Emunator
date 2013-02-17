@@ -56,6 +56,7 @@ namespace Emunator.Controls
 			this.picSep = new System.Windows.Forms.PictureBox();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.pnl_display = new System.Windows.Forms.Panel();
+			this.debuggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picSep)).BeginInit();
 			this.SuspendLayout();
@@ -170,7 +171,8 @@ namespace Emunator.Controls
 			this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.dumpMemoryToolStripMenuItem,
 									this.editMemoryToolStripMenuItem,
-									this.editVideoMemoryToolStripMenuItem});
+									this.editVideoMemoryToolStripMenuItem,
+									this.debuggerToolStripMenuItem});
 			this.debugToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
 			this.debugToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -208,7 +210,7 @@ namespace Emunator.Controls
 			// hexEditorToolStripMenuItem
 			// 
 			this.hexEditorToolStripMenuItem.Name = "hexEditorToolStripMenuItem";
-			this.hexEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+			this.hexEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.hexEditorToolStripMenuItem.Text = "&Hex Editor";
 			this.hexEditorToolStripMenuItem.Click += new System.EventHandler(this.HexEditorToolStripMenuItemClick);
 			// 
@@ -262,6 +264,13 @@ namespace Emunator.Controls
 			this.pnl_display.Size = new System.Drawing.Size(540, 159);
 			this.pnl_display.TabIndex = 4;
 			// 
+			// debuggerToolStripMenuItem
+			// 
+			this.debuggerToolStripMenuItem.Name = "debuggerToolStripMenuItem";
+			this.debuggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+			this.debuggerToolStripMenuItem.Text = "Debugger";
+			this.debuggerToolStripMenuItem.Click += new System.EventHandler(this.DebuggerToolStripMenuItemClick);
+			// 
 			// theMainControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -278,6 +287,7 @@ namespace Emunator.Controls
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem debuggerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editVideoMemoryToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem stopToolStripMenuItem;

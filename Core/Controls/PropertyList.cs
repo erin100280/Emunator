@@ -141,6 +141,7 @@ namespace Emu.Core.Controls {
 				Msg._Dbg("\n");				
 //*/
 			}
+			itp += 8;
 			if(itp <= panel_main.ClientSize.Height) {
 				itp = panel_main.ClientSize.Height;
 				vScrollBar_main.Value = vScrollBar_main.Maximum = 0;
@@ -202,6 +203,27 @@ namespace Emu.Core.Controls {
 		protected virtual void splitContainer_main_SplitterMoved(object sender
 		                                                , SplitterEventArgs e) {
 			RefreshList();
+		}
+		public virtual void Clear() {
+			Control ctrl;
+			Label lbl;
+			propertyListItem itm;
+			
+			while(_items.Count > 0) {
+				itm = _items[_items.Count - 1];
+				ctrl = itm.control;
+				lbl = itm.label;
+				
+				if(ctrl != null && ctrl.Parent != null)
+					ctrl.Parent.Controls.Remove(ctrl);
+				if(lbl != null && lbl.Parent != null)
+					lbl.Parent.Controls.Remove(lbl);
+				
+				_items.Remove(itm);
+			}
+			
+			ResetLines();
+			RemoveUnusedLines();
 		}
 	}
 }

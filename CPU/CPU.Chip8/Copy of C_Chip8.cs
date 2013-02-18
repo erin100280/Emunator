@@ -90,9 +90,6 @@ namespace Emu.CPU {
 			m_lastCounter=m_counter;
 			m_counter+=2;
 			
-			if(m_delayTimer > 0) m_delayTimer--;
-			if(m_soundTimer > 0) m_soundTimer--;
-			
 			switch(oc & 0xF000) {
 			#region 0x0...  0x00E0, 0x00EE
 			case 0x0000:
@@ -216,7 +213,6 @@ namespace Emu.CPU {
 				regs[(oc & 0x0F00) >> 8]=(byte)(oc & 0x00FF);
       		break;
 			#endregion
-				//**
 			#region 0x7XNN - add NN to VX
       	case 0x7000:
 				#region DBG
@@ -224,12 +220,12 @@ namespace Emu.CPU {
 					WriteDoCycle("0x7XNN"
 					,	"add NN[" + (oc & 0x00FF) + "]"
 					+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
-					+	" - val=" + (regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF))
+					+	" - val=" + (byte)(regs[(oc & 0x0F00) >> 8] + (byte)(oc & 0x00FF))
 					);
 				#endif
 				#endregion
-//				regs[(oc & 0x0F00) >> 8] += (byte)(oc & 0x00FF);
-				i = regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF);
+				regs[(oc & 0x0F00) >> 8]+=(byte)(oc & 0x00FF);
+/*				i = regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF);
       		if(i > 255) i -= 255;
       		regs[(oc & 0x0F00) >> 8] = (byte)i;
 //*/
@@ -327,23 +323,16 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					if(regs[(oc & 0x00F0) >> 4] > (0xFF - regs[(oc & 0x0F00) >> 8]))
-						regs[0xF] = 1;
-					else
-						regs[0xF] = 0;
-					regs[(oc & 0x0F00) >> 8] += regs[(oc & 0x00F0) >> 4];
-/*					i = regs[(oc & 0x0F00) >> 8] + regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] + regs[(oc & 0x00F0) >> 4];
          		if(i > 255) {
          			regs[0xF] = 1;
          			i -= 255;
          		}
          		else regs[0xF] = 0;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;
-//*/
          		break;
    			#endregion
-						//-------------------------------------------
-   			#region 0x8XY5 - set VX to (VX - VY).
+				#region 0x8XY5 - set VX to (VX - VY).
 									//Set VF to 00 if borrow, 01 if no borrow
 	   		case 0x0005:
 					#region DBG
@@ -361,21 +350,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					if(regs[(oc & 0x00F0) >> 4] > regs[(oc & 0x0F00) >> 8])
-						regs[0xF] = 0;
-					else
-						regs[0xF] = 1;
-					regs[(oc & 0x0F00) >> 8] -= regs[(oc & 0x00F0) >> 4];
-
-					
-/*					i = regs[(oc & 0x0F00) >> 8] - regs[(oc & 0x00F0) >> 4];
+         		i = regs[(oc & 0x0F00) >> 8] - regs[(oc & 0x00F0) >> 4];
          		if(i < 0) {
          			regs[0xF]=0;
-         			i *= 1;
+         			i += 256;
          		}
          		else regs[0xF]=1;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;
-//*/
          		break;
 				#endregion
 				#region 0x8XY6 - shift VX right 1. set VF to lsb
@@ -412,20 +393,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					if(regs[(oc & 0x0F00) >> 8] > regs[(oc & 0x00F0) >> 4])
-						regs[0xF] = 0;
-					else
-						regs[0xF] = 1;
-					regs[(oc & 0x0F00) >> 8] = (byte)(regs[(oc & 0x00F0) >> 4]
-					                                  - regs[(oc & 0x0F00) >> 8]);
-/*					i = (regs[(oc & 0x00F0) >> 4] - regs[(oc & 0x0F00) >> 8]);
+         		i = (regs[(oc & 0x00F0) >> 4] - regs[(oc & 0x0F00) >> 8]);
          		if(i < 0) {
          			regs[0xF]=0;
          			i += 256;
          		}
          		else regs[0xF]=1;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;
-//*/
          		break;
 				#endregion
 				#region 0x8XYE - shift VX left 1. set VF to msb
@@ -448,7 +422,7 @@ namespace Emu.CPU {
          	default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x8...", "ERROR - opcode = " + oc.ToString("X"));
+						WriteDoCycle("0x8...", "ERROR - opcode = " + oc);
 					#endif
 					#endregion
    				DoRuntimeError(
@@ -500,16 +474,13 @@ namespace Emu.CPU {
 					);
 				#endif
 				#endregion
-				m_counter=(ushort)((oc & 0x0FFF) + regs[0x0]);
+				//m_counter=(ushort)((int)romSA + ((oc & 0x0FFF) + regs[0]));
+				m_counter=(ushort)((oc & 0x0FFF) + regs[0]);
 				break;
 			#endregion
-					//--------------------------------------------------------
 			#region 0xCXYN - set VX to (randomNumber & NN)
 			case 0xC000:
-				Random r = new Random();
-				regs[(oc & 0x0F00) >> 8] = (byte)(r.Next(0, 255)
-				                                     % ((oc & 0x00FF) + 1));
-				i = (Int32)regs[(oc & 0x0F00) >> 8];
+				i = ((rand.Next() % 0xFF) & (oc & 0x00FF));
 				#region DBG
 				#if (DBG_SHOW_COMMAND)
 					WriteDoCycle("0xCXYN"
@@ -520,11 +491,7 @@ namespace Emu.CPU {
 					);
 				#endif
 				#endregion
-				
-/*
-				i = ((rand.Next() % 0xFF) & (oc & 0x00FF));
 				regs[(oc & 0x0F00) >> 8] = (byte)i;
-//*/
 				break;
 			#endregion
 			#region 0xDXYN - draw sprite at VX,VY with height of N
@@ -678,20 +645,13 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					if((m_indexRegister + regs[(oc & 0x0F00) >> 8]) > 0xFFF)
-						regs[0xF] = 1;
-					else
-						regs[0xF] = 0;
-					m_indexRegister += regs[(oc & 0x0F00) >> 8];
-					
-/*					i = m_indexRegister + regs[(oc & 0x0F00) >> 8];
+					i = m_indexRegister + regs[(oc & 0x0F00) >> 8];
 					if(i > 3840) {
 						regs[0xF] = 1;
 						i -= 3840;
 					}
 					else regs[0xF] = 0;
 					m_indexRegister = (UInt16)i;
-//*/
 					break;
 				#endregion
 				#region 0xFX29 - set I to address of font data for key hex val VX
@@ -709,7 +669,6 @@ namespace Emu.CPU {
 					m_indexRegister = (ushort)(regs[(oc & 0x0F00) >> 8] * 0x5);
 					break;
 				#endregion
-					//---------------------------------------------
 				#region 0xFX33 - SEE: info (end of file)
 				case 0x0033:
 					I = m_indexRegister;
@@ -731,7 +690,6 @@ namespace Emu.CPU {
 	            m_bank[I + 2] = (byte)((val % 100) % 10);
 					break;
 				#endregion
-								//----------------------------------------------
 				#region 0xFX55 - store V0 through VX in mem starting at I
 				case 0x0055:
 					#region DBG
@@ -743,11 +701,9 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					for(i=0, l=((oc & 0x0F00) >> 8); i <= l; i++)
-						m_bank[m_indexRegister + i] = regs[i];
-					//for original interpreter
-					m_indexRegister += (UInt16)(((oc & 0x0F00) >> 8) + 1);
-					break;
+					for(i=0, l=(((oc & 0x0F00) >> 8) + 1); i < l; i++)
+						m_bank[(int)m_ramStartAddress + m_indexRegister + i] = regs[i];
+						break;
 				#endregion
 				#region 0xFX65 - fills V0 through VX with mem starting at I
 				case 0x0065:
@@ -761,12 +717,12 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					for(i=0, l=((oc & 0x0F00) >> 8); i <= l; i++)
+					for(i=0, l=(((oc & 0x0F00) >> 8) + 1); i < l; i++)
 						regs[i] = m_bank[m_indexRegister + i];
 						
-					//for original interpreter
-					m_indexRegister += (UInt16)(((oc & 0x0F00) >> 8) + 1);
-					break;
+						//for original interpreter
+						m_indexRegister += (ushort)l;
+						break;
 				#endregion
 				#region default - ERROR
          	default:

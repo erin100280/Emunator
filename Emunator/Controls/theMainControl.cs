@@ -99,7 +99,7 @@ namespace Emunator.Controls {
 			machine.Run();
 		}
 		void StepToolStripMenuItemClick(object sender, EventArgs e) {
-			machine.Step();
+			machine.StepInto();
 		}
 		void StopToolStripMenuItemClick(object sender, EventArgs e) {
 			machine.Stop();

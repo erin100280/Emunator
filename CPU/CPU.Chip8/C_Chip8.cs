@@ -101,7 +101,7 @@ namespace Emu.CPU {
 					#endif
 					#endregion
 					for(i=0, l=(int)m_video.bufferSize; i<l; i++)
-   					m_buffer[i]=0;
+   					m_buffer[i]=0x0;
    				m_video.updated=true;
    				break;
    				
@@ -113,9 +113,9 @@ namespace Emu.CPU {
 					);
 					#endif
 					#endregion
-   				if(m_stackCount>0) {
-   					m_counter=m_stack[m_stackCount-1];
+   				if(m_stackCount > 0) {
    					m_stackCount--;
+   					m_counter = m_stack[m_stackCount];
    				}
    				break;
    				
@@ -150,7 +150,7 @@ namespace Emu.CPU {
 				#endif
 				#endregion
       		m_stack[m_stackCount]=m_counter;
-      		++m_stackCount;
+      		m_stackCount++;
       		//m_counter=(ushort)((int)romSA + (oc & 0x0FFF));
       		m_counter=(ushort)(oc & 0x0FFF);
       		break;
@@ -220,14 +220,16 @@ namespace Emu.CPU {
 					WriteDoCycle("0x7XNN"
 					,	"add NN[" + (oc & 0x00FF) + "]"
 					+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
-					+	" - val=" + (regs[(oc & 0x0F00) >> 8] + (byte)(oc & 0x00FF))
+					+	" - val=" + (byte)(regs[(oc & 0x0F00) >> 8] + (byte)(oc & 0x00FF))
 					);
 				#endif
 				#endregion
-      		i = regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF);
+				regs[(oc & 0x0F00) >> 8]+=(byte)(oc & 0x00FF);
+/*				i = regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF);
       		if(i > 255) i -= 255;
       		regs[(oc & 0x0F00) >> 8] = (byte)i;
-				break;
+//*/
+      		break;
 			#endregion
       	#region 0x8...  0x8XY0 - 0x8XY7, 0x8XYE
       	case 0x8000:
@@ -256,10 +258,12 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		i = regs[(oc & 0x0F00) >> 8] | regs[(oc & 0x00F0) >> 4];
+					regs[(oc & 0x0F00) >> 8] |= regs[(oc & 0x00F0) >> 4];
+/*					i = regs[(oc & 0x0F00) >> 8] | regs[(oc & 0x00F0) >> 4];
          		if(i > 255) i -= 255;
          		if(i < 0) i += 256;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;
+//*/
          		break;
 				#endregion
 				#region 0x8XY2 - set VX to VX-AND-VY
@@ -273,10 +277,12 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		i = regs[(oc & 0x0F00) >> 8] & regs[(oc & 0x00F0) >> 4];
+					regs[(oc & 0x0F00) >> 8] &= regs[(oc & 0x00F0) >> 4];
+/*					i = regs[(oc & 0x0F00) >> 8] & regs[(oc & 0x00F0) >> 4];
          		if(i > 255) i -= 255;
          		if(i < 0) i += 256;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;
+//*/
          		break;
 				#endregion
 				#region 0x8XY3 - set VX to VX-XOR-VY
@@ -290,10 +296,12 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		i = regs[(oc & 0x0F00) >> 8] ^ regs[(oc & 0x00F0) >> 4];
+					regs[(oc & 0x0F00) >> 8] ^= regs[(oc & 0x00F0) >> 4];
+/*					i = regs[(oc & 0x0F00) >> 8] ^ regs[(oc & 0x00F0) >> 4];
          		if(i > 255) i -= 255;
          		if(i < 0) i += 256;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;
+//*/
          		break;
 				#endregion
    			#region 0x8XY4 - add VY to VX.

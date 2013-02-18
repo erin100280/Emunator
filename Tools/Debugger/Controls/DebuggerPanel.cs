@@ -19,7 +19,7 @@ using System.Windows.Forms;
 namespace Emu.Debugger.Controls {
 	#region meta
 	/// <summary>
-	/// Description of DebuggerPanel.
+	/// Full Debugger GUI.
 	/// </summary>
 	#endregion
 	public partial class DebuggerPanel : UserControl {
@@ -102,6 +102,64 @@ namespace Emu.Debugger.Controls {
 		}
 		#endregion
 		#region function: blah
+		#endregion
+		#region handlers: flow toolbar
+		protected virtual void ToolStripSplitButton_runButtonClick(object sender, EventArgs e) {
+			if(!machine.running) {
+				machine.Run();
+			}
+			else if(machine.paused) {
+				UpdateValues();
+				machine.Resume();
+			}
+			else {
+				machine.Pause();
+				UpdateGui();
+			}
+		}
+		protected virtual void ToolStripButton_stopClick(object sender, EventArgs e) {
+			machine.Stop();
+			UpdateGui();
+		}
+		protected virtual void ToolStripButton_stepIntoClick(object sender, EventArgs e) {
+			Step();
+		}
+		protected virtual void ToolStripButton_stepOverClick(object sender, EventArgs e) {
+			machine.StepOver();
+			UpdateGui();
+		}
+		protected virtual void Do10CyclesToolStripMenuItemClick(object sender, EventArgs e) {
+			StepX(10);
+		}
+		#endregion
+		#region function: Step, StepX
+		public virtual void Step() {
+			UpdateValues();
+			machine.StepInto();
+			UpdateGui();
+		}
+		public virtual void StepX(Int32 x) {
+			UpdateValues();
+			for(int i = 0; i < 10; i++)
+				machine.StepInto();
+			UpdateGui();
+		}
+		#endregion
+		#region function: UpdateGui, UpdateValues
+		public virtual void UpdateGui() {
+			_module.UpdateGui_misc(propertyList_misc);
+			_module.UpdateGui_programMemory(hexBox_memory_program);
+			_module.UpdateGui_registers(propertyList_registers);
+			_module.UpdateGui_videoMemory(null);
+			_module.UpdateGui_workingMemory(null);
+		}
+		public virtual void UpdateValues() {
+			_module.UpdateValues_misc(propertyList_misc);
+			_module.UpdateValues_programMemory(hexBox_memory_program);
+			_module.UpdateValues_registers(propertyList_registers);
+			_module.UpdateValues_videoMemory(null);
+			_module.UpdateValues_workingMemory(null);
+		}
 		#endregion
 	}
 }

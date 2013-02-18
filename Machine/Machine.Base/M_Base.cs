@@ -202,7 +202,7 @@ namespace Emu.Machine {
 			if(EmulationStopped != null) EmulationStopped(this, e);
 		}
 		#endregion
-		#region function: Pause, Reset, Resume, Run, Stop
+		#region function: Pause, Reset, Resume, Run, StepInto, StepOver, Stop
 		public virtual void Pause() {
 			if(running && !paused)
 				_pauseNow = true;
@@ -228,7 +228,7 @@ namespace Emu.Machine {
 			_thread.Start();
 			OnEmulationStarted(new EventArgs());
 		}
-		public virtual void Step() {
+		public virtual void StepInto() {
 			if(running && !paused) {
 				_pauseNow = true;
 				return;
@@ -241,6 +241,18 @@ namespace Emu.Machine {
 			DoInput();
 			DoCycle();
 			DoGraphics();
+		}
+		public virtual void StepOver(UInt32 num = 1) {
+			if(running && !paused) {
+				_pauseNow = true;
+				return;
+			}
+			else if(!running) {
+				running = true;
+				paused = true;
+				OnEmulationStarted(new EventArgs());
+			}
+			m_cpu.m_counter += 1;
 		}
 		public virtual void Stop() {
 			if(running) {
@@ -285,11 +297,11 @@ namespace Emu.Machine {
 		public delegate void Runner_delegate();
 		#endregion
 		#region protected function: Do....
-		protected virtual void DoCycle() {
+		public virtual void DoCycle() {
 			if(m_cpu != null) m_cpu.DoCycle.Invoke();
 		}
-		protected virtual void DoInput() {}
-		protected virtual void DoGraphics() {
+		public virtual void DoInput() {}
+		public virtual void DoGraphics() {
 			if(display != null && video.updated) {
 				display.UpdateScreen();
 				video.updated = false;

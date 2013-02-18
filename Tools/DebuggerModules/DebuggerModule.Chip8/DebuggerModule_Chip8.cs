@@ -44,7 +44,9 @@ namespace Emu.Debugger.Modules {
 		#endregion
 		#region function: Setup....
 		public override void SetupMisc(PropertyList list) {
-			list.AddItem(new propertyListItem("I", propertyType.hex, "0"));
+			propertyListItem itm = new propertyListItem("I", propertyType.hex, "0");
+			itm.maxValue = 6000;
+			list.AddItem(itm);
 			list.RefreshList();
 		}
 		public override void SetupRegisters(PropertyList list) {
@@ -58,20 +60,28 @@ namespace Emu.Debugger.Modules {
 		}
 		#endregion
 		#region function: UpdateGui....
-		public override void UpdateGui_misc(PropertyList list) {}
-		public override void UpdateGui_registers(PropertyList list) {}
-		public override void UpdateGui_programMemory(HexBox hb) {
-			hb.ByteProvider = new DynamicByteProvider(machine.memory.bank);
+		public override void UpdateGui_misc(PropertyList list) {
+			list.SetValue("I", machine.cpu.m_indexRegister);
 		}
-		public override void UpdateGui_workingMemory(HexBox hb) {}
+		public override void UpdateGui_registers(PropertyList list) {
+			for(Int32 i = 0; i < 16; i++)
+				list.SetValue("V" + IntToHex(i), machine.cpu.m_vRegisters[i]);
+		}
+		public override void UpdateGui_programMemory(HexBox hb) {
+			UInt16 pc = machine.cpu.m_counter;
+			hb.ByteProvider = new DynamicByteProvider(machine.memory.bank);
+			hb.ScrollByteIntoView(pc);
+			hb.Select(pc, 1);
+		}
 		public override void UpdateGui_videoMemory(HexBox hb) {}
+		public override void UpdateGui_workingMemory(HexBox hb) {}
 		#endregion
 		#region function: UpdateValues....
 		public override void UpdateValues_misc(PropertyList list) {}
 		public override void UpdateValues_registers(PropertyList list) {}
 		public override void UpdateValues_programMemory(HexBox hb) {}
-		public override void UpdateValues_workingMemory(HexBox hb) {}
 		public override void UpdateValues_videoMemory(HexBox hb) {}
+		public override void UpdateValues_workingMemory(HexBox hb) {}
 		#endregion
 	}
 }

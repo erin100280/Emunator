@@ -45,7 +45,7 @@ namespace Emu.Machine {
 		#region On....
 		#endregion
 		#region function: Do....
-		protected override void DoCycle() {
+		public override void DoCycle() {
 			if(m_cpu != null) {
 				Int64 v = ((Int64)cpu.romStartAddress + memory.romSize);
 				if(cpu.m_counter >= (v)) {
@@ -67,5 +67,6 @@ namespace Emu.Machine {
 			base.Unload();
 		}
 		#endregion
+		public override void StepOver(uint num = 2) { base.StepOver(num); }
 	}
 }

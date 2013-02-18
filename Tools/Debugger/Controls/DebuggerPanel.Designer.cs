@@ -30,6 +30,7 @@ namespace Emu.Debugger.Controls {
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DebuggerPanel));
 			this.menuStrip_main = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,6 +43,12 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_misc = new System.Windows.Forms.GroupBox();
 			this.propertyList_misc = new Emu.Core.Controls.PropertyList();
 			this.groupBox_flow = new System.Windows.Forms.GroupBox();
+			this.panel_flow = new System.Windows.Forms.Panel();
+			this.toolStrip_flow = new System.Windows.Forms.ToolStrip();
+			this.toolStripSplitButton_run = new System.Windows.Forms.ToolStripSplitButton();
+			this.toolStripButton_stop = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton_stepInto = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton_stepOver = new System.Windows.Forms.ToolStripButton();
 			this.groupBox_memory = new System.Windows.Forms.GroupBox();
 			this.tabControl_memory = new System.Windows.Forms.TabControl();
 			this.tabPage_memory_program = new System.Windows.Forms.TabPage();
@@ -49,10 +56,11 @@ namespace Emu.Debugger.Controls {
 			this.tabPage_memory_working = new System.Windows.Forms.TabPage();
 			this.tabPage_memory_video = new System.Windows.Forms.TabPage();
 			this.groupBox_details = new System.Windows.Forms.GroupBox();
-			this.splitter1 = new System.Windows.Forms.Splitter();
 			this.splitContainer_base = new System.Windows.Forms.SplitContainer();
 			this.groupBox_console = new System.Windows.Forms.GroupBox();
 			this.consoleControl_main = new ConsoleControl.consoleControl();
+			this.doCyclesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.do10CyclesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
 			this.splitContainer_Main.Panel1.SuspendLayout();
@@ -68,6 +76,9 @@ namespace Emu.Debugger.Controls {
 			this.splitContainer_BottomLeft.SuspendLayout();
 			this.groupBox_registers.SuspendLayout();
 			this.groupBox_misc.SuspendLayout();
+			this.groupBox_flow.SuspendLayout();
+			this.panel_flow.SuspendLayout();
+			this.toolStrip_flow.SuspendLayout();
 			this.groupBox_memory.SuspendLayout();
 			this.tabControl_memory.SuspendLayout();
 			this.tabPage_memory_program.SuspendLayout();
@@ -80,7 +91,7 @@ namespace Emu.Debugger.Controls {
 			// 
 			// menuStrip_main
 			// 
-			this.menuStrip_main.BackColor = System.Drawing.SystemColors.Control;
+			this.menuStrip_main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.menuStrip_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.fileToolStripMenuItem});
 			this.menuStrip_main.Location = new System.Drawing.Point(0, 0);
@@ -118,7 +129,6 @@ namespace Emu.Debugger.Controls {
 			this.splitContainer_Main.Panel2.Controls.Add(this.groupBox_flow);
 			this.splitContainer_Main.Panel2.Controls.Add(this.groupBox_memory);
 			this.splitContainer_Main.Panel2.Controls.Add(this.groupBox_details);
-			this.splitContainer_Main.Panel2.Controls.Add(this.splitter1);
 			this.splitContainer_Main.Size = new System.Drawing.Size(699, 361);
 			this.splitContainer_Main.SplitterDistance = 208;
 			this.splitContainer_Main.TabIndex = 1;
@@ -146,6 +156,7 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_display.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_display.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.groupBox_display.Location = new System.Drawing.Point(6, 3);
 			this.groupBox_display.Name = "groupBox_display";
 			this.groupBox_display.Size = new System.Drawing.Size(199, 98);
@@ -176,6 +187,7 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_registers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_registers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.groupBox_registers.Controls.Add(this.propertyList_registers);
 			this.groupBox_registers.Location = new System.Drawing.Point(6, 3);
 			this.groupBox_registers.Name = "groupBox_registers";
@@ -189,6 +201,7 @@ namespace Emu.Debugger.Controls {
 			this.propertyList_registers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.propertyList_registers.BackColor = System.Drawing.SystemColors.Control;
 			this.propertyList_registers.innerSpacer = 0;
 			this.propertyList_registers.Location = new System.Drawing.Point(6, 19);
 			this.propertyList_registers.Name = "propertyList_registers";
@@ -203,6 +216,7 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_misc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_misc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.groupBox_misc.Controls.Add(this.propertyList_misc);
 			this.groupBox_misc.Location = new System.Drawing.Point(6, 3);
 			this.groupBox_misc.Name = "groupBox_misc";
@@ -216,6 +230,7 @@ namespace Emu.Debugger.Controls {
 			this.propertyList_misc.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.propertyList_misc.BackColor = System.Drawing.SystemColors.Control;
 			this.propertyList_misc.innerSpacer = 0;
 			this.propertyList_misc.Location = new System.Drawing.Point(6, 19);
 			this.propertyList_misc.Name = "propertyList_misc";
@@ -229,6 +244,8 @@ namespace Emu.Debugger.Controls {
 			// 
 			this.groupBox_flow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_flow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+			this.groupBox_flow.Controls.Add(this.panel_flow);
 			this.groupBox_flow.Location = new System.Drawing.Point(6, 293);
 			this.groupBox_flow.Name = "groupBox_flow";
 			this.groupBox_flow.Size = new System.Drawing.Size(474, 65);
@@ -236,11 +253,80 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_flow.TabStop = false;
 			this.groupBox_flow.Text = "Flow";
 			// 
+			// panel_flow
+			// 
+			this.panel_flow.Controls.Add(this.toolStrip_flow);
+			this.panel_flow.Location = new System.Drawing.Point(6, 19);
+			this.panel_flow.MaximumSize = new System.Drawing.Size(600000, 25);
+			this.panel_flow.MinimumSize = new System.Drawing.Size(4, 25);
+			this.panel_flow.Name = "panel_flow";
+			this.panel_flow.Size = new System.Drawing.Size(462, 25);
+			this.panel_flow.TabIndex = 1;
+			// 
+			// toolStrip_flow
+			// 
+			this.toolStrip_flow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
+			this.toolStrip_flow.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+			this.toolStrip_flow.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.toolStripSplitButton_run,
+									this.toolStripButton_stop,
+									this.toolStripButton_stepInto,
+									this.toolStripButton_stepOver});
+			this.toolStrip_flow.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip_flow.Name = "toolStrip_flow";
+			this.toolStrip_flow.Size = new System.Drawing.Size(462, 25);
+			this.toolStrip_flow.TabIndex = 0;
+			this.toolStrip_flow.Text = "toolStrip1";
+			// 
+			// toolStripSplitButton_run
+			// 
+			this.toolStripSplitButton_run.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripSplitButton_run.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.doCyclesToolStripMenuItem,
+									this.do10CyclesToolStripMenuItem});
+			this.toolStripSplitButton_run.Image = ((System.Drawing.Image)(resources.GetObject("toolStripSplitButton_run.Image")));
+			this.toolStripSplitButton_run.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripSplitButton_run.Name = "toolStripSplitButton_run";
+			this.toolStripSplitButton_run.Size = new System.Drawing.Size(32, 22);
+			this.toolStripSplitButton_run.Text = "toolStripSplitButton1";
+			this.toolStripSplitButton_run.ButtonClick += new System.EventHandler(this.ToolStripSplitButton_runButtonClick);
+			// 
+			// toolStripButton_stop
+			// 
+			this.toolStripButton_stop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton_stop.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_stop.Image")));
+			this.toolStripButton_stop.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton_stop.Name = "toolStripButton_stop";
+			this.toolStripButton_stop.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton_stop.Text = "toolStripButton1";
+			this.toolStripButton_stop.Click += new System.EventHandler(this.ToolStripButton_stopClick);
+			// 
+			// toolStripButton_stepInto
+			// 
+			this.toolStripButton_stepInto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton_stepInto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_stepInto.Image")));
+			this.toolStripButton_stepInto.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton_stepInto.Name = "toolStripButton_stepInto";
+			this.toolStripButton_stepInto.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton_stepInto.Text = "toolStripButton2";
+			this.toolStripButton_stepInto.Click += new System.EventHandler(this.ToolStripButton_stepIntoClick);
+			// 
+			// toolStripButton_stepOver
+			// 
+			this.toolStripButton_stepOver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton_stepOver.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_stepOver.Image")));
+			this.toolStripButton_stepOver.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton_stepOver.Name = "toolStripButton_stepOver";
+			this.toolStripButton_stepOver.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton_stepOver.Text = "toolStripButton3";
+			this.toolStripButton_stepOver.Click += new System.EventHandler(this.ToolStripButton_stepOverClick);
+			// 
 			// groupBox_memory
 			// 
 			this.groupBox_memory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_memory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.groupBox_memory.Controls.Add(this.tabControl_memory);
 			this.groupBox_memory.Location = new System.Drawing.Point(6, 3);
 			this.groupBox_memory.Name = "groupBox_memory";
@@ -308,6 +394,7 @@ namespace Emu.Debugger.Controls {
 			// 
 			this.groupBox_details.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_details.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.groupBox_details.Location = new System.Drawing.Point(6, 230);
 			this.groupBox_details.Name = "groupBox_details";
 			this.groupBox_details.Size = new System.Drawing.Size(474, 57);
@@ -315,16 +402,9 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_details.TabStop = false;
 			this.groupBox_details.Text = "Details";
 			// 
-			// splitter1
-			// 
-			this.splitter1.Location = new System.Drawing.Point(0, 0);
-			this.splitter1.Name = "splitter1";
-			this.splitter1.Size = new System.Drawing.Size(3, 361);
-			this.splitter1.TabIndex = 0;
-			this.splitter1.TabStop = false;
-			// 
 			// splitContainer_base
 			// 
+			this.splitContainer_base.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.splitContainer_base.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.splitContainer_base.Location = new System.Drawing.Point(0, 24);
 			this.splitContainer_base.Name = "splitContainer_base";
@@ -346,6 +426,7 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_console.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
 									| System.Windows.Forms.AnchorStyles.Left) 
 									| System.Windows.Forms.AnchorStyles.Right)));
+			this.groupBox_console.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.groupBox_console.Controls.Add(this.consoleControl_main);
 			this.groupBox_console.Location = new System.Drawing.Point(6, 3);
 			this.groupBox_console.Name = "groupBox_console";
@@ -367,10 +448,24 @@ namespace Emu.Debugger.Controls {
 			this.consoleControl_main.Size = new System.Drawing.Size(674, 69);
 			this.consoleControl_main.TabIndex = 0;
 			// 
+			// doCyclesToolStripMenuItem
+			// 
+			this.doCyclesToolStripMenuItem.Name = "doCyclesToolStripMenuItem";
+			this.doCyclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.doCyclesToolStripMenuItem.Text = "Do ?? cycles";
+			// 
+			// do10CyclesToolStripMenuItem
+			// 
+			this.do10CyclesToolStripMenuItem.Name = "do10CyclesToolStripMenuItem";
+			this.do10CyclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.do10CyclesToolStripMenuItem.Text = "Do 10 cycles";
+			this.do10CyclesToolStripMenuItem.Click += new System.EventHandler(this.Do10CyclesToolStripMenuItemClick);
+			// 
 			// DebuggerPanel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.Controls.Add(this.splitContainer_base);
 			this.Controls.Add(this.menuStrip_main);
 			this.Name = "DebuggerPanel";
@@ -391,6 +486,11 @@ namespace Emu.Debugger.Controls {
 			this.splitContainer_BottomLeft.ResumeLayout(false);
 			this.groupBox_registers.ResumeLayout(false);
 			this.groupBox_misc.ResumeLayout(false);
+			this.groupBox_flow.ResumeLayout(false);
+			this.panel_flow.ResumeLayout(false);
+			this.panel_flow.PerformLayout();
+			this.toolStrip_flow.ResumeLayout(false);
+			this.toolStrip_flow.PerformLayout();
 			this.groupBox_memory.ResumeLayout(false);
 			this.tabControl_memory.ResumeLayout(false);
 			this.tabPage_memory_program.ResumeLayout(false);
@@ -402,6 +502,14 @@ namespace Emu.Debugger.Controls {
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem do10CyclesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem doCyclesToolStripMenuItem;
+		private System.Windows.Forms.ToolStripButton toolStripButton_stepOver;
+		private System.Windows.Forms.ToolStripButton toolStripButton_stepInto;
+		private System.Windows.Forms.ToolStripButton toolStripButton_stop;
+		private System.Windows.Forms.ToolStripSplitButton toolStripSplitButton_run;
+		private System.Windows.Forms.ToolStrip toolStrip_flow;
+		private System.Windows.Forms.Panel panel_flow;
 		private ConsoleControl.consoleControl consoleControl_main;
 		private System.Windows.Forms.GroupBox groupBox_console;
 		private System.Windows.Forms.SplitContainer splitContainer_base;
@@ -414,7 +522,6 @@ namespace Emu.Debugger.Controls {
 		private Be.Windows.Forms.HexBox hexBox_memory_program;
 		private System.Windows.Forms.GroupBox groupBox_flow;
 		private System.Windows.Forms.GroupBox groupBox_display;
-		private System.Windows.Forms.Splitter splitter1;
 		private System.Windows.Forms.TabPage tabPage_memory_video;
 		private System.Windows.Forms.TabPage tabPage_memory_working;
 		private System.Windows.Forms.TabPage tabPage_memory_program;

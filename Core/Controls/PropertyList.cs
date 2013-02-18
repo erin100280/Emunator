@@ -156,6 +156,38 @@ namespace Emu.Core.Controls {
 			
 		}
 		#endregion
+		#region function: Integer, String
+		public virtual Int32 Integer(string name) {
+			propertyListItem itm;
+			for(Int32 i = 0, il = _items.Count; i < il; i++) {
+				itm = _items[i];
+				if(itm.name == name)
+					return itm.Int32();
+			}
+			return 0;
+		}
+		public virtual string String(string name) {
+			propertyListItem itm;
+			for(Int32 i = 0, il = _items.Count; i < il; i++) {
+				itm = _items[i];
+				if(itm.name == name)
+					return itm.String();
+			}
+			return "";
+		}
+		
+		#endregion
+		#region function: SetValue
+		public virtual void SetValue(string name, Int32 val) {
+			propertyListItem itm;
+			for(Int32 i = 0, il = _items.Count; i < il; i++) {
+				itm = _items[i];
+				if(itm.name == name)
+					itm.SetValue(val);
+			}
+		}
+		
+		#endregion
 		#region line stuff
 		protected virtual void ResetLines() { _lineCount = 0; }
 		protected virtual void RemoveUnusedLines() {

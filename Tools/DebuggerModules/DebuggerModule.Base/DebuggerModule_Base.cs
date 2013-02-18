@@ -90,15 +90,15 @@ namespace Emu.Debugger.Modules {
 		public virtual void UpdateGui_misc(PropertyList list) {}
 		public virtual void UpdateGui_registers(PropertyList list) {}
 		public virtual void UpdateGui_programMemory(HexBox hb) {}
-		public virtual void UpdateGui_workingMemory(HexBox hb) {}
 		public virtual void UpdateGui_videoMemory(HexBox hb) {}
+		public virtual void UpdateGui_workingMemory(HexBox hb) {}
 		#endregion
 		#region function: UpdateValues....
 		public virtual void UpdateValues_misc(PropertyList list) {}
 		public virtual void UpdateValues_registers(PropertyList list) {}
 		public virtual void UpdateValues_programMemory(HexBox hb) {}
-		public virtual void UpdateValues_workingMemory(HexBox hb) {}
 		public virtual void UpdateValues_videoMemory(HexBox hb) {}
+		public virtual void UpdateValues_workingMemory(HexBox hb) {}
 		#endregion
 	}
 	#endregion

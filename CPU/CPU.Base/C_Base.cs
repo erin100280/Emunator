@@ -23,17 +23,17 @@ namespace Emu.CPU {
 		#region vars
 		//protected byte[] m_buffer=null;
 		public DoCycleDelegate DoCycle;
-		protected byte m_delayTimer;
-		protected byte m_soundTimer;
-		protected byte[] m_key;
-		protected byte[] m_vRegisters=null;
+		public byte m_delayTimer;
+		public byte m_soundTimer;
+		public byte[] m_key;
+		public byte[] m_vRegisters=null;
 		public ushort m_counter;
 		protected ushort m_lastCounter;
-		protected ushort m_indexRegister;
-		protected ushort m_opcode;
-		protected ushort m_stackSize;
-		protected ushort[] m_stack;
-		protected ushort m_stackCount;
+		public ushort m_indexRegister;
+		public ushort m_opcode;
+		public ushort m_stackSize;
+		public ushort[] m_stack;
+		public ushort m_stackCount;
 
 		protected int m_ramSize;
 		protected UInt64 m_startAddress;

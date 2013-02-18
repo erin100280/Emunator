@@ -65,11 +65,11 @@ namespace Emu.Core.Controls
 			// 
 			// splitContainer_main.Panel1
 			// 
-			this.splitContainer_main.Panel1.BackColor = System.Drawing.SystemColors.Control;
+			this.splitContainer_main.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			// 
 			// splitContainer_main.Panel2
 			// 
-			this.splitContainer_main.Panel2.BackColor = System.Drawing.SystemColors.Control;
+			this.splitContainer_main.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.splitContainer_main.Size = new System.Drawing.Size(285, 270);
 			this.splitContainer_main.SplitterDistance = 75;
 			this.splitContainer_main.TabIndex = 1;

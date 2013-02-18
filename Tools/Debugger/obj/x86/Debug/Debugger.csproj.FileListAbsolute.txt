@@ -39,3 +39,4 @@ C:\Dev\Projects\Emunator\Tools\Debugger\bin\Debug\ConsoleControl.pdb
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.read.0.tlog
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.write.0.tlog
 C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\Emu.Debugger.Controls.DebuggerPanel.resources
+C:\Dev\Projects\Emunator\Tools\Debugger\obj\x86\Debug\GenerateResource.read.3.tlog

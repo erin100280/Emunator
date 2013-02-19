@@ -144,6 +144,24 @@
   <metadata name="groupBox_flow.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="lbl_cycleCountValue.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lbl_pcDecimal.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="toolTip_main.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>270, 17</value>
+  </metadata>
+  <metadata name="lbl_cycleCount.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="lbl_pc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="numericUpDown_pc.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="toolStrip_flow.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>151, 17</value>
   </metadata>
@@ -152,10 +170,10 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAALlJREFUOE9jYBhU
-        IDwi6kNoRMSG8PBwBbIcFhwS9h+EA4PCPgQHhzaQbIi/f+B/ZOzn53/B39/fgWiDvLx8/mPDnp4+C4AG
+        IDwi6kNoRMSG8PBwBbIcFhwS9h+EfXzCPgQHhzaQbIi/f+B/ZOzn53fB39/fgWiDvLx8/mPDnp4+C4AG
         CRA0yM3V/T8e/MHV1T0BryGODo7/CWI7xwM4DbGxtvlPCFtZWeE2wMLM/D8e/MHc1By/F4wNjf5jx4YL
-        9PX1CQeivo7uf2Ssq6P7QF9bm/ho1FLX+A/FHzTV1UlPSKpKyh9UlZQOqMvLk5eUCSYUWigAANmagCsF
-        yo3PAAAAAElFTkSuQmCC
+        9PX1CQeivo7uf2Ssq6P7QF9bm/ho1FLX+A/FHzTV1UlPSKpKyh9UlZQOqMvLk5eUCSYUWigAALNLgB+9
+        e6Q/AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="toolStripButton_stop.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -189,10 +207,10 @@
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAALlJREFUOE9jYBhU
-        IDwi6kNYROSG8PBwBbIcFhwS9h+Eg4LDPgQHhzaQbIi/f+B/ZOznF3DB39/fgWiDvLx8/mPDnp4+C4AG
-        CRA0yM3V/T8e/MHV1T0BryGODo7/CWJ7xwM4DbGxtvlPCFtbWeM2wMLM/D8e/MHc1By/F4wNjf5jx4YL
-        9PX1CQeivo7uf2Ssp6P7QF9bm/ho1FLX+A/FHzTV1UlPSKpKyh9UlZQOqMvLk5eUCSYUWigAAPDZgDQe
-        h5poAAAAAElFTkSuQmCC
+        IDwi6kNoRMSG8PBwBbIcFhwS9h+EfXzCPgQHhzaQbIi/f+B/ZOzn53fB39/fgWiDvLx8/mPDnp4+C4AG
+        CRA0yM3V/T8e/MHV1T0BryGODo7/CWI7xwM4DbGxtvlPCFtZWeE2wMLM/D8e/MHc1By/F4wNjf5jx4YL
+        9PX1CQeivo7uf2Ssq6P7QF9bm/ho1FLX+A/FHzTV1UlPSKpKyh9UlZQOqMvLk5eUCSYUWigAALNLgB+9
+        e6Q/AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="toolStripButton_temp_pause.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

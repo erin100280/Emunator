@@ -7,6 +7,7 @@
 #region using....
 using Be.Windows.Forms;
 using ConsoleControl;
+using Emu.Core;
 using Emu.Display;
 using Emu.Debugger.Modules;
 using Emu.Machine;
@@ -24,6 +25,7 @@ namespace Emu.Debugger.Controls {
 	#endregion
 	public partial class DebuggerPanel : UserControl {
 		#region vars
+		public bool _dirty = false;
 		protected Disp_Base _display = null;
 		protected DebuggerModule_Base _module = null;
 		protected M_Base _machine = null;
@@ -76,7 +78,9 @@ namespace Emu.Debugger.Controls {
 		#endregion
 		#region On....
 		protected virtual void OnBeforeMachineChanged(EventArgs e) {
-			
+			if(machine != null) {
+				machine.cpu._console = null;
+			}
 		}
 		protected virtual void OnBeforeModuleChanged(EventArgs e) {
 			
@@ -89,6 +93,7 @@ namespace Emu.Debugger.Controls {
 				groupBox_display.Controls.Add(_display);
 				_display.Dock = DockStyle.Fill;
 			}
+			machine.cpu._console = new consoleRef(consoleControl_main);
 		}
 		protected virtual void OnModuleChanged(EventArgs e) {
 			if(_machine != null) {
@@ -144,20 +149,33 @@ namespace Emu.Debugger.Controls {
 			machine.StepInto();
 			UpdateGui();
 		}
-		public virtual void StepX(Int32 x) {
-			UpdateValues();
-			for(int i = 0; i < 10; i++)
+		public virtual void StepX(Int32 x
+						, bool updateValues=true, bool updateGui = true) {
+			if(updateValues)
+				UpdateValues();
+			for(int i = 0; i < x; i++)
 				machine.StepInto();
-			UpdateGui();
+			if(updateGui)
+				UpdateGui();
 		}
 		#endregion
 		#region function: UpdateGui, UpdateValues
 		public virtual void UpdateGui() {
+			Int32 i;
+			
 			_module.UpdateGui_misc(propertyList_misc);
 			_module.UpdateGui_programMemory(hexBox_memory_program);
 			_module.UpdateGui_registers(propertyList_registers);
 			_module.UpdateGui_videoMemory(null);
 			_module.UpdateGui_workingMemory(null);
+			
+			i = _module.GetPC();
+			lbl_pcDecimal.Text = i.ToString();
+			numericUpDown_pc.Value = i;
+
+			lbl_cycleCountValue.Text = _module.GetCycleCount().ToString();
+			
+			_dirty = false;
 		}
 		public virtual void UpdateValues() {
 			_module.UpdateValues_misc(propertyList_misc);
@@ -175,6 +193,14 @@ namespace Emu.Debugger.Controls {
 		
 		void StepToolStripMenuItemClick(object sender, EventArgs e) {
 			Step();
+		}
+		
+		void HandleExecXInstructs(object sender, EventArgs e) {
+			machine.Pause();
+			ToolStripMenuItem itm = (ToolStripMenuItem)sender;
+			
+			Int32 i = Convert.ToInt32((string)itm.Tag);
+			StepX(i);
 		}
 	}
 }

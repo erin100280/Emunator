@@ -33,3 +33,5 @@ C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Device.Base.pdb
 C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Base.pdb
 C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Chip8.dll
 C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Chip8.pdb
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Chip8\bin\Debug\ConsoleControl.pdb

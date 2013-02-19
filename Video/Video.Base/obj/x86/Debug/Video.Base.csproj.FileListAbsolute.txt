@@ -5,3 +5,5 @@ C:\Dev\Projects\Emunator\Video\Video.Base\obj\x86\Debug\Emu.Video.dll
 C:\Dev\Projects\Emunator\Video\Video.Base\obj\x86\Debug\Emu.Video.pdb
 C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Core.dll
 C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Video\Video.Base\bin\Debug\ConsoleControl.pdb

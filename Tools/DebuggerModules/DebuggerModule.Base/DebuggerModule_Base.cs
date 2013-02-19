@@ -18,28 +18,13 @@ using Emu.Device.Input.Keyboard;
 using Emu.Display;
 using Emu.Machine;
 using Emu.Memory;
+using Emu.Video;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 #endregion
 
 namespace Emu.Debugger.Modules {
-	#region class: consoleRef
-	public class consoleRef {
-		protected ConsoleControl.consoleControl _console;
-		public consoleRef(object _Console) {
-			_console = (consoleControl)_Console;
-			_console.BackColor = Color.DarkGray;
-		}
-		public virtual void Clear() { _console.ClearOutput(); }
-		public virtual void Write(string val) {
-			Write(val, Color.White);
-		}
-		public virtual void Write(string val, Color clr) {
-			_console.WriteOutput(val, clr);
-		}
-	}
-	#endregion
 	#region class: DebuggerModule_Base
 	#region meta
 	/// <summary>
@@ -55,6 +40,11 @@ namespace Emu.Debugger.Modules {
 		#endregion
 		#region vars
 		public M_Base machine = null;
+		public C_Base cpu = null;
+		public Mem_Base memory = null;
+		public Vid_Base video = null;
+		public Disp_Base display = null;
+		
 		public TextBox textBox = null;
 		public consoleRef console = null;
 		#endregion
@@ -78,13 +68,36 @@ namespace Emu.Debugger.Modules {
 		#region function: Init
 		public void Init(M_Base _machine, consoleRef _Console) {
 			machine = _machine;
-			console = _Console;			
+			cpu = machine.cpu;
+			memory = machine.memory;
+			video = machine.video;
+			display = machine.display;
+			
+			console = _Console;
 			OnInit(new EventArgs());
 		}
 		#endregion
 		#region function: Setup....
 		public virtual void SetupMisc(PropertyList list) {}
 		public virtual void SetupRegisters(PropertyList list) {}
+		#endregion
+		#region function: Get...., Set....
+		#region PC
+		public virtual Int32 GetPC() {
+			return cpu.m_counter;
+		}
+		public virtual void SetPC(Int32 val) {
+			cpu.m_counter = (UInt16)val;
+		}
+		#endregion
+		#region CycleCount
+		public virtual UInt64 GetCycleCount() {
+			return cpu.cycleCount;
+		}
+		public virtual void SetCycleCount(UInt64 val) {
+			cpu.cycleCount = val;
+		}
+		#endregion
 		#endregion
 		#region function: UpdateGui....
 		public virtual void UpdateGui_misc(PropertyList list) {}
@@ -102,4 +115,8 @@ namespace Emu.Debugger.Modules {
 		#endregion
 	}
 	#endregion
+
 }
+
+
+

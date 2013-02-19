@@ -30,9 +30,6 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConsoleControl">
-      <HintPath>..\Tools\ConsoleControl\bin\Release\ConsoleControl.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -72,6 +69,12 @@
     <EmbeddedResource Include="Controls\PropertyList.resx">
       <DependentUpon>PropertyList.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Tools\ConsoleControl\ConsoleControl.csproj">
+      <Project>{737CC7F2-EC7C-4800-B7EB-72637E892C42}</Project>
+      <Name>ConsoleControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
 </Project>

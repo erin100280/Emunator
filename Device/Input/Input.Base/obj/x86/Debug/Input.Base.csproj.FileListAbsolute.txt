@@ -16,3 +16,5 @@ C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\Device.Base.pdb
 C:\Dev\Projects\Emunator\Device\Input\Input.Base\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Dev\Projects\Emunator\Device\Input\Input.Base\obj\x86\Debug\Emu.Device.Input.Base.dll
 C:\Dev\Projects\Emunator\Device\Input\Input.Base\obj\x86\Debug\Emu.Device.Input.Base.pdb
+C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\ConsoleControl.pdb

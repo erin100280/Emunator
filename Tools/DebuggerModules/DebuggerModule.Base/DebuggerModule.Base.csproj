@@ -78,6 +78,10 @@
       <Project>{3C3673A3-E59E-46EC-A4C7-FC68A430EF34}</Project>
       <Name>Memory.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Video\Video.Base\Video.Base.csproj">
+      <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
+      <Name>Video.Base</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Be.HexEditor Lib\Be.Windows.Forms.HexBox\Be.Windows.Forms.HexBox.csproj">
       <Project>{26C5F25F-B450-4CAF-AD8B-B8D11AE73457}</Project>
       <Name>Be.Windows.Forms.HexBox</Name>

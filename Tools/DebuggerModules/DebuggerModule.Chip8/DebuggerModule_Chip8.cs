@@ -78,7 +78,12 @@ namespace Emu.Debugger.Modules {
 		#endregion
 		#region function: UpdateValues....
 		public override void UpdateValues_misc(PropertyList list) {}
-		public override void UpdateValues_registers(PropertyList list) {}
+		public override void UpdateValues_registers(PropertyList list) {
+			for(int i = 0; i < 16; i++) {
+				cpu.m_vRegisters[i] = Convert.ToByte(list.Integer("V"
+				                                     + IntToHex(i)));
+			}
+		}
 		public override void UpdateValues_programMemory(HexBox hb) {}
 		public override void UpdateValues_videoMemory(HexBox hb) {}
 		public override void UpdateValues_workingMemory(HexBox hb) {}

@@ -9,3 +9,5 @@ C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Emu.Memory.Base.pdb
 C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Emu.Video.pdb
 C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Emu.Core.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\ConsoleControl.pdb

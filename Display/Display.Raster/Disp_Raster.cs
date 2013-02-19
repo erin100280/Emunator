@@ -72,9 +72,10 @@ namespace Emu.Display {
 			if(_frontBuffer.Size == _backBuffer.Size)
 				_frontBuffer.Blit(_backBuffer);
 			else {
-				_frontBuffer.Blit(
-							_backBuffer.CreateStretchedSurface(_frontBuffer.Size));
-				
+				Surface img;
+				img = _backBuffer.CreateStretchedSurface(_frontBuffer.Size);
+				_frontBuffer.Blit(img);
+				img.Dispose();
 			}
 			//Debug.//riteLine("PaintScreen");
 		}
@@ -83,6 +84,7 @@ namespace Emu.Display {
 				#region displayMode - original, times
 				case displayMode.original: case displayMode.times:
 					unsafe {
+						_backBuffer.Lock();
 						Int32 *pxls = (Int32 *)_backBuffer.Pixels;
 						for(int i = 0; i < m_bufferSize; i++) {
 							if(m_buffer[i] == 0)
@@ -90,6 +92,7 @@ namespace Emu.Display {
 							else
 								pxls[i] = _white;
 						}
+						_backBuffer.Unlock();
 						//essageBox.Show("RenderScreen");
 					}
 					break;

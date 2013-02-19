@@ -11,3 +11,5 @@ C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Emu.Core.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Emu.Core.pdb
 C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Emu.Video.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Emu.Video.pdb
+C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\ConsoleControl.pdb

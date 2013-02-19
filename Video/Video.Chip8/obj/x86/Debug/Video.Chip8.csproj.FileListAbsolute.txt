@@ -7,3 +7,5 @@ C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Debug\Emu.Video.pdb
 C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Debug\Emu.Core.pdb
 C:\Dev\Projects\Emunator\Video\Video.Chip8\obj\x86\Debug\Emu.Video.Chip8.dll
 C:\Dev\Projects\Emunator\Video\Video.Chip8\obj\x86\Debug\Emu.Video.Chip8.pdb
+C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Video\Video.Chip8\bin\Debug\ConsoleControl.pdb

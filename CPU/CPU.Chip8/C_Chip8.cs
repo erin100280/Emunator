@@ -86,6 +86,9 @@ namespace Emu.CPU {
 						| m_bank[m_counter+1]);
 			ushort x, y, h, pxl, I = m_indexRegister;
 			#endregion
+			#region DBG
+			cycleCount++;
+			#endregion
 
 			m_lastCounter=m_counter;
 			m_counter+=2;

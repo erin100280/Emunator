@@ -135,7 +135,7 @@ namespace Emu.Device.Input.Keyboard {
 		#region event handlers: (keys, mouse, joystick)
 		#region keyboard
 		protected virtual void Handler_KeyDown(object sender, KeyEventArgs e) {
-			Msg.Dbg("KeyDown - " + e.KeyValue.ToString());
+			//Msg.Dbg("KeyDown - " + e.KeyValue.ToString());
 			if(_keyBuffer != null && _keyMap != null) {
 				Int32 ii = 0;
 				Int32 il = _keyMap._keys.Length;
@@ -153,7 +153,7 @@ namespace Emu.Device.Input.Keyboard {
 			}
 		}
 		protected virtual void Handler_KeyUp(object sender, KeyEventArgs e) {
-			Msg.Dbg("KeyUp - " + e.KeyValue.ToString());
+			//Msg.Dbg("KeyUp - " + e.KeyValue.ToString());
 			if(_keyBuffer != null && _keyMap != null) {
 				Int32 ii = 0;
 				Int32 il = _keyMap._keys.Length;

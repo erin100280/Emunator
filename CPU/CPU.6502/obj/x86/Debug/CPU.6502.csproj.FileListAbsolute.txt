@@ -11,3 +11,5 @@ C:\Dev\Projects\Emunator\CPU\CPU.6502\bin\Debug\Emu.CPU.Base.pdb
 C:\Dev\Projects\Emunator\CPU\CPU.6502\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Dev\Projects\Emunator\CPU\CPU.6502\obj\x86\Debug\Emu.CPU.6502.dll
 C:\Dev\Projects\Emunator\CPU\CPU.6502\obj\x86\Debug\Emu.CPU.6502.pdb
+C:\Dev\Projects\Emunator\CPU\CPU.6502\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\CPU\CPU.6502\bin\Debug\ConsoleControl.pdb

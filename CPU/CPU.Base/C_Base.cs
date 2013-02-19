@@ -22,6 +22,9 @@ namespace Emu.CPU {
 		#endregion
 		#region vars
 		//protected byte[] m_buffer=null;
+		public consoleRef _console = null;
+		public UInt64 cycleCount = 0;
+		
 		public DoCycleDelegate DoCycle;
 		public byte m_delayTimer;
 		public byte m_soundTimer;
@@ -145,7 +148,9 @@ namespace Emu.CPU {
 			
 			if(op != "") val +=	" - " + op;
 			if(desc != "") val +=	" - " + desc;
-			Debug.WriteLine(val);
+
+			if(_console != null) _console.WriteLine(val);
+			else Debug.WriteLine(val);
 		}
 		public virtual void WriteDoCycle(UInt16 counter, string op, string desc) {
 			WriteDoCycle((UInt64)counter, op, desc);

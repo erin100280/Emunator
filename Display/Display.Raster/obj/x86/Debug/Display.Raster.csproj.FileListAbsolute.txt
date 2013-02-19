@@ -13,3 +13,5 @@ C:\Dev\Projects\Emunator\Display\Display.Raster\bin\Debug\Emu.Video.pdb
 C:\Dev\Projects\Emunator\Display\Display.Raster\bin\Debug\Emu.Display.Base.pdb
 C:\Dev\Projects\Emunator\Display\Display.Raster\bin\Debug\SdlDotNet.xml
 C:\Dev\Projects\Emunator\Display\Display.Raster\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\Display\Display.Raster\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Display\Display.Raster\bin\Debug\ConsoleControl.pdb

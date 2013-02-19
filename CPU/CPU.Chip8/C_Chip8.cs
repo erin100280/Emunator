@@ -10,7 +10,7 @@
  */
 #endregion
 #region defs
-#define DBG_SHOW_COMMAND
+#define aDBG_SHOW_COMMAND
 #endregion
 #region using....
 using Emu.Core;
@@ -308,10 +308,10 @@ namespace Emu.CPU {
 //*/
          		break;
 				#endregion
+								//**
    			#region 0x8XY4 - add VY to VX.
-								//Set VF to 01 if carry, 00 if no carry
+			   					//Set VF to 01 if carry, 00 if no carry
 	   		case 0x0004:
-									
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
          			i = 0;
@@ -327,12 +327,14 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
+/*
 					if(regs[(oc & 0x00F0) >> 4] > (0xFF - regs[(oc & 0x0F00) >> 8]))
 						regs[0xF] = 1;
 					else
 						regs[0xF] = 0;
 					regs[(oc & 0x0F00) >> 8] += regs[(oc & 0x00F0) >> 4];
-/*					i = regs[(oc & 0x0F00) >> 8] + regs[(oc & 0x00F0) >> 4];
+//*/
+					i = regs[(oc & 0x0F00) >> 8] + regs[(oc & 0x00F0) >> 4];
          		if(i > 255) {
          			regs[0xF] = 1;
          			i -= 255;
@@ -361,17 +363,17 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-					if(regs[(oc & 0x00F0) >> 4] > regs[(oc & 0x0F00) >> 8])
+/*					if(regs[(oc & 0x00F0) >> 4] > regs[(oc & 0x0F00) >> 8])
 						regs[0xF] = 0;
 					else
 						regs[0xF] = 1;
 					regs[(oc & 0x0F00) >> 8] -= regs[(oc & 0x00F0) >> 4];
-
+//*/
 					
-/*					i = regs[(oc & 0x0F00) >> 8] - regs[(oc & 0x00F0) >> 4];
+					i = regs[(oc & 0x0F00) >> 8] - regs[(oc & 0x00F0) >> 4];
          		if(i < 0) {
          			regs[0xF]=0;
-         			i *= 1;
+         			i *= -1;
          		}
          		else regs[0xF]=1;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;

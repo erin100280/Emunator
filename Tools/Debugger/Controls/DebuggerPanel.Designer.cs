@@ -34,6 +34,8 @@ namespace Emu.Debugger.Controls {
 			this.menuStrip_main = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.flowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.splitContainer_Main = new System.Windows.Forms.SplitContainer();
 			this.splitContainer_Left = new System.Windows.Forms.SplitContainer();
 			this.groupBox_display = new System.Windows.Forms.GroupBox();
@@ -46,6 +48,8 @@ namespace Emu.Debugger.Controls {
 			this.panel_flow = new System.Windows.Forms.Panel();
 			this.toolStrip_flow = new System.Windows.Forms.ToolStrip();
 			this.toolStripSplitButton_run = new System.Windows.Forms.ToolStripSplitButton();
+			this.doCyclesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.do10CyclesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripButton_stop = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton_stepInto = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton_stepOver = new System.Windows.Forms.ToolStripButton();
@@ -59,8 +63,8 @@ namespace Emu.Debugger.Controls {
 			this.splitContainer_base = new System.Windows.Forms.SplitContainer();
 			this.groupBox_console = new System.Windows.Forms.GroupBox();
 			this.consoleControl_main = new ConsoleControl.consoleControl();
-			this.doCyclesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.do10CyclesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripButton_temp_run = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton_temp_pause = new System.Windows.Forms.ToolStripButton();
 			this.menuStrip_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer_Main)).BeginInit();
 			this.splitContainer_Main.Panel1.SuspendLayout();
@@ -93,7 +97,8 @@ namespace Emu.Debugger.Controls {
 			// 
 			this.menuStrip_main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(233)))), ((int)(((byte)(233)))));
 			this.menuStrip_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.fileToolStripMenuItem});
+									this.fileToolStripMenuItem,
+									this.flowToolStripMenuItem});
 			this.menuStrip_main.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip_main.Name = "menuStrip_main";
 			this.menuStrip_main.Size = new System.Drawing.Size(699, 24);
@@ -113,6 +118,23 @@ namespace Emu.Debugger.Controls {
 			this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
 			this.closeToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
 			this.closeToolStripMenuItem.Text = "&Close";
+			this.closeToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItemClick);
+			// 
+			// flowToolStripMenuItem
+			// 
+			this.flowToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.stepToolStripMenuItem});
+			this.flowToolStripMenuItem.Name = "flowToolStripMenuItem";
+			this.flowToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
+			this.flowToolStripMenuItem.Text = "F&low";
+			// 
+			// stepToolStripMenuItem
+			// 
+			this.stepToolStripMenuItem.Name = "stepToolStripMenuItem";
+			this.stepToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
+			this.stepToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+			this.stepToolStripMenuItem.Text = "S&tep";
+			this.stepToolStripMenuItem.Click += new System.EventHandler(this.StepToolStripMenuItemClick);
 			// 
 			// splitContainer_Main
 			// 
@@ -271,7 +293,9 @@ namespace Emu.Debugger.Controls {
 									this.toolStripSplitButton_run,
 									this.toolStripButton_stop,
 									this.toolStripButton_stepInto,
-									this.toolStripButton_stepOver});
+									this.toolStripButton_stepOver,
+									this.toolStripButton_temp_run,
+									this.toolStripButton_temp_pause});
 			this.toolStrip_flow.Location = new System.Drawing.Point(0, 0);
 			this.toolStrip_flow.Name = "toolStrip_flow";
 			this.toolStrip_flow.Size = new System.Drawing.Size(462, 25);
@@ -290,6 +314,19 @@ namespace Emu.Debugger.Controls {
 			this.toolStripSplitButton_run.Size = new System.Drawing.Size(32, 22);
 			this.toolStripSplitButton_run.Text = "toolStripSplitButton1";
 			this.toolStripSplitButton_run.ButtonClick += new System.EventHandler(this.ToolStripSplitButton_runButtonClick);
+			// 
+			// doCyclesToolStripMenuItem
+			// 
+			this.doCyclesToolStripMenuItem.Name = "doCyclesToolStripMenuItem";
+			this.doCyclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.doCyclesToolStripMenuItem.Text = "Do ?? cycles";
+			// 
+			// do10CyclesToolStripMenuItem
+			// 
+			this.do10CyclesToolStripMenuItem.Name = "do10CyclesToolStripMenuItem";
+			this.do10CyclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.do10CyclesToolStripMenuItem.Text = "Do 10 cycles";
+			this.do10CyclesToolStripMenuItem.Click += new System.EventHandler(this.Do10CyclesToolStripMenuItemClick);
 			// 
 			// toolStripButton_stop
 			// 
@@ -448,18 +485,25 @@ namespace Emu.Debugger.Controls {
 			this.consoleControl_main.Size = new System.Drawing.Size(674, 69);
 			this.consoleControl_main.TabIndex = 0;
 			// 
-			// doCyclesToolStripMenuItem
+			// toolStripButton_temp_run
 			// 
-			this.doCyclesToolStripMenuItem.Name = "doCyclesToolStripMenuItem";
-			this.doCyclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.doCyclesToolStripMenuItem.Text = "Do ?? cycles";
+			this.toolStripButton_temp_run.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton_temp_run.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_temp_run.Image")));
+			this.toolStripButton_temp_run.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton_temp_run.Name = "toolStripButton_temp_run";
+			this.toolStripButton_temp_run.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton_temp_run.Text = "toolStripButton1";
+			this.toolStripButton_temp_run.Visible = false;
 			// 
-			// do10CyclesToolStripMenuItem
+			// toolStripButton_temp_pause
 			// 
-			this.do10CyclesToolStripMenuItem.Name = "do10CyclesToolStripMenuItem";
-			this.do10CyclesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.do10CyclesToolStripMenuItem.Text = "Do 10 cycles";
-			this.do10CyclesToolStripMenuItem.Click += new System.EventHandler(this.Do10CyclesToolStripMenuItemClick);
+			this.toolStripButton_temp_pause.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton_temp_pause.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton_temp_pause.Image")));
+			this.toolStripButton_temp_pause.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton_temp_pause.Name = "toolStripButton_temp_pause";
+			this.toolStripButton_temp_pause.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton_temp_pause.Text = "toolStripButton2";
+			this.toolStripButton_temp_pause.Visible = false;
 			// 
 			// DebuggerPanel
 			// 
@@ -502,6 +546,10 @@ namespace Emu.Debugger.Controls {
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripButton toolStripButton_temp_pause;
+		private System.Windows.Forms.ToolStripButton toolStripButton_temp_run;
+		private System.Windows.Forms.ToolStripMenuItem stepToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem flowToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem do10CyclesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem doCyclesToolStripMenuItem;
 		private System.Windows.Forms.ToolStripButton toolStripButton_stepOver;

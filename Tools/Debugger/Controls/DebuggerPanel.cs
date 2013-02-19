@@ -106,14 +106,20 @@ namespace Emu.Debugger.Controls {
 		#region handlers: flow toolbar
 		protected virtual void ToolStripSplitButton_runButtonClick(object sender, EventArgs e) {
 			if(!machine.running) {
+				toolStripSplitButton_run.Image
+								= toolStripButton_temp_pause.Image;
 				machine.Run();
 			}
 			else if(machine.paused) {
 				UpdateValues();
+				toolStripSplitButton_run.Image
+								= toolStripButton_temp_pause.Image;
 				machine.Resume();
 			}
 			else {
 				machine.Pause();
+				toolStripSplitButton_run.Image
+								= toolStripButton_temp_run.Image;
 				UpdateGui();
 			}
 		}
@@ -161,5 +167,14 @@ namespace Emu.Debugger.Controls {
 			_module.UpdateValues_workingMemory(null);
 		}
 		#endregion
+		
+		void CloseToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) machine.Pause();
+			if(ParentForm != null) ParentForm.Close();
+		}
+		
+		void StepToolStripMenuItemClick(object sender, EventArgs e) {
+			Step();
+		}
 	}
 }

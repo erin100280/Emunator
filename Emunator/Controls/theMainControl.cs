@@ -108,6 +108,10 @@ namespace Emunator.Controls {
 			machine.Reset();
 		}
 		void TSMnuItm_File_ExitClick(object sender, EventArgs e) {
+			if(machine != null) {
+				machine.Stop();
+				machine.Unload();
+			}
 			Application.Exit();
 		}
 		#endregion

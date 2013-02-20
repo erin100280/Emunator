@@ -233,7 +233,8 @@ namespace Emu.CPU {
 				#endregion
 //				regs[(oc & 0x0F00) >> 8] += (byte)(oc & 0x00FF);
 				i = regs[(oc & 0x0F00) >> 8] + (oc & 0x00FF);
-      		if(i > 255) i -= 255;
+      		if(i > 255) i -= 256;
+      		//if(i > 255) i -= 255;
       		regs[(oc & 0x0F00) >> 8] = (byte)i;
 //*/
       		break;
@@ -341,6 +342,7 @@ namespace Emu.CPU {
          		if(i > 255) {
          			regs[0xF] = 1;
          			i -= 255;
+         			//i -= 255;
          		}
          		else regs[0xF] = 0;
          		regs[(oc & 0x0F00) >> 8] = (byte)i;

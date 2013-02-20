@@ -102,6 +102,7 @@ namespace Emu.Debugger.Controls {
 				_display.Dock = DockStyle.Fill;
 			}
 			machine.cpu._console = new consoleRef(consoleControl_main);
+			machine.cpu.SetDoCycle(CPU.DoCycleMode.Debug);
 		}
 		protected virtual void OnModuleChanged(EventArgs e) {
 			if(_machine != null) {

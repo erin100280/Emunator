@@ -29,24 +29,24 @@ namespace Emu.Device.Input.Keyboard {
 			if(_keyBuffer == null) _keyBuffer = new byte[16];
 			_keyMap = new KeyMap(16);
 
-			_keyMap._keys[0].mapKeyboard = 49;
-			_keyMap._keys[1].mapKeyboard = 50;
-			_keyMap._keys[2].mapKeyboard = 51;
-			_keyMap._keys[3].mapKeyboard = 52;
+			_keyMap._keys[0].mapKeyboard = 88;
+			_keyMap._keys[1].mapKeyboard = 49;
+			_keyMap._keys[2].mapKeyboard = 50;
+			_keyMap._keys[3].mapKeyboard = 51;
 
 			_keyMap._keys[4].mapKeyboard = 81;
 			_keyMap._keys[5].mapKeyboard = 87;
 			_keyMap._keys[6].mapKeyboard = 69;
-			_keyMap._keys[7].mapKeyboard = 82;
+			_keyMap._keys[7].mapKeyboard = 65;
 
-			_keyMap._keys[8].mapKeyboard = 65;
-			_keyMap._keys[9].mapKeyboard = 83;
-			_keyMap._keys[10].mapKeyboard = 68;
-			_keyMap._keys[11].mapKeyboard = 70;
+			_keyMap._keys[8].mapKeyboard = 83;
+			_keyMap._keys[9].mapKeyboard = 68;
+			_keyMap._keys[10].mapKeyboard = 90;
+			_keyMap._keys[11].mapKeyboard = 67;
 
-			_keyMap._keys[12].mapKeyboard = 90;
-			_keyMap._keys[13].mapKeyboard = 88;
-			_keyMap._keys[14].mapKeyboard = 67;
+			_keyMap._keys[12].mapKeyboard = 52;
+			_keyMap._keys[13].mapKeyboard = 82;
+			_keyMap._keys[14].mapKeyboard = 70;
 			_keyMap._keys[15].mapKeyboard = 86;
 		}
 		#endregion

@@ -49,21 +49,18 @@
     <Compile Include="Controls\propertyListItem.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Core.metaData.cs" />
+    <Compile Include="Core.StateBase.cs" />
     <Compile Include="Core.utils.cs" />
     <Compile Include="FileSystem\file %28static%29.cs" />
     <Compile Include="FileSystem\Core.FileSystem.cs" />
     <Compile Include="FileSystem\file.cs" />
     <Compile Include="Core.Msg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="States\Core.cpuState.cs" />
-    <Compile Include="States\Core.machineState.cs" />
-    <Compile Include="States\Core.StateBase.cs" />
     <Compile Include="TEMPlates.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FileSystem" />
     <Folder Include="Controls" />
-    <Folder Include="States" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\PropertyList.resx">

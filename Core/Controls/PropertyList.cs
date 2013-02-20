@@ -93,7 +93,7 @@ namespace Emu.Core.Controls {
 			splitContainer_main.Top = 0 - vScrollBar_main.Value;
 			
 			
-			Int32 i, iht = 0, ii, it, ix, iy, iz;
+			Int32 it, iz;
 			Int32 itp = verticalSpacer;
 			Int32 iwc = splitContainer_main.Panel2.ClientSize.Width
 							- (innerSpacer + outterSpacer);

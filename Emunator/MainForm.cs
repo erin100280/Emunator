@@ -20,10 +20,12 @@ namespace Emunator {
 		}
 		#endregion
 		#region On....
-		protected override void OnLoad(EventArgs e) {
-			base.OnLoad(e);
-		}
-		
+		protected override void OnFormClosing(FormClosingEventArgs e) {
+			if(theMainControl_main.machine != null)
+				theMainControl_main.machine.Stop();
+			Application.Exit();
+			base.OnFormClosing(e);
+		}		
 		#endregion
 		#region menu handlers
 		#endregion

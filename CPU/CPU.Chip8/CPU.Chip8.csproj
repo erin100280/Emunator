@@ -56,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="C_Chip8.cs" />
+    <Compile Include="C_Chip8.DoCycle_Debug.cs" />
+    <Compile Include="C_Chip8.DoCycle_Debug_NoConsole.cs" />
+    <Compile Include="C_Chip8.DoCycle_Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

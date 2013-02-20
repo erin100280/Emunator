@@ -7,7 +7,6 @@
 #region using....
 using Emu;
 using Emu.Core;
-using Emu.Core.States;
 using Emu.Memory;
 using Emu.Video;
 using System;
@@ -59,8 +58,8 @@ namespace Emu.CPU {
 		}
 		protected virtual void InitC_Base(string name="", Mem_Base mem=null
 					, Vid_Base vid=null) {
+
 			DoCycle = new DoCycleDelegate(DoCycle_Main);
-			
 			m_meta=new metaData(name);
 			memory=mem;
 			video=vid;
@@ -73,7 +72,7 @@ namespace Emu.CPU {
 		#endregion
 		#region properties
 		public virtual byte[] keys { get { return m_key; } }
-		public virtual cpuState state {
+		public virtual stateBase state {
 			get { return GetState(); }
 			set { SetState(value); }
 		}
@@ -129,8 +128,8 @@ namespace Emu.CPU {
 		}
 		#endregion
 		#region function GetState, SetState
-		protected virtual cpuState GetState() { return new cpuState(); }
-		protected virtual void SetState(cpuState state) {}
+		protected virtual stateBase GetState() { return new stateBase(); }
+		protected virtual void SetState(stateBase state) {}
 		#endregion
 		#region function: WriteDoCycle
 		public virtual void WriteDoCycle(string op, string desc) {
@@ -176,8 +175,26 @@ namespace Emu.CPU {
 		public virtual void Initialize() {}
 		public delegate void DoCycle_delegate();
 		public virtual void DoCycle_Main() {}
+		public virtual void DoCycle_Debug() {}
+		public virtual void DoCycle_Debug_NoConsole() {}
 		public virtual void Reset() {}
 		public virtual void SoftReset() {}
+		public virtual void SetDoCycle(DoCycleDelegate val) {
+			DoCycle = val;
+		}
+		public virtual void SetDoCycle(DoCycleMode val) {
+			switch(val) {
+				case DoCycleMode.Debug:
+					DoCycle = new DoCycleDelegate(DoCycle_Debug);
+					break;
+				case DoCycleMode.Debug_NoConsole:
+					DoCycle = new DoCycleDelegate(DoCycle_Debug_NoConsole);
+					break;
+				default:
+					DoCycle = new DoCycleDelegate(DoCycle_Main);
+					break;
+			}
+		}
 	}
 
 }

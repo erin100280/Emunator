@@ -7,7 +7,6 @@
 #region using....
 using Emu;
 using Emu.Core;
-using Emu.Core.States;
 using Emu.CPU;
 using Emu.Device.Input.Keyboard;
 using Emu.Display;

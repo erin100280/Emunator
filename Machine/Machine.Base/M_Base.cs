@@ -8,7 +8,6 @@
 using Emu;
 using Emu.Core;
 using Emu.Core.FileSystem;
-using Emu.Core.States;
 using Emu.CPU;
 using Emu.Device.Input.Keyboard;
 using Emu.Display;
@@ -35,6 +34,9 @@ namespace Emu.Machine {
 		protected Mem_Base m_memory=null;
 		protected Vid_Base m_video=null;
 		protected UInt64 _hertz = 0;
+		
+		public UInt16 refreshCount = 0;
+		public UInt16 refreshVal = 6;
 		#endregion
 		#region constructors
 		public M_Base(string name) { InitM_Base(name); }
@@ -67,7 +69,7 @@ namespace Emu.Machine {
 		public virtual bool running { get; protected set; }
 		public virtual bool paused { get; protected set; }
 		public virtual metaData meta { get; protected set; }
-		public virtual machineState state {
+		public virtual stateBase state {
 			get { return GetMachineState(); }
 			set { SetMachineState(value); }
 		}
@@ -262,10 +264,10 @@ namespace Emu.Machine {
 		}
 		#endregion
 		#region function: GetState, SetState
-		protected virtual machineState GetMachineState() {
-			return new machineState();
+		protected virtual stateBase GetMachineState() {
+			return new stateBase();
 		}
-		protected virtual void SetMachineState(machineState state) {}
+		protected virtual void SetMachineState(stateBase state) {}
 		#endregion
 		#region function: LoadRom
 		public virtual void LoadRom(string filename) {
@@ -302,9 +304,12 @@ namespace Emu.Machine {
 		}
 		public virtual void DoInput() {}
 		public virtual void DoGraphics() {
-			if(display != null && video.updated) {
-				display.UpdateScreen();
-				video.updated = false;
+			if(++refreshCount >= refreshVal) {
+				refreshCount = 0;
+				if(display != null && video.updated) {
+					display.UpdateScreen();
+					video.updated = false;
+				}
 			}
 		}
 		#endregion

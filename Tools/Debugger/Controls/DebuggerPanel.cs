@@ -29,6 +29,8 @@ namespace Emu.Debugger.Controls {
 		protected Disp_Base _display = null;
 		protected DebuggerModule_Base _module = null;
 		protected M_Base _machine = null;
+		
+		protected bool InHexBox_memory_program_CurrentLineChanged = false;
 		#endregion
 		#region constructors
 		public DebuggerPanel() { InitDebuggerPanel(null, null); }
@@ -41,6 +43,11 @@ namespace Emu.Debugger.Controls {
 		protected virtual void InitDebuggerPanel(M_Base _Machine
 		                                         , DebuggerModule_Base mod) {
 			InitializeComponent();
+			hexBox_memory_program.CurrentLineChanged
+							+= hexBox_memory_program_CurrentLineChanged;
+			hexBox_memory_program.CurrentPositionInLineChanged
+							+= hexBox_memory_program_CurrentLineChanged;
+
 			hexBox_memory_program.VScrollBarVisible = true;
 			hexBox_memory_program.StringViewVisible = true;
 			hexBox_memory_program.LineInfoVisible = true;
@@ -50,6 +57,7 @@ namespace Emu.Debugger.Controls {
 
 			machine = _Machine;
 			module = mod;
+			
 		}
 		#endregion
 		#region events
@@ -201,6 +209,17 @@ namespace Emu.Debugger.Controls {
 			
 			Int32 i = Convert.ToInt32((string)itm.Tag);
 			StepX(i);
+		}
+	
+		protected virtual void hexBox_memory_program_CurrentLineChanged(
+						object sender, EventArgs e) {
+
+			if(InHexBox_memory_program_CurrentLineChanged) return;
+			InHexBox_memory_program_CurrentLineChanged = true;
+
+			
+
+			InHexBox_memory_program_CurrentLineChanged = false;
 		}
 	}
 }

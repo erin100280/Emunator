@@ -15,6 +15,7 @@ using Emu.Video;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 #endregion
 
 namespace Emu.CPU {
@@ -23,7 +24,9 @@ namespace Emu.CPU {
 			#region vars
 			//ebug.WriteLine("C_Chip8.DoCycle()");
 			//string str;
-			int i, ix, iy, l;
+			Size res;//, siz;
+			byte[] bytes;
+			int i, ii, ix, iy, l, len;
 			byte[] regs = m_vRegisters;
 			//byte bt;
 			UInt64 romSA = m_romStartAddress;
@@ -46,22 +49,28 @@ namespace Emu.CPU {
 			if(m_soundTimer > 0) m_soundTimer--;
 			
 			switch(oc & 0xF000) {
-			#region 0x0...  0x00E0, 0x00EE
+			#region 0x0...  0x00CN, 0x00E0, 0x00EE, 0x00FB - 0x00FF
 			case 0x0000:
    			switch(oc & 0x00F0) {
-   			#region 0x00CN - SCHIP - Scroll down N lines
+				#region 0x00CN  SCHIP: Scroll down N lines
 				case 0x00C0:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x00E0", "Scroll down N[" + (oc & 0x000F) +"] lines");
+					WriteDoCycle("0x00CN", "Scroll down N[" + (oc & 0x000F) +"] lines");
 					#endif
 					#endregion
-					for(i=0, l=(int)m_video.bufferSize; i<l; i++)
-   					m_buffer[i]=0x0;
-   				m_video.updated=true;
+					res = video.resolution;
+					bytes = new byte[(res.Width + 1) * (res.Height + 1)];
+					i = (res.Width * (oc & 0x000F));
+
+					Array.Copy(m_buffer, bytes, m_buffer.Length);
+					Array.Clear(m_buffer, 0, m_buffer.Length);
+					Array.Copy(bytes, 0, m_buffer, i, m_buffer.Length - i);
+
+					m_video.updated=true;
    				break;
    			#endregion
-   			#region 0x00E. - 0x00E0, 0x00EE
+   			#region 0x00E.  0x00E0, 0x00EE
 				case 0x00E0:
 	   			switch(oc & 0x000F) {
 	   			#region 0x00E0 - clear screen
@@ -90,6 +99,86 @@ namespace Emu.CPU {
 	   					m_counter = m_stack[m_stackCount];
 	   				}
 	   				break;
+	   			#endregion
+					#region default
+		   		default:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc);
+						#endif
+						#endregion
+	   				DoRuntimeError("Invalid opcode");
+	   				break;
+	   			#endregion
+	      		}
+	      		break;
+   			#endregion
+   			#region 0x00F.  SCHIP: 0x00FB - 0x00FF
+				case 0x00F0:
+	   			switch(oc & 0x000F) {
+	   			#region 0x00FB  Scroll 4 pixels right
+					case 0x000B:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FB", "Scroll 4 pixels right");
+						#endif
+						#endregion
+	   				
+						res = video.resolution;
+						bytes = new byte[(res.Width + 1) * (res.Height + 1)];
+						len = m_buffer.Length;
+
+						Array.Copy(m_buffer, bytes, len);
+		            Array.Clear(m_buffer, 0, len);
+		
+		            for(iy = 0; iy < res.Height; iy++) {
+							for (ix = 4; ix < res.Width; ix++) {
+								i = (res.Width * iy) + ix;
+								if(i >= len) i = 0;
+								ii = (res.Width * iy) + (ix - 4);
+								if(ii >= len) ii = 0;
+								
+								m_buffer[i] = bytes[ii];
+							}
+		            }
+						break;
+	   			#endregion
+	   			#region 0x00FC  Scroll 4 pixels left
+					case 0x000C:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FC", "Scroll 4 pixels left");
+						#endif
+						#endregion
+	   				
+						res = video.resolution;
+						bytes = new byte[(res.Width + 1) * (res.Height + 1)];
+						
+						len = m_buffer.Length;
+		            Array.Copy(m_buffer, bytes, len);
+		            Array.Clear(m_buffer, 0, len);
+		
+		            for(iy = 0; iy < res.Height; iy++) {
+							for (ix = 4; ix < res.Width; ix++) {
+								i = (res.Width * iy) + ix;
+								if(i >= len) i = 0;
+								ii = (res.Width * iy) + (ix + 4);
+								if(ii >= len) ii = 0;
+								
+								m_buffer[i] = bytes[ii];
+							}
+		            }
+						break;
+	   			#endregion
+	   			#region 0x00FD  Quit the emulator
+					case 0x000D:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FD", "Quit the emulator");
+						#endif
+						#endregion
+
+						break;
 	   			#endregion
 					#region default
 		   		default:
@@ -222,7 +311,7 @@ namespace Emu.CPU {
 //*/
       		break;
 			#endregion
-      	#region 0x8...  0x8XY0 - 0x8XY7, 0x8XYE
+      	#region 0x8... - 0x8XY0 - 0x8XY7, 0x8XYE
       	case 0x8000:
       		switch(oc & 0x000F) {
 				#region 0x8XY0 - copy VY to VX

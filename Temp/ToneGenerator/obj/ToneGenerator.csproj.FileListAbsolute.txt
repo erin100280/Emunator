@@ -1,5 +1,8 @@
 C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\ResolveAssemblyReference.cache
-C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\Interop.SpeechLib.dll
-C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\ToneGenerator.csproj.ResolveComReference.cache
 C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\ToneGenerator.Form1.resources
 C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\ToneGenerator.csproj.GenerateResource.Cache
+C:\Dev\Projects\Emunator\Temp\ToneGenerator\bin\Debug\ToneGenerator.exe
+C:\Dev\Projects\Emunator\Temp\ToneGenerator\bin\Debug\ToneGenerator.pdb
+C:\Dev\Projects\Emunator\Temp\ToneGenerator\bin\Debug\Interop.SpeechLib.dll
+C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\ToneGenerator.exe
+C:\Dev\Projects\Emunator\Temp\ToneGenerator\obj\Debug\ToneGenerator.pdb

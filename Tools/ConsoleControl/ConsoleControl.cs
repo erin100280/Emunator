@@ -217,19 +217,32 @@ namespace ConsoleControl {
 		/// <param name="output">The output.</param>
 		/// <param name="color">The color.</param>
 		#endregion
-		public void WriteOutput(string output, Color color)
-		{
-		if (string.IsNullOrEmpty(lastInput) == false && 
-		(output == lastInput || output.Replace("\r\n", "") == lastInput))
-		return;
-		
-		Invoke((Action)(() =>
-		{
-		//  Write the output.
-		richTextBoxConsole.SelectionColor = color;
-		richTextBoxConsole.SelectedText += output;
-		inputStart = richTextBoxConsole.SelectionStart;
-		}));
+		public void WriteLine(string output, Color color) {
+			if(!string.IsNullOrEmpty(richTextBoxConsole.Text))
+				output = "\n" + output;
+			WriteOutput(output, color);
+		}
+		#region meta
+		/// <summary>
+		/// Writes the output to the console control.
+		/// </summary>
+		/// <param name="output">The output.</param>
+		/// <param name="color">The color.</param>
+		#endregion
+		public void WriteOutput(string output, Color color) {
+			if (string.IsNullOrEmpty(lastInput) == false && 
+			(output == lastInput || output.Replace("\r\n", "") == lastInput))
+			return;
+			
+			Invoke((Action)(() =>
+			{
+			//  Write the output.
+			richTextBoxConsole.ScrollToCaret();
+			richTextBoxConsole.SelectionColor = color;
+			richTextBoxConsole.SelectedText += output;
+			inputStart = richTextBoxConsole.SelectionStart;
+			richTextBoxConsole.ScrollToCaret();
+			}));
 		}
 		
 		public void ClearOutput()

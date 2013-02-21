@@ -23,17 +23,20 @@ namespace Emu.Machine {
 		#region constructors
 		public M_Chip8(): base("Machine.Chip8") { InitM_Chip8(); }
 		protected virtual void InitM_Chip8() {
-			//interval = 16.666666666666666666666666666667;
-			//interval = 6.6;
-			interval = 0.02;
-			
+			Disp_Raster dr;
+
+			interval = 0;
 			m_memory=new Mem_Chip8();
 			m_video=new Vid_Chip8();
 			m_cpu=new C_Chip8(m_memory, m_video);
 			_keyboard = new Keyboard_Chip8(m_cpu.keys);
-			m_display=new Disp_Raster(m_video);
+			m_display = new Disp_Raster(m_video);
+			dr = (Disp_Raster)m_display;
+			//m_video.buffer = dr.pixels;
 			_keyboard.ConnectTo(m_display);
 			
+			//interval = 16.666666666666666666666666666667;
+			//interval = 6.6;
 		}
 		#endregion
 		#region events

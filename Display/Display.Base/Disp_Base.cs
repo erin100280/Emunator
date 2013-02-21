@@ -55,6 +55,8 @@ namespace Emu.Display {
 			get { return m_video; }
 			set {
 				if(m_video != value) {
+					if(m_video != null)
+						m_video.ResolutionChanged -= Video_ResolutionChanged;
 					m_video = value;
 					if(value != null) {
 						m_buffer=value.buffer;
@@ -65,6 +67,8 @@ namespace Emu.Display {
 						m_bufferSize = 0;
 					}
 					
+					Video_ResolutionChanged(video, new EventArgs());
+					m_video.ResolutionChanged += Video_ResolutionChanged;
 					OnVideoChanged(new EventArgs());
 				}
 			}
@@ -74,7 +78,13 @@ namespace Emu.Display {
 		#region events
 		public event EventHandler DisplayArgChanged;
 		public event EventHandler DisplayModeChanged;
+		public event EventHandler ResolutionChanged;
 		public event EventHandler VideoChanged;
+		#endregion
+		#region event handlers
+		protected virtual void Video_ResolutionChanged(object obj, EventArgs e) {
+			OnResolutionChanged(e);
+		}
 		#endregion
 		#region On....
 		protected virtual void OnDisplayArgChanged(EventArgs e) {
@@ -85,6 +95,10 @@ namespace Emu.Display {
 		}
 		protected virtual void OnVideoChanged(EventArgs e) {
 			if(VideoChanged!=null) VideoChanged(this, e);
+		}
+		protected virtual void OnResolutionChanged(EventArgs e) {
+			Refresh();
+			if(ResolutionChanged != null) ResolutionChanged(this, e);
 		}
 		#endregion
 		#region protected function: PaintScreen, RenderScreen

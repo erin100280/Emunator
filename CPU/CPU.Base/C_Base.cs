@@ -66,6 +66,8 @@ namespace Emu.CPU {
 		}
 		#endregion
 		#region events
+		public event EventHandler BeforeVideoChanged;
+		public event EventHandler BufferChanged;
 		public event EventHandler MemoryChanged;
 		public event EventHandler VideoChanged;
 		public event EventHandler<errorEventArgs> RuntimeError;
@@ -97,16 +99,8 @@ namespace Emu.CPU {
 			get { return m_video; }
 			set {
 				if(m_video!=value) {
-					UInt32 bs=0;
-					byte[] bt=null;
+					OnBeforeVideoChanged(new EventArgs());
 					m_video=value;
-				
-					if(m_video!=null) {
-						bt=m_video.buffer;
-					}
-				
-					m_buffer=bt;
-					m_bufferSize=bs;
 					OnVideoChanged(new EventArgs());
 				}
 			}
@@ -116,11 +110,37 @@ namespace Emu.CPU {
 		public virtual UInt64 romStartAddress { get { return m_romStartAddress; } }
 		
 		#endregion
+		#region event handlers
+		public virtual void Video_BufferChanged(object obj, EventArgs e) {
+			OnBufferChanged(e);
+		}
+		#endregion
+
 		#region On....
+		protected virtual void OnBeforeVideoChanged(EventArgs e) {
+			if(m_video != null) m_video.BufferChanged -= Video_BufferChanged;
+			if(BeforeVideoChanged != null) BeforeVideoChanged(this, e);
+		}
+		protected virtual void OnBufferChanged(EventArgs e) {
+			m_buffer = video.buffer;
+			m_bufferSize = video.bufferSize;
+			if(BufferChanged != null) BufferChanged(this, e);
+		}
 		protected virtual void OnMemoryChanged(EventArgs e) {
 			if(MemoryChanged!=null) MemoryChanged(this, e);
 		}
 		protected virtual void OnVideoChanged(EventArgs e) {
+			UInt32 bs=0;
+			byte[] bt=null;
+		
+			if(m_video != null) m_video.BufferChanged += Video_BufferChanged;
+			if(m_video!=null) {
+				bt=m_video.buffer;
+				bs = m_video.bufferSize;
+			}
+		
+			m_buffer=bt;
+			m_bufferSize=bs;
 			if(VideoChanged!=null) VideoChanged(this, e);
 		}
 		protected virtual void OnRuntimeError(errorEventArgs e) {

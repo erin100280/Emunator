@@ -35,6 +35,7 @@ namespace Emu.Machine {
 		protected Vid_Base m_video=null;
 		protected UInt64 _hertz = 0;
 		
+		public long nextTick = 0;
 		public UInt16 refreshCount = 0;
 		public UInt16 refreshVal = 6;
 		#endregion
@@ -60,7 +61,7 @@ namespace Emu.Machine {
 			m_display = disp;
 
 			//ThreadStart ts = new ThreadStart(
-			
+			interval = 2;
 			_threadStart = new ThreadStart(this.Runner);
 			
 		}
@@ -319,11 +320,17 @@ namespace Emu.Machine {
 			return new Thread(_threadStart);
 		}
 		protected virtual void Runner() {
+			//sg.Dbg("interval = " + interval);
 			//if(m_cpu != null) m_cpu.DoCycle();
 			bool go = true;
+			long di = Convert.ToInt64(interval);
+			long dt = nextTick;
+			long cticks;
+			long ltmp;
 			//UInt64 ui = 0;
 			while(go) {
-				if(true) {
+				cticks = DateTime.Now.Ticks;
+				if(DateTime.Now.Ticks >= dt) {
 					if(_stopNow) {
 						_pauseNow = _stopNow = go = false;
 						running = false;
@@ -338,6 +345,11 @@ namespace Emu.Machine {
 						this.DoCycle();
 						this.DoGraphics();
 					}
+				
+					ltmp = DateTime.Now.Ticks - dt;
+					if(ltmp > di) ltmp = di;
+					dt = (DateTime.Now.Ticks + di) - ltmp;
+				
 				}
 			}
 		}

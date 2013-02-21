@@ -12,6 +12,7 @@ namespace Emu.Video {
 		#region vars
 		public bool updated=false;
 		protected Size _resolution = new Size(2, 2);
+		public UInt32 _resolutionSum = 0;
 		protected byte[] m_buffer=null;
 		protected UInt32 m_bufferSize;
 		protected metaData m_meta=null;
@@ -51,8 +52,24 @@ namespace Emu.Video {
 				}
 			}
 		}
-		public virtual byte[] buffer{ get { return m_buffer; } }
-		public virtual UInt32 bufferSize{ get { return m_bufferSize; } }
+		public virtual byte[] buffer {
+			get { return m_buffer; }
+			set {
+				if(m_buffer != value) {
+					m_buffer = value;
+					OnBufferChanged(new EventArgs());
+				}
+			}
+		}
+		public virtual UInt32 bufferSize {
+			get { return m_bufferSize; }
+			set {
+				if(m_bufferSize != value) {
+					m_bufferSize = value;
+					OnBufferSizeChanged(new EventArgs());
+				}
+			}
+		}
 		public virtual UInt32 videoRegisterCount {
 			get { return m_videoRegisterCount; }
 		}
@@ -60,22 +77,34 @@ namespace Emu.Video {
 		#endregion
 		#region events
 		//public event EventHandler VideoUpdated;
+		public event EventHandler BufferChanged;
+		public event EventHandler BufferSizeChanged;
 		public event EventHandler ResolutionChanged;
 		#endregion
 		#region On....
+		protected virtual void OnBufferChanged(EventArgs e) {
+			if(BufferChanged != null) BufferChanged(this, e);
+		}
+		protected virtual void OnBufferSizeChanged(EventArgs e) {
+			if(BufferSizeChanged != null) BufferSizeChanged(this, e);
+		}
 		protected virtual void OnResolutionChanged(EventArgs e) {
+			_resolutionSum = (uint)(_resolution.Width * _resolution.Height);
+			if(m_bufferSize < _resolutionSum) {
+				m_bufferSize = _resolutionSum;
+				m_buffer = new byte[_resolutionSum];
+			}
 			if(ResolutionChanged != null) ResolutionChanged(this, e);
 		}
 		#endregion
 		#region function: ClearBuffer
 		public virtual void ClearBuffer() {
-		
+			for(UInt32 i = 0; i < m_bufferSize; i++)
+				m_buffer[i] = 0x0;
 		}
 		#endregion
 		public virtual void Reset() {
-			if(m_buffer!=null)
-				for(UInt32 i=0; i<m_bufferSize; i++)
-					m_buffer[i]=0;
+			ClearBuffer();
 			if(m_videoRegisters!=null)
 				for(UInt32 i=0; i<m_videoRegisterCount; i++)
 					m_videoRegisters[i]=0;

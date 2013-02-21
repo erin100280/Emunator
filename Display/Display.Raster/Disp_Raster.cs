@@ -48,10 +48,45 @@ namespace Emu.Display {
 		}
 		#endregion
 		#region events
+		public event EventHandler BackBufferChanged;
+		public event EventHandler BeforeBackBufferChanged;
+		public event EventHandler BeforeFrontBufferChanged;
+		public event EventHandler FrontBufferChanged;
 		#endregion
 		#region properties
+		public virtual sdlSurface backBuffer {
+			get { return _backBuffer; }
+			set {
+				if(_backBuffer != value) {
+					EventArgs e = new EventArgs();
+					OnBeforeBackBufferChanged(e);
+					_backBuffer = value;
+					OnBackBufferChanged(e);
+				}
+			}
+		}
+		public virtual sdlSurfaceControl frontBuffer {
+			get { return _frontBuffer; }
+			set {
+				if(_frontBuffer != value) {
+					EventArgs e = new EventArgs();
+					OnBeforeFrontBufferChanged(e);
+					_frontBuffer = value;
+					OnFrontBufferChanged(e);
+				}
+			}
+		}
 		#endregion
 		#region On....
+		protected virtual void OnBeforeBackBufferChanged(EventArgs e) {
+			if(BeforeBackBufferChanged != null) BeforeBackBufferChanged(this, e);
+		}
+		protected virtual void OnBeforeFrontBufferChanged(EventArgs e) {
+			if(BeforeFrontBufferChanged != null) BeforeFrontBufferChanged(this, e);
+		}
+		protected virtual void OnBackBufferChanged(EventArgs e) {
+			if(BackBufferChanged != null) BackBufferChanged(this, e);
+		}
 		protected override void OnDisplayArgChanged(EventArgs e) {
 			Refresh();
 			base.OnDisplayArgChanged(e);
@@ -60,22 +95,27 @@ namespace Emu.Display {
 			Refresh();
 			base.OnDisplayModeChanged(e);
 		}
+		protected virtual void OnFrontBufferChanged(EventArgs e) {
+			if(FrontBufferChanged != null) FrontBufferChanged(this, e);
+		}
 		protected override void OnResize(EventArgs e) {
 			Refresh();
 			base.OnResize(e);
 		}
 
-
+		
 		#endregion
 		#region override protected function: PaintStreen, RenderScreen
 		protected override void PaintScreen() {
-			if(_frontBuffer.Size == _backBuffer.Size)
-				_frontBuffer.Blit(_backBuffer);
-			else {
-				Surface img;
-				img = _backBuffer.CreateStretchedSurface(_frontBuffer.Size);
-				_frontBuffer.Blit(img);
-				img.Dispose();
+			if(_frontBuffer != null) {
+				if(_frontBuffer.Size == _backBuffer.Size)
+					_frontBuffer.Blit(_backBuffer);
+				else {
+					Surface img;
+					img = _backBuffer.CreateStretchedSurface(_frontBuffer.Size);
+					_frontBuffer.Blit(img);
+					img.Dispose();
+				}
 			}
 			//Debug.//riteLine("PaintScreen");
 		}
@@ -131,7 +171,7 @@ namespace Emu.Display {
 		#region override function Refresh
 		public override void Refresh() {
 			base.Refresh();
-			if(video != null) {
+			if(video != null && _frontBuffer != null) {
 				sdlSurface bb = _backBuffer;
 				sdlSurfaceControl fb = _frontBuffer;
 				Size res = video.resolution;

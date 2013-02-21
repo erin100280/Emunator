@@ -40,10 +40,10 @@ namespace Emu.Core {
 			_console.WriteOutput(val, clr);
 		}
 		public virtual void WriteLine(string val) {
-			WriteLine(val, Color.Black);
+			_console.WriteLine(val, Color.Black);
 		}
 		public virtual void WriteLine(string val, Color clr) {
-			_console.WriteOutput(val + '\n', clr);
+			_console.WriteLine(val, clr);
 		}
 	}
 	#endregion

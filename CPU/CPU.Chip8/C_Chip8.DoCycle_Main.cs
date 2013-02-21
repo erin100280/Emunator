@@ -48,42 +48,74 @@ namespace Emu.CPU {
 			switch(oc & 0xF000) {
 			#region 0x0...  0x00E0, 0x00EE
 			case 0x0000:
-   			switch(oc & 0x000F) {
-   			case 0x0000:	//0x00E0 - clear screen
+   			switch(oc & 0x00F0) {
+   			#region 0x00CN - SCHIP - Scroll down N lines
+				case 0x00C0:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x00E0", "clear screen");
+					WriteDoCycle("0x00E0", "Scroll down N[" + (oc & 0x000F) +"] lines");
 					#endif
 					#endregion
 					for(i=0, l=(int)m_video.bufferSize; i<l; i++)
    					m_buffer[i]=0x0;
    				m_video.updated=true;
    				break;
-   				
-   			case 0x000E:	//0x00EE - return from sub
+   			#endregion
+   			#region 0x00E. - 0x00E0, 0x00EE
+				case 0x00E0:
+	   			switch(oc & 0x000F) {
+	   			#region 0x00E0 - clear screen
+					case 0x0000:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00E0", "clear screen");
+						#endif
+						#endregion
+						for(i=0, l=(int)m_video.bufferSize; i<l; i++)
+	   					m_buffer[i]=0x0;
+	   				m_video.updated=true;
+	   				break;
+	   			#endregion
+	   			#region 0x00EE - return from sub
+	   			case 0x000E:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00EE"
+		            ,	"return from sub to: " + m_stack[m_stackCount-1]
+						);
+						#endif
+						#endregion
+	   				if(m_stackCount > 0) {
+	   					m_stackCount--;
+	   					m_counter = m_stack[m_stackCount];
+	   				}
+	   				break;
+	   			#endregion
+					#region default
+		   		default:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc);
+						#endif
+						#endregion
+	   				DoRuntimeError("Invalid opcode");
+	   				break;
+	   			#endregion
+	      		}
+	      		break;
+   			#endregion
+				#region default
+	   		default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x00EE"
-	            ,	"return from sub to: " + m_stack[m_stackCount-1]
-					);
-					#endif
-					#endregion
-   				if(m_stackCount > 0) {
-   					m_stackCount--;
-   					m_counter = m_stack[m_stackCount];
-   				}
-   				break;
-   				
-				default:
-					#region DBG
-					#if (DBG_SHOW_COMMAND)
-						WriteDoCycle("0x0...", "ERROR - opcode = " + oc);
+						WriteDoCycle("0x00..", "ERROR - opcode = " + oc);
 					#endif
 					#endregion
    				DoRuntimeError("Invalid opcode");
    				break;
-      		}
-      		break;
+   			#endregion
+   			}
+   			break;
 			#endregion
 			#region 0x1NNN - jump to NNN
       	case 0x1000:

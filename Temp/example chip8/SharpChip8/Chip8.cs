@@ -21,7 +21,7 @@ namespace SharpChip8
 
         private Cpu _cpu;
         private Screen _screen;
-		private bool _activeSound;
+		  private bool _activeSound;
 		
         public Screen Screen
         {
@@ -33,7 +33,7 @@ namespace SharpChip8
             get { return _cpu; }
         }
 		
-		public bool ActiveSound
+		  public bool ActiveSound
 		{
 			get { return _activeSound; }
 			set { _activeSound = value; }
@@ -45,12 +45,12 @@ namespace SharpChip8
             _screen = new Screen(this);
         }
 		
-		public void Start()
+		  public void Start()
 		{
 			_cpu.Running = true;
 		}
 		
-		public void Stop()
+		  public void Stop()
 		{
 			_cpu.Running = false;	
 		}
@@ -63,7 +63,7 @@ namespace SharpChip8
             _screen.Reset();
         }
 		
-		public void Update()
+        public void Update()
 		{
 			if (_cpu.Running && !_cpu.WaitForInput)
 			{

@@ -11,3 +11,7 @@ C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\obj\x86\Debug\Emu.
 C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\obj\x86\Debug\Emu.Device.Input.Keyboard.Chip8.pdb
 C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Tao.Sdl.xml

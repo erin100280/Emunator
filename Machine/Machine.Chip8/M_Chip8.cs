@@ -14,6 +14,7 @@ using Emu.Memory;
 using Emu.Video;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 #endregion
 
 namespace Emu.Machine {
@@ -25,12 +26,17 @@ namespace Emu.Machine {
 		protected virtual void InitM_Chip8() {
 			Disp_Raster dr;
 
-			interval = 0;
+			interval = 1;
+			InstructsPerMilisec = 2;
+			refreshVal = 8;
+			//refreshVal = 10;
+			
 			m_memory=new Mem_Chip8();
 			m_video=new Vid_Chip8();
 			m_cpu=new C_Chip8(m_memory, m_video);
 			_keyboard = new Keyboard_Chip8(m_cpu.keys);
 			m_display = new Disp_Raster(m_video);
+			m_video.resolution = new Size(64, 32);
 			dr = (Disp_Raster)m_display;
 			//m_video.buffer = dr.pixels;
 			_keyboard.ConnectTo(m_display);
@@ -47,15 +53,19 @@ namespace Emu.Machine {
 		#region On....
 		#endregion
 		#region function: Do....
-		public override void DoCycle() {
+		public override bool DoCycle() {
 			if(m_cpu != null) {
 				Int64 v = ((Int64)cpu.romStartAddress + memory.romSize);
 				if(cpu.m_counter >= (v)) {
-					Msg.Box("assssa");
 					Stop();
-			   }
-				else m_cpu.DoCycle();
+					m_cpu.m_counter = Convert.ToUInt16(cpu.romStartAddress);
+			   	return false;
+				}
+				else {
+					return m_cpu.DoCycle();
+				}
 			}
+			return false;
 		}
 		#endregion
 		#region function: Reset

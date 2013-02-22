@@ -11,3 +11,7 @@ C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Emu.Core.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Emu.Core.pdb
 C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\CPU\CPU.Base\bin\Debug\Tao.Sdl.xml

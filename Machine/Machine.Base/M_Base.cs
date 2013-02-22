@@ -22,6 +22,7 @@ using System.Timers;
 namespace Emu.Machine {
 	public class M_Base {
 		#region vars
+		public UInt32 InstructsPerMilisec = 0;
 		protected Keyboard_Base _keyboard = null;
 		protected Thread _thread = null;
 		protected ThreadStart _threadStart = null;
@@ -37,7 +38,8 @@ namespace Emu.Machine {
 		
 		public long nextTick = 0;
 		public UInt16 refreshCount = 0;
-		public UInt16 refreshVal = 6;
+		public UInt16 refreshVal = 0;
+		public Int32 interval;
 		#endregion
 		#region constructors
 		public M_Base(string name) { InitM_Base(name); }
@@ -61,7 +63,7 @@ namespace Emu.Machine {
 			m_display = disp;
 
 			//ThreadStart ts = new ThreadStart(
-			interval = 2;
+			interval = 0;
 			_threadStart = new ThreadStart(this.Runner);
 			
 		}
@@ -70,7 +72,7 @@ namespace Emu.Machine {
 		public virtual bool running { get; protected set; }
 		public virtual bool paused { get; protected set; }
 		public virtual metaData meta { get; protected set; }
-		public virtual stateBase state {
+		public virtual state state {
 			get { return GetMachineState(); }
 			set { SetMachineState(value); }
 		}
@@ -132,7 +134,6 @@ namespace Emu.Machine {
 				}
 			}
 		}
-		public virtual double interval { get; set; }
 		#endregion
 		#region events
 		public event EventHandler DisplayChanged;
@@ -265,10 +266,10 @@ namespace Emu.Machine {
 		}
 		#endregion
 		#region function: GetState, SetState
-		protected virtual stateBase GetMachineState() {
-			return new stateBase();
+		protected virtual state GetMachineState() {
+			return new state();
 		}
-		protected virtual void SetMachineState(stateBase state) {}
+		protected virtual void SetMachineState(state state) {}
 		#endregion
 		#region function: LoadRom
 		public virtual void LoadRom(string filename) {
@@ -299,9 +300,21 @@ namespace Emu.Machine {
 		public delegate void DoGraphics_delegate();
 		public delegate void Runner_delegate();
 		#endregion
+		#region state stuff
+		protected virtual state GetState() { return UpdateState(new state()); }
+		protected virtual void SetState(state State) {}
+		protected virtual state UpdateState(state State) {
+			if(cpu != null) cpu.UpdateState(State);
+
+			return State;
+		}
+		#endregion
 		#region protected function: Do....
-		public virtual void DoCycle() {
-			if(m_cpu != null) m_cpu.DoCycle.Invoke();
+		public virtual bool DoCycle() {
+			if(m_cpu != null)
+				return m_cpu.DoCycle.Invoke();
+			else
+				return false;
 		}
 		public virtual void DoInput() {}
 		public virtual void DoGraphics() {
@@ -324,13 +337,9 @@ namespace Emu.Machine {
 			//if(m_cpu != null) m_cpu.DoCycle();
 			bool go = true;
 			long di = Convert.ToInt64(interval);
-			long dt = nextTick;
-			long cticks;
-			long ltmp;
-			//UInt64 ui = 0;
+			Int32 iCnt;
 			while(go) {
-				cticks = DateTime.Now.Ticks;
-				if(DateTime.Now.Ticks >= dt) {
+				if(true) {
 					if(_stopNow) {
 						_pauseNow = _stopNow = go = false;
 						running = false;
@@ -341,14 +350,19 @@ namespace Emu.Machine {
 						paused = true;
 					}
 					else {
+						iCnt = 0;
 						this.DoInput();
-						this.DoCycle();
-						this.DoGraphics();
+						while(go && iCnt < InstructsPerMilisec) {
+							if(!this.DoCycle()) {
+								_pauseNow = _stopNow = go = false;
+								running = false;
+								this.cpu.SoftReset();
+							}
+							this.DoGraphics();
+							iCnt++;
+						}
 					}
-				
-					ltmp = DateTime.Now.Ticks - dt;
-					if(ltmp > di) ltmp = di;
-					dt = (DateTime.Now.Ticks + di) - ltmp;
+					Thread.Sleep(interval);
 				
 				}
 			}

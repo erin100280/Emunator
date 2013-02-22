@@ -15,15 +15,18 @@ using Emu.Video;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 #endregion
 
 namespace Emu.CPU {
 	public partial class C_Chip8 : C_Base {
-		public override void DoCycle_Debug() {
+		public override bool DoCycle_Debug() {
 			#region vars
 			//ebug.WriteLine("C_Chip8.DoCycle()");
 			//string str;
-			int i, ix, iy, l;
+			Size res;//, siz;
+			byte[] bytes;
+			int i, ii, ix, iy, l, len;
 			byte[] regs = m_vRegisters;
 			//byte bt;
 			UInt64 romSA = m_romStartAddress;
@@ -46,44 +49,191 @@ namespace Emu.CPU {
 			if(m_soundTimer > 0) m_soundTimer--;
 			
 			switch(oc & 0xF000) {
-			#region 0x0...  0x00E0, 0x00EE
+			#region 0x0...  0x00CN, 0x00E0, 0x00EE, 0x00FB - 0x00FF
 			case 0x0000:
-   			switch(oc & 0x000F) {
-   			case 0x0000:	//0x00E0 - clear screen
+   			switch(oc & 0x00F0) {
+				#region 0x00CN  SCHIP: Scroll down N lines
+				case 0x00C0:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x00E0", "clear screen");
+					WriteDoCycle("0x00CN", "Scroll down N[" + (oc & 0x000F) +"] lines");
 					#endif
 					#endregion
-					for(i=0, l=(int)m_video.bufferSize; i<l; i++)
-   					m_buffer[i]=0x0;
-   				m_video.updated=true;
+					res = video.resolution;
+					bytes = new byte[(res.Width + 1) * (res.Height + 1)];
+					i = (res.Width * (oc & 0x000F));
+					len = (res.Width * res.Height);
+					
+					Array.Copy(m_buffer, bytes, len);
+					Array.Clear(m_buffer, 0, len);
+					Array.Copy(bytes, 0, m_buffer, i, len - i);
+
+					m_video.updated=true;
    				break;
-   				
-   			case 0x000E:	//0x00EE - return from sub
+   			#endregion
+   			#region 0x00E.  0x00E0, 0x00EE
+				case 0x00E0:
+	   			switch(oc & 0x000F) {
+	   			#region 0x00E0  clear screen
+					case 0x0000:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00E0", "clear screen");
+						#endif
+						#endregion
+						for(i=0, l=(int)m_video.bufferSize; i<l; i++)
+	   					m_buffer[i]=0x0;
+	   				m_video.updated=true;
+	   				break;
+	   			#endregion
+	   			#region 0x00EE  return from sub
+	   			case 0x000E:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00EE"
+		            ,	"return from sub to: " + m_stack[m_stackCount-1]
+						);
+						#endif
+						#endregion
+	   				if(m_stackCount > 0) {
+	   					m_stackCount--;
+	   					m_counter = m_stack[m_stackCount];
+	   				}
+	   				break;
+	   			#endregion
+					#region default
+		   		default:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc);
+						#endif
+						#endregion
+	   				DoRuntimeError("Invalid opcode");
+	   				break;
+	   			#endregion
+	      		}
+	      		break;
+   			#endregion
+   			#region 0x00F.  SCHIP: 0x00FB - 0x00FF
+				case 0x00F0:
+	   			switch(oc & 0x000F) {
+	   			#region 0x00FB  Scroll 4 pixels right
+					case 0x000B:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FB", "Scroll 4 pixels right");
+						#endif
+						#endregion
+	   				
+						res = video.resolution;
+						bytes = new byte[(res.Width + 1) * (res.Height + 1)];
+						len = res.Width * res.Height;
+
+						//sg.Box("bytes.Length = " + bytes.Length + "  |  m_buffer.Length = " + m_buffer.Length);
+						
+						Array.Copy(m_buffer, bytes, len);
+		            Array.Clear(m_buffer, 0, len);
+		
+		            for(iy = 0; iy < res.Height; iy++) {
+							for (ix = 4; ix < res.Width; ix++) {
+								i = (res.Width * iy) + ix;
+								if(i >= len) i = 0;
+								ii = (res.Width * iy) + (ix - 4);
+								if(ii >= len) ii = 0;
+								
+								m_buffer[i] = bytes[ii];
+							}
+		            }
+						break;
+	   			#endregion
+	   			#region 0x00FC  Scroll 4 pixels left
+					case 0x000C:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FC", "Scroll 4 pixels left");
+						#endif
+						#endregion
+	   				
+						res = video.resolution;
+						bytes = new byte[(res.Width + 1) * (res.Height + 1)];
+						
+						len = (res.Width * res.Height);
+		            Array.Copy(m_buffer, bytes, len);
+		            Array.Clear(m_buffer, 0, len);
+		
+		            for(iy = 0; iy < res.Height; iy++) {
+							for (ix = 4; ix < res.Width; ix++) {
+								i = (res.Width * iy) + ix;
+								if(i >= len) i = 0;
+								ii = (res.Width * iy) + (ix + 4);
+								if(ii >= len) ii = 0;
+								
+								m_buffer[i] = bytes[ii];
+							}
+		            }
+						break;
+	   			#endregion
+	   			#region 0x00FD  Quit the emulator
+					case 0x000D:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FD", "Quit the emulator");
+						#endif
+						#endregion
+						return false;
+	   			#endregion
+	   			#region 0x00FE  CHIP-8 graphics mode
+					case 0x000E:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FE", "CHIP-8 graphics mode");
+						#endif
+						#endregion
+						//sg.Box("0x00FE");
+						video.resolution = new Size(64, 32);
+						m_buffer = video.buffer;
+						m_bufferSize = video.bufferSize;
+						video.ClearBuffer();
+						break;
+	   			#endregion
+	   			#region 0x00FF  SCHIP graphics mode
+					case 0x000F:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FF", "SCHIP graphics mode");
+						#endif
+						#endregion
+						video.resolution = new Size(128, 64);
+						m_buffer = video.buffer;
+						m_bufferSize = video.bufferSize;
+						video.ClearBuffer();
+						break;
+	   			#endregion
+					#region default
+		   		default:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc);
+						#endif
+						#endregion
+	   				DoRuntimeError("Invalid opcode");
+	   				break;
+	   			#endregion
+	      		}
+	      		break;
+   			#endregion
+				#region default
+	   		default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x00EE"
-	            ,	"return from sub to: " + m_stack[m_stackCount-1]
-					);
-					#endif
-					#endregion
-   				if(m_stackCount > 0) {
-   					m_stackCount--;
-   					m_counter = m_stack[m_stackCount];
-   				}
-   				break;
-   				
-				default:
-					#region DBG
-					#if (DBG_SHOW_COMMAND)
-						WriteDoCycle("0x0...", "ERROR - opcode = " + oc);
+						WriteDoCycle("0x00..", "ERROR - opcode = " + oc);
 					#endif
 					#endregion
    				DoRuntimeError("Invalid opcode");
    				break;
-      		}
-      		break;
+   			#endregion
+   			}
+   			break;
 			#endregion
 			#region 0x1NNN - jump to NNN
       	case 0x1000:
@@ -190,7 +340,7 @@ namespace Emu.CPU {
 //*/
       		break;
 			#endregion
-      	#region 0x8...  0x8XY0 - 0x8XY7, 0x8XYE
+      	#region 0x8... - 0x8XY0 - 0x8XY7, 0x8XYE
       	case 0x8000:
       		switch(oc & 0x000F) {
 				#region 0x8XY0 - copy VY to VX
@@ -403,8 +553,10 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		regs[0xF]=(byte)(regs[(oc & 0x0F00) >> 8] >> 7);
-         		regs[(oc & 0x0F00) >> 8] <<=1;
+					unchecked {
+						regs[0xF]=(byte)(regs[(oc & 0x0F00) >> 8] >> 7);
+	         		regs[(oc & 0x0F00) >> 8] <<=1;
+					}
          		break;
 				#endregion
 				#region default - ERROR
@@ -477,7 +629,7 @@ namespace Emu.CPU {
 				#if (DBG_SHOW_COMMAND)
 					WriteDoCycle("0xCXYN"
 					,	"set VX" + regInfoString((oc & 0x0F00) >> 8)
-					+	" to rnd +"
+					+	" to RND +"
 					+	" NN[" + (oc & 0x00FF) + "]"
 					+	" - val=" + i
 					);
@@ -596,7 +748,7 @@ namespace Emu.CPU {
 								WriteDoCycle("0xFX0A", "key val=" + i);
 							#endif
 							#endregion
-							return;
+							return true;
 						}
 					}
 					m_counter = m_lastCounter;
@@ -732,6 +884,36 @@ namespace Emu.CPU {
 					m_indexRegister += (UInt16)(((oc & 0x0F00) >> 8) + 1);
 					break;
 				#endregion
+				#region 0xFX75  SCHIP: store V0 through VX in HP48 flags
+				case 0x0075:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0xFX75"
+						,	"store V0" + regInfoString(0)
+						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
+						+	" in HP48 flags"
+						);
+					#endif
+					#endregion
+					for(i = 0, l = ((oc & 0x0F00) >> 8); i <= l; i++)
+						HP48_flags[i] = regs[i];
+					break;
+				#endregion
+				#region 0xFX85  SCHIP: fill V0 through VX with HP48 flags
+				case 0x0085:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0xFX85"
+						,	"fill V0" + regInfoString(0)
+						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
+						+	" with HP48 flags"
+						);
+					#endif
+					#endregion
+					for(i = 0, l = ((oc & 0x0F00) >> 8); i <= l; i++)
+						regs[i] = HP48_flags[i];
+					break;
+				#endregion
 				#region default - ERROR
          	default:
 					#region DBG
@@ -763,8 +945,7 @@ namespace Emu.CPU {
 			#endregion
    		}
 			//ebug.WriteLine("DoCycle - end");
-			
-			
+			return true;
 		}
 	}
 }

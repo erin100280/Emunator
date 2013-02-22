@@ -20,7 +20,7 @@ using System.Drawing;
 
 namespace Emu.CPU {
 	public partial class C_Chip8 : C_Base {
-		public override void DoCycle_Main() {
+		public override bool DoCycle_Main() {
 			#region vars
 			//ebug.WriteLine("C_Chip8.DoCycle()");
 			//string str;
@@ -62,10 +62,11 @@ namespace Emu.CPU {
 					res = video.resolution;
 					bytes = new byte[(res.Width + 1) * (res.Height + 1)];
 					i = (res.Width * (oc & 0x000F));
-
-					Array.Copy(m_buffer, bytes, m_buffer.Length);
-					Array.Clear(m_buffer, 0, m_buffer.Length);
-					Array.Copy(bytes, 0, m_buffer, i, m_buffer.Length - i);
+					len = (res.Width * res.Height);
+					
+					Array.Copy(m_buffer, bytes, len);
+					Array.Clear(m_buffer, 0, len);
+					Array.Copy(bytes, 0, m_buffer, i, len - i);
 
 					m_video.updated=true;
    				break;
@@ -73,7 +74,7 @@ namespace Emu.CPU {
    			#region 0x00E.  0x00E0, 0x00EE
 				case 0x00E0:
 	   			switch(oc & 0x000F) {
-	   			#region 0x00E0 - clear screen
+	   			#region 0x00E0  clear screen
 					case 0x0000:
 						#region DBG
 						#if (DBG_SHOW_COMMAND)
@@ -85,7 +86,7 @@ namespace Emu.CPU {
 	   				m_video.updated=true;
 	   				break;
 	   			#endregion
-	   			#region 0x00EE - return from sub
+	   			#region 0x00EE  return from sub
 	   			case 0x000E:
 						#region DBG
 						#if (DBG_SHOW_COMMAND)
@@ -126,8 +127,10 @@ namespace Emu.CPU {
 	   				
 						res = video.resolution;
 						bytes = new byte[(res.Width + 1) * (res.Height + 1)];
-						len = m_buffer.Length;
+						len = res.Width * res.Height;
 
+						//sg.Box("bytes.Length = " + bytes.Length + "  |  m_buffer.Length = " + m_buffer.Length);
+						
 						Array.Copy(m_buffer, bytes, len);
 		            Array.Clear(m_buffer, 0, len);
 		
@@ -154,7 +157,7 @@ namespace Emu.CPU {
 						res = video.resolution;
 						bytes = new byte[(res.Width + 1) * (res.Height + 1)];
 						
-						len = m_buffer.Length;
+						len = (res.Width * res.Height);
 		            Array.Copy(m_buffer, bytes, len);
 		            Array.Clear(m_buffer, 0, len);
 		
@@ -177,7 +180,33 @@ namespace Emu.CPU {
 						WriteDoCycle("0x00FD", "Quit the emulator");
 						#endif
 						#endregion
-
+						return false;
+	   			#endregion
+	   			#region 0x00FE  CHIP-8 graphics mode
+					case 0x000E:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FE", "CHIP-8 graphics mode");
+						#endif
+						#endregion
+						//sg.Box("0x00FE");
+						video.resolution = new Size(64, 32);
+						m_buffer = video.buffer;
+						m_bufferSize = video.bufferSize;
+						video.ClearBuffer();
+						break;
+	   			#endregion
+	   			#region 0x00FF  SCHIP graphics mode
+					case 0x000F:
+						#region DBG
+						#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0x00FF", "SCHIP graphics mode");
+						#endif
+						#endregion
+						video.resolution = new Size(128, 64);
+						m_buffer = video.buffer;
+						m_bufferSize = video.bufferSize;
+						video.ClearBuffer();
 						break;
 	   			#endregion
 					#region default
@@ -524,8 +553,10 @@ namespace Emu.CPU {
 						);
 					#endif
 					#endregion
-         		regs[0xF]=(byte)(regs[(oc & 0x0F00) >> 8] >> 7);
-         		regs[(oc & 0x0F00) >> 8] <<=1;
+					unchecked {
+						regs[0xF]=(byte)(regs[(oc & 0x0F00) >> 8] >> 7);
+	         		regs[(oc & 0x0F00) >> 8] <<=1;
+					}
          		break;
 				#endregion
 				#region default - ERROR
@@ -598,7 +629,7 @@ namespace Emu.CPU {
 				#if (DBG_SHOW_COMMAND)
 					WriteDoCycle("0xCXYN"
 					,	"set VX" + regInfoString((oc & 0x0F00) >> 8)
-					+	" to rnd +"
+					+	" to RND +"
 					+	" NN[" + (oc & 0x00FF) + "]"
 					+	" - val=" + i
 					);
@@ -717,7 +748,7 @@ namespace Emu.CPU {
 								WriteDoCycle("0xFX0A", "key val=" + i);
 							#endif
 							#endregion
-							return;
+							return true;
 						}
 					}
 					m_counter = m_lastCounter;
@@ -853,6 +884,36 @@ namespace Emu.CPU {
 					m_indexRegister += (UInt16)(((oc & 0x0F00) >> 8) + 1);
 					break;
 				#endregion
+				#region 0xFX75  SCHIP: store V0 through VX in HP48 flags
+				case 0x0075:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0xFX75"
+						,	"store V0" + regInfoString(0)
+						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
+						+	" in HP48 flags"
+						);
+					#endif
+					#endregion
+					for(i = 0, l = ((oc & 0x0F00) >> 8); i <= l; i++)
+						HP48_flags[i] = regs[i];
+					break;
+				#endregion
+				#region 0xFX85  SCHIP: fill V0 through VX with HP48 flags
+				case 0x0085:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0xFX85"
+						,	"fill V0" + regInfoString(0)
+						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
+						+	" with HP48 flags"
+						);
+					#endif
+					#endregion
+					for(i = 0, l = ((oc & 0x0F00) >> 8); i <= l; i++)
+						regs[i] = HP48_flags[i];
+					break;
+				#endregion
 				#region default - ERROR
          	default:
 					#region DBG
@@ -884,8 +945,7 @@ namespace Emu.CPU {
 			#endregion
    		}
 			//ebug.WriteLine("DoCycle - end");
-			
-			
+			return true;
 		}
 	}
 }

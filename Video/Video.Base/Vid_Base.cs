@@ -31,14 +31,13 @@ namespace Emu.Video {
 			m_meta=new metaData(name);
 			
 			m_bufferSize=bufferSize;
-			if(bufferSize>0)
-				m_buffer=new byte[bufferSize];
+			m_buffer=new byte[bufferSize];
 
 			m_videoRegisterCount=registerCount;
 			if(registerCount>0)
 				m_videoRegisters=new byte[registerCount];
 			
-			_resolution = res;
+			resolution = res;
 			
 		}
 		#endregion
@@ -48,6 +47,7 @@ namespace Emu.Video {
 			set {
 				if(_resolution != value) {
 					_resolution = value;
+					//sg.Box("_resolution = " + _resolution.Width + "x" + _resolution.Height);
 					OnResolutionChanged(new EventArgs());
 				}
 			}

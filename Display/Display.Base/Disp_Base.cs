@@ -118,9 +118,16 @@ namespace Emu.Display {
 		#endregion
 		#region override function: Refresh
 		public override void Refresh() {
-			base.Refresh();
+			void_delegate vd;
+			if(base.InvokeRequired) {
+				vd = new void_delegate(base.Refresh);
+				this.Invoke(vd);
+			}
+			else base.Refresh();
 			RefreshScreen();
+			//void_delegate vd;
 		}
+		public virtual void Tester(object obj) {}
 		#endregion
 	}
 }

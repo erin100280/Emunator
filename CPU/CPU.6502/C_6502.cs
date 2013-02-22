@@ -36,9 +36,7 @@ namespace Emu.CPU {
 		#region On....
 		#endregion
 		#region function: DoCycle....
-		public override void DoCycle_Main() {
-
-		}
+		public override bool DoCycle_Main() { return false; }
 		#endregion
 	}
 }

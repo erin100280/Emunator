@@ -11,27 +11,56 @@ using System.Collections.ObjectModel;
 #endregion
 
 namespace Emu.Core {
-	#region class: ByteArrayDict
-	public class ByteArrayDict : Dictionary<string, byte[]> {}
+	#region dictionaries: ByteArrayDict
+	public class byteArrayDict : Dictionary<string, byte[]> {}
+	public class boolDict : Dictionary<string, bool> {}
+	public class byteDict : Dictionary<string, byte> {}
+	public class intDict : Dictionary<string, int> {}
+	public class longDict : Dictionary<string, long> {}
+	public class shortDict : Dictionary<string, short> {}
+	public class stringDict : Dictionary<string, string> {}
+	public class uintDict : Dictionary<string, uint> {}
+	public class ulongDict : Dictionary<string, ulong> {}
+	public class ushortDict : Dictionary<string, ushort> {}
 	#endregion
-	#region class: stateBase
-	public class stateBase {
+	#region class: state
+	public class state {
 		#region vars
-		public ByteArrayDict _dict;
+		public string name = "";
+		public byteArrayDict byteArrays;
+		public boolDict bools;
+		public byteDict bytes;
+		public intDict ints;
+		public longDict longs;
+		public shortDict shorts;
+		public stringDict strings;
+		public uintDict uints;
+		public ulongDict ulongs;
+		public ushortDict ushorts;
 		#endregion
 		#region constructors
-		public stateBase() {
-			_dict = new ByteArrayDict();
+		public state() { InitState(); }
+		protected virtual void InitState() {
+			byteArrays = new byteArrayDict();
+			bools = new boolDict();
+			bytes = new byteDict();
+			ints = new intDict();
+			longs = new longDict();
+			shorts = new shortDict();
+			strings = new stringDict();
+			uints = new uintDict();
+			ulongs = new ulongDict();
+			ushorts = new ushortDict();
 		}
 		#endregion
 		#region function: GetByteArray
 		public virtual byte[] GetByteArray(string name) {
-			if(_dict.ContainsKey(name))
-				return _dict[name];
+			if(byteArrays.ContainsKey(name))
+				return byteArrays[name];
 			else return null;
 		}
 		public virtual void GetByteArray(string name, byte[] val) {
-			_dict.Add(name, val);
+			byteArrays.Add(name, val);
 		}
 		#endregion
 		#region function: Load....
@@ -44,4 +73,10 @@ namespace Emu.Core {
 		#endregion
 	}
 	#endregion
+	#region class: state
+	public static class stateSystem {
+		
+	}
+	#endregion
+
 }

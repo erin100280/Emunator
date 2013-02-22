@@ -26,3 +26,7 @@ C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Con
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Be.Windows.Forms.HexBox.dll
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Be.Windows.Forms.HexBox.pdb
 C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Be.Windows.Forms.HexBox.xml
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Tools\DebuggerModules\DebuggerModule.Base\bin\Debug\Tao.Sdl.xml

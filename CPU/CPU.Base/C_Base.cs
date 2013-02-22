@@ -17,7 +17,7 @@ using System.Diagnostics;
 namespace Emu.CPU {
 	public class C_Base {
 		#region delegates
-		public delegate void DoCycleDelegate();
+		public delegate bool DoCycleDelegate();
 		#endregion
 		#region vars
 		//protected byte[] m_buffer=null;
@@ -74,7 +74,7 @@ namespace Emu.CPU {
 		#endregion
 		#region properties
 		public virtual byte[] keys { get { return m_key; } }
-		public virtual stateBase state {
+		public virtual state state {
 			get { return GetState(); }
 			set { SetState(value); }
 		}
@@ -148,8 +148,9 @@ namespace Emu.CPU {
 		}
 		#endregion
 		#region function GetState, SetState
-		protected virtual stateBase GetState() { return new stateBase(); }
-		protected virtual void SetState(stateBase state) {}
+		public virtual state GetState() { return UpdateState(new state()); }
+		public virtual void SetState(state State) {}
+		public virtual state UpdateState(state State) { return State; }
 		#endregion
 		#region function: WriteDoCycle
 		public virtual void WriteDoCycle(string op, string desc) {
@@ -193,10 +194,10 @@ namespace Emu.CPU {
 			OnRuntimeError(new errorEventArgs(err));
 		}
 		public virtual void Initialize() {}
-		public delegate void DoCycle_delegate();
-		public virtual void DoCycle_Main() {}
-		public virtual void DoCycle_Debug() {}
-		public virtual void DoCycle_Debug_NoConsole() {}
+		//public delegate bool DoCycle_delegate();
+		public virtual bool DoCycle_Main() { return false; }
+		public virtual bool DoCycle_Debug() { return false; }
+		public virtual bool DoCycle_Debug_NoConsole() { return false; }
 		public virtual void Reset() {}
 		public virtual void SoftReset() {}
 		public virtual void SetDoCycle(DoCycleDelegate val) {

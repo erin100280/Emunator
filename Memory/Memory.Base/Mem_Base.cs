@@ -2,6 +2,7 @@
  * Date: 2/2/2013
  * Time: 5:43 PM
  */
+using Emu.Core;
 using Emu.Core.FileSystem;
 using System;
 using System.IO;
@@ -15,7 +16,7 @@ namespace Emu.Memory {
 		protected Int64 _romSize;
 		protected int _startRomAddress;
 		protected int _stopRomAddress;
-		protected int _ramSize;
+		protected Int64 _ramSize;
 		protected int _startRamAddress;
 
 		#endregion
@@ -30,9 +31,35 @@ namespace Emu.Memory {
 		#endregion
 		#region properties
 		public virtual UInt64 size { get { return _size; } }
-		public virtual byte[] bank { get { return _bank; } }
+		public virtual byte[] bank {
+			get { return _bank; }
+			set {
+				EventArgs e = new EventArgs();
+				OnBeforeBankChanged(e);
+				_bank = value;
+				OnBankChanged(e);
+			}
+		}
 		public virtual Int64 romSize { get { return _romSize; } }
 		#endregion
+		#region events
+		public event EventHandler BankChanged;
+		public event EventHandler BeforeBankChanged;
+		#endregion
+		#region On....
+		protected virtual void OnBankChanged(EventArgs e) {
+			if(BankChanged != null) BankChanged(this, e);
+		}
+		protected virtual void OnBeforeBankChanged(EventArgs e) {
+			if(BeforeBankChanged != null) BeforeBankChanged(this, e);
+		}
+		#endregion
+		#region state stuff
+		public virtual state GetState() { return UpdateState(new state()); }
+		public virtual void SetState(state State) {}
+		public virtual state UpdateState(state State) { return State; }
+		#endregion
+		#region function: SetMemory....
 		public virtual void SetMemory(byte[] val, UInt64 startPos) {
 			for(uint i = 0, l = (uint)val.Length; i < l; i++)
 				_bank[startPos + i] = val[i];
@@ -56,6 +83,7 @@ namespace Emu.Memory {
 					_bank[startPos + i] = val.ReadByte();
 			}
 		}
+		#endregion
 		public virtual void Reset(bool clearBank = true) {
 			if(clearBank) ClearBank();
 		

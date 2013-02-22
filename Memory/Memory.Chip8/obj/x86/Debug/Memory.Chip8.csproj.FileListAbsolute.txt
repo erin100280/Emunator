@@ -9,3 +9,7 @@ C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\Emu.Core.dll
 C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\Emu.Core.pdb
 C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Debug\Tao.Sdl.xml

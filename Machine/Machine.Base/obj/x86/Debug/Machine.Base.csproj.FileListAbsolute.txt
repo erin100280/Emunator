@@ -19,3 +19,7 @@ C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\Device.Base.pdb
 C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\Emu.Device.Input.Keyboard.Base.pdb
 C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Machine\Machine.Base\bin\Debug\Tao.Sdl.xml

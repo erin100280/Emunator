@@ -13,3 +13,7 @@ C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Emu.Video.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Emu.Video.pdb
 C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\CPU\CPU.Chip8\bin\Debug\Tao.Sdl.xml

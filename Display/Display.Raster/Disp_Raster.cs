@@ -108,14 +108,22 @@ namespace Emu.Display {
 		#region override protected function: PaintStreen, RenderScreen
 		protected override void PaintScreen() {
 			if(_frontBuffer != null) {
-				if(_frontBuffer.Size == _backBuffer.Size)
-					_frontBuffer.Blit(_backBuffer);
-				else {
-					Surface img;
-					img = _backBuffer.CreateStretchedSurface(_frontBuffer.Size);
-					_frontBuffer.Blit(img);
-					img.Dispose();
+				Surface img;
+				img = _backBuffer.CreateStretchedSurface(_frontBuffer.Size);
+				
+				if(_frontBuffer.InvokeRequired) {
+					Size siz = (Size)this.Invoke(_frontBuffer.GetSize);
+					if(siz == _backBuffer.Size)
+						this.Invoke(_frontBuffer.Blit_delegate, _backBuffer);
+					else
+						this.Invoke(_frontBuffer.Blit_delegate, img);
 				}
+				else {
+					if(_frontBuffer.Size == _backBuffer.Size)
+						_frontBuffer.Blit(_backBuffer);
+					else _frontBuffer.Blit(img);
+				}
+				img.Dispose();
 			}
 			//Debug.//riteLine("PaintScreen");
 		}
@@ -144,28 +152,6 @@ namespace Emu.Display {
 				#endregion
 			}
 			//Debug.//riteLine("RenderScreen");
-		}
-		public virtual void RenderScreen_OLD() {
-			unsafe {
-				Int32 black = Color.Black.ToArgb();
-				Int32 white = Color.White.ToArgb();
-				uint ptr = 0;
-				//short *pxls = (short *)_backBuffer.Pixels;
-				
-				Int32 *pxls = (Int32 *)_backBuffer.Pixels;
-				_backBuffer.Draw(_backgroundBox, Color.White, false, true);
-				for(int iy = 0, ly = _defaultSize.Height; iy < ly; iy++) {
-					for(int ix = 0, lx = _defaultSize.Width; ix < lx; ix++) {
-						
-						if(m_buffer[ptr] == 0)
-							pxls[ptr] = black;
-						else
-							pxls[ptr] = white;
-						ptr++;
-					}
-				}
-				MessageBox.Show("RenderScreen");
-			}
 		}
 		#endregion
 		#region override function Refresh
@@ -202,12 +188,29 @@ namespace Emu.Display {
 					#endregion
 				}
 
-				fb.Size = fb.MaximumSize = fb.MinimumSize = sz;
-				
-				fb.Location = new Point(
-					((ClientSize.Width / 2) - (fb.Width / 2))
-				,	((ClientSize.Height / 2) - (fb.Height / 2))
-				);
+				if(fb.InvokeRequired) {
+					Size sz2 = (Size)this.Invoke(fb.GetSize);
+					
+					object objs = new object[]{ sz };
+					this.Invoke(fb.SetMaximumSize, sz);
+					this.Invoke(fb.SetMinimumSize, sz);
+					this.Invoke(fb.SetSize, sz);
+					
+					this.Invoke(fb.SetLocation
+					,	new Point(
+							((ClientSize.Width / 2) - (sz2.Width / 2))
+						,	((ClientSize.Height / 2) - (sz2.Height / 2))
+						)
+	            );
+					//sg.Box("pow!");
+				}
+				else {
+					fb.Size = fb.MaximumSize = fb.MinimumSize = sz;
+					fb.Location = new Point(
+						((ClientSize.Width / 2) - (fb.Width / 2))
+					,	((ClientSize.Height / 2) - (fb.Height / 2))
+					);
+				}
 			}
 		}
 		#endregion

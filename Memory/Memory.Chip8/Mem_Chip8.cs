@@ -2,6 +2,7 @@
  * Date: 2/2/2013
  * Time: 5:51 PM
  */
+using Emu.Core;
 using System;
 using System.Collections.Generic;
 
@@ -43,6 +44,37 @@ namespace Emu.Memory {
 		}
 		#endregion
 		#region properties
+		#endregion
+		#region state stuff
+		public override void SetState(state State) {
+			int i;
+			try {
+				i = State.ints["MEM-SIZ"];
+				if(_bank.Length != i)
+					bank = new Byte[i];
+				
+				SetMemory(State.byteArrays["MEM-WORKING"], 0);
+				
+				_ramSize = State.longs["MEM-RAM-SIZ"];
+				_romSize = State.longs["MEM-ROM-SIZ"];
+				_startRamAddress = State.ints["MEM-RAM-START"];
+				_startRomAddress = State.ints["MEM-ROM-START"];
+				
+			}
+			catch(Exception ex) { Msg.Box("Error: State was all messed up and stuff.\n\n\n\n" + ex.Message); }
+			
+		
+		
+		}
+		public override state UpdateState(state State) {
+			State.byteArrays.Add("MEM-WORKING", _bank);
+			State.ints.Add("MEM-RAM-START", _startRamAddress);
+			State.ints.Add("MEM-ROM-START", _startRomAddress);
+			State.longs.Add("MEM-RAM-SIZ", _ramSize);
+			State.longs.Add("MEM-ROM-SIZ", _romSize);
+			State.ints.Add("MEM-SIZ", _bank.Length);
+			return State;
+		}
 		#endregion
 		public override void Reset(bool clearBank = true) {
 			base.Reset(false);

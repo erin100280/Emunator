@@ -12,8 +12,8 @@ namespace Emu.Video {
 		public Vid_Chip8(): base("Chip8 Video", new Size(64, 32), 16) {}
 		#endregion
 		public override void Reset() {
-			for(UInt32 i=0; i<16; i++)
-				base.Reset();
+			//for(UInt32 i=0; i<16; i++)
+			base.Reset();
 		}
 	}
 }

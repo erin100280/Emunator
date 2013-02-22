@@ -18,3 +18,7 @@ C:\Dev\Projects\Emunator\Device\Input\Input.Base\obj\x86\Debug\Emu.Device.Input.
 C:\Dev\Projects\Emunator\Device\Input\Input.Base\obj\x86\Debug\Emu.Device.Input.Base.pdb
 C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\ConsoleControl.dll
 C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Device\Input\Input.Base\bin\Debug\Tao.Sdl.xml

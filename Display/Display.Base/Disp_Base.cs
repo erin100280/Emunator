@@ -16,7 +16,7 @@ namespace Emu.Display {
 		protected displayMode _displayMode = displayMode.original;
 		protected Size _curResolution;
 		protected byte[] m_buffer = null;
-		protected uint m_bufferSize = 0;
+		protected int m_bufferSize = 0;
 		protected Vid_Base m_video = null;
 		protected metaData m_meta = null;
 		#endregion

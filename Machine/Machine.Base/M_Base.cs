@@ -22,6 +22,7 @@ using System.Timers;
 namespace Emu.Machine {
 	public class M_Base {
 		#region vars
+		public string stateName = "base";
 		public UInt32 InstructsPerMilisec = 0;
 		protected Keyboard_Base _keyboard = null;
 		protected Thread _thread = null;
@@ -208,17 +209,14 @@ namespace Emu.Machine {
 		#endregion
 		#region function: Pause, Reset, Resume, Run, StepInto, StepOver, Stop
 		public virtual void Pause() {
-			if(running && !paused)
+			if(running && !paused) {
 				_pauseNow = true;
-		}
-		public virtual void Reset() {
-			running = paused=false;
-			if(m_cpu!=null) m_cpu.Reset();
-			if(m_memory!=null) m_memory.Reset();
-			if(m_cpu!=null) m_video.Reset();
+				while(!paused) {}
+			}
+				
 		}
 		public virtual void Resume() {
-			if(running && paused) return;
+			if(running && !paused) return;
 			_thread = CreateThread();
 			paused = false;
 			_thread.Start();
@@ -233,11 +231,8 @@ namespace Emu.Machine {
 			OnEmulationStarted(new EventArgs());
 		}
 		public virtual void StepInto() {
-			if(running && !paused) {
-				_pauseNow = true;
-				return;
-			}
-			else if(!running) {
+			if(running && !paused) Pause();
+			if(!running) {
 				running = true;
 				paused = true;
 				OnEmulationStarted(new EventArgs());
@@ -260,8 +255,15 @@ namespace Emu.Machine {
 		}
 		public virtual void Stop() {
 			if(running) {
-				_stopNow = true;
-				if(paused) Resume();
+				if(paused) {
+					paused = running = false;
+					SoftReset();
+				}
+				else {
+					_stopNow = true;
+					while(running) {}
+					SoftReset();
+				}
 			}
 		}
 		#endregion
@@ -301,11 +303,23 @@ namespace Emu.Machine {
 		public delegate void Runner_delegate();
 		#endregion
 		#region state stuff
-		protected virtual state GetState() { return UpdateState(new state()); }
-		protected virtual void SetState(state State) {}
-		protected virtual state UpdateState(state State) {
+		public virtual state GetState() { return UpdateState(new state()); }
+		public virtual void SetState(state State) {
+			if(cpu != null) cpu.SetState(State);
+			if(memory != null) memory.SetState(State);
+			if(video != null) video.SetState(State);
+		}
+		public virtual state UpdateState(state State) {
+			bool pause = paused;
+			if(running && !paused) Pause();
+			
+			State.name = stateName;
 			if(cpu != null) cpu.UpdateState(State);
-
+			if(memory != null) memory.UpdateState(State);
+			if(video != null) video.UpdateState(State);
+			
+			if(running && !pause) Resume();
+			
 			return State;
 		}
 		#endregion
@@ -366,6 +380,20 @@ namespace Emu.Machine {
 				
 				}
 			}
+		}
+		#endregion
+		#region function: HardReset, Reset, SoftReset
+		public virtual void HardReset(bool run = false) {
+			
+		}
+		public virtual void Reset() {
+			running = paused=false;
+			if(m_cpu!=null) m_cpu.Reset();
+			if(m_memory!=null) m_memory.Reset();
+			if(m_cpu!=null) m_video.Reset();
+		}
+		public virtual void SoftReset(bool run = false) {
+			
 		}
 		#endregion
 	}

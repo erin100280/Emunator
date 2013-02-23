@@ -53,6 +53,7 @@
       <DependentUpon>PropertyList.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\propertyListItem.cs" />
+    <Compile Include="Core.convert.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Core.metaData.cs" />
     <Compile Include="Core.StateBase.cs" />

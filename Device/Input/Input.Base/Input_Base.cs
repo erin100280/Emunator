@@ -47,5 +47,14 @@ namespace Emu.Device.Input {
 		#endregion
 		#region function: blah
 		#endregion
+		#region function: HardReset, Reset, SoftReset
+		public virtual void HardReset(bool run = false) {
+			
+		}
+		public virtual void Reset() {}
+		public virtual void SoftReset(bool run = false) {
+			
+		}
+		#endregion
 	}
 }

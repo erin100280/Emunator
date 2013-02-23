@@ -32,7 +32,7 @@ namespace Emu.Debugger.Modules {
 	/// </summary>
 	#endregion
 	public class DebuggerModule_Base {
-		#region statci function IntToHex, HexToInt
+		#region static function IntToHex, HexToInt
 		public static string IntToHex(Int32 v) { return v.ToString("X"); }
 		public static Int32 HexToInt(string v) {
 			return int.Parse(v, System.Globalization.NumberStyles.HexNumber);

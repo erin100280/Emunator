@@ -12,22 +12,23 @@ namespace Emu.Video {
 		#region vars
 		public bool updated=false;
 		protected Size _resolution = new Size(2, 2);
-		public UInt32 _resolutionSum = 0;
+		public Int32 _resolutionSum = 0;
 		protected byte[] m_buffer=null;
-		protected UInt32 m_bufferSize;
+		protected Int32 m_bufferSize;
 		protected metaData m_meta=null;
-		protected UInt32 m_videoRegisterCount;
+		protected Int32 m_videoRegisterCount;
 		protected byte[] m_videoRegisters=null;
 		#endregion
 		#region constructors
 		public Vid_Base(string name="") { InitVid_Base(name, 0, 0, _resolution); }
-		public Vid_Base(string name, UInt32 bufferSize, UInt32 registerCount) {
+		public Vid_Base(string name, Int32 bufferSize, Int32 registerCount) {
 			InitVid_Base(name, bufferSize, registerCount, _resolution);
 		}
-		public Vid_Base(string name, Size res, UInt32 registerCount) {
-			InitVid_Base(name, (UInt32)(res.Width*res.Height), registerCount, res);
+		public Vid_Base(string name, Size res, Int32 registerCount) {
+			InitVid_Base(name, (res.Width*res.Height), registerCount, res);
 		}
-		protected virtual void InitVid_Base(string name, UInt32 bufferSize, UInt32 registerCount, Size res) {
+		protected virtual void InitVid_Base(string name, Int32 bufferSize
+						, Int32 registerCount, Size res) {
 			m_meta=new metaData(name);
 			
 			m_bufferSize=bufferSize;
@@ -61,7 +62,7 @@ namespace Emu.Video {
 				}
 			}
 		}
-		public virtual UInt32 bufferSize {
+		public virtual Int32 bufferSize {
 			get { return m_bufferSize; }
 			set {
 				if(m_bufferSize != value) {
@@ -70,16 +71,25 @@ namespace Emu.Video {
 				}
 			}
 		}
-		public virtual UInt32 videoRegisterCount {
+		public virtual Int32 videoRegisterCount {
 			get { return m_videoRegisterCount; }
 		}
-		public virtual byte[] videoRegisters { get { return m_videoRegisters; } }
+		public virtual byte[] videoRegisters {
+			get { return m_videoRegisters; }
+			set {
+				if(m_videoRegisters != value) {
+					m_videoRegisters = value;
+					OnVideoRegistersChanged(new EventArgs());
+				}
+			}
+		}
 		#endregion
 		#region events
 		//public event EventHandler VideoUpdated;
 		public event EventHandler BufferChanged;
 		public event EventHandler BufferSizeChanged;
 		public event EventHandler ResolutionChanged;
+		public event EventHandler VideoRegistersChanged;
 		#endregion
 		#region On....
 		protected virtual void OnBufferChanged(EventArgs e) {
@@ -89,13 +99,47 @@ namespace Emu.Video {
 			if(BufferSizeChanged != null) BufferSizeChanged(this, e);
 		}
 		protected virtual void OnResolutionChanged(EventArgs e) {
-			_resolutionSum = (uint)(_resolution.Width * _resolution.Height);
+			_resolutionSum = (_resolution.Width * _resolution.Height);
 			if(m_bufferSize < _resolutionSum) {
 				m_bufferSize = _resolutionSum;
 				m_buffer = new byte[_resolutionSum];
 			}
 			if(ResolutionChanged != null) ResolutionChanged(this, e);
 		}
+		protected virtual void OnVideoRegistersChanged(EventArgs e) {
+			if(VideoRegistersChanged != null) VideoRegistersChanged(this, e);
+		}
+		#endregion
+		#region state stuff
+		public virtual state GetState() { return UpdateState(new state()); }
+		public virtual void SetState(state val) {
+			Int32 i, il;
+			//string s;
+			
+			resolution = val.sizes["VID-RES"];
+			
+			il = val.ints["VID-BUFFER-SIZ"];
+			if(m_buffer.Length < il)
+				buffer = new Byte[il];
+			Array.Copy(val.byteArrays["VID-BUFFER"], m_buffer, il);
+		
+			il = val.ints["VID-REG-COUNT"];
+			if(m_videoRegisters.Length < il)
+				videoRegisters = new Byte[il];
+			for(i = 0; i < il; i++)
+				m_videoRegisters[i] = val.bytes["VID-REG" + i];
+			
+		}
+		public virtual state UpdateState(state val) {
+			val.sizes.Add("VID-RES", _resolution);
+			val.ints.Add("VID-BUFFER-SIZ", m_buffer.Length);
+			val.byteArrays.Add("VID-BUFFER", m_buffer);
+			val.ints.Add("VID-REG-COUNT", m_videoRegisters.Length);
+			for(Int32 i = 0, il = m_videoRegisters.Length; i < il; i++)
+				val.bytes.Add("VID-REG" + i, m_videoRegisters[i]);
+			return val;
+		}
+		
 		#endregion
 		#region function: ClearBuffer
 		public virtual void ClearBuffer() {
@@ -103,11 +147,19 @@ namespace Emu.Video {
 				m_buffer[i] = 0x0;
 		}
 		#endregion
+		#region function: HardReset, Reset, SoftReset
+		public virtual void HardReset(bool run = false) {
+			
+		}
 		public virtual void Reset() {
 			ClearBuffer();
 			if(m_videoRegisters!=null)
 				for(UInt32 i=0; i<m_videoRegisterCount; i++)
 					m_videoRegisters[i]=0;
 		}
+		public virtual void SoftReset(bool run = false) {
+			
+		}
+		#endregion
 	}
 }

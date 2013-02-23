@@ -45,29 +45,9 @@ namespace Emunator.Controls {
 		}
 		#endregion
 		#region menu handlers
-		void LoadRomToolStripMenuItemClick(object sender, EventArgs e) {
-			DialogResult dr = openFileDialog.ShowDialog();
-			if(dr == DialogResult.OK) {
-				LoadMachine_Chip8();
-				machine.LoadRom(openFileDialog.FileName);
-				//machine.Run();
-			}
-		}
-		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
-			display.displayArg = 6;
-			display.displayMode = displayMode.times;
-			display.Refresh();
-		}
-		void PauseToolStripMenuItemClick(object sender, EventArgs e) {
-			if(machine != null) machine.Pause();
-		}
-		void ResumeToolStripMenuItemClick(object sender, EventArgs e) {
-			if(machine != null) machine.Resume();
-		}
-		void HexEditorToolStripMenuItemClick(object sender, EventArgs e) {
-			FormHexEditor frm =  new FormHexEditor();
-			if(ParentForm != null) frm.Show(ParentForm);
-			else frm.Show();
+		#region Debug
+		void DebuggerToolStripMenuItemClick(object sender, EventArgs e) {
+			LoadDebugger();
 		}
 		void EditMemoryToolStripMenuItemClick(object sender, EventArgs e) {
 			if(machine != null) {
@@ -95,6 +75,43 @@ namespace Emunator.Controls {
 				else frm.Show();
 			}
 		}
+		#endregion
+		#region File
+		void LoadStateToolStripMenuItemClick(object sender, EventArgs e) {
+			
+		}
+		void SaveStateToolStripMenuItemClick(object sender, EventArgs e) {
+			
+		}
+		void ImportStateToolStripMenuItemClick(object sender, EventArgs e) {
+			if(openFileDialog.ShowDialog() != DialogResult.Cancel) {
+				if(machine != null)
+					machine.SetState(stateSystem.LoadState(openFileDialog.FileName));
+			}
+		}
+		void ExportStateToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) {
+				state st = machine.GetState();
+				if(saveFileDialog.ShowDialog() != DialogResult.Cancel) {
+					stateSystem.SaveState(st, saveFileDialog.FileName);
+			   }
+			}
+		}
+		void TSMnuItm_File_ExitClick(object sender, EventArgs e) {
+			if(machine != null) {
+				machine.Stop();
+				machine.Unload();
+			}
+			Application.Exit();
+		}
+		#endregion
+		#region Machine
+		void PauseToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) machine.Pause();
+		}
+		void ResumeToolStripMenuItemClick(object sender, EventArgs e) {
+			if(machine != null) machine.Resume();
+		}
 		void RunToolStripMenuItemClick(object sender, EventArgs e) {
 			machine.Run();
 		}
@@ -107,13 +124,29 @@ namespace Emunator.Controls {
 		void ResetToolStripMenuItemClick(object sender, EventArgs e) {
 			machine.Reset();
 		}
-		void TSMnuItm_File_ExitClick(object sender, EventArgs e) {
-			if(machine != null) {
-				machine.Stop();
-				machine.Unload();
+		#endregion
+		#region Temp
+		void LoadRomToolStripMenuItemClick(object sender, EventArgs e) {
+			DialogResult dr = openFileDialog.ShowDialog();
+			if(dr == DialogResult.OK) {
+				LoadMachine_Chip8();
+				machine.LoadRom(openFileDialog.FileName);
+				//machine.Run();
 			}
-			Application.Exit();
 		}
+		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
+			display.displayArg = 6;
+			display.displayMode = displayMode.times;
+			display.Refresh();
+		}
+		#endregion
+		#region Tools
+		void HexEditorToolStripMenuItemClick(object sender, EventArgs e) {
+			FormHexEditor frm =  new FormHexEditor();
+			if(ParentForm != null) frm.Show(ParentForm);
+			else frm.Show();
+		}
+		#endregion
 		#endregion
 		#region properties
 		public virtual MenuStrip menuStrip { get; protected set; }
@@ -179,8 +212,6 @@ namespace Emunator.Controls {
 			_debuggerForm.ShowDialog();
 		}
 		#endregion
-		void DebuggerToolStripMenuItemClick(object sender, EventArgs e) {
-			LoadDebugger();
-		}
+		
 	}
 }

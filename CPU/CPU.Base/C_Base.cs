@@ -48,7 +48,7 @@ namespace Emu.CPU {
 		protected byte[] m_bank=null;
 		protected Mem_Base m_memory=null;
 		protected byte[] m_buffer=null;
-		protected UInt32 m_bufferSize;
+		protected Int32 m_bufferSize;
 		protected Vid_Base m_video=null;
 		#endregion
 		#region constructors
@@ -130,7 +130,7 @@ namespace Emu.CPU {
 			if(MemoryChanged!=null) MemoryChanged(this, e);
 		}
 		protected virtual void OnVideoChanged(EventArgs e) {
-			UInt32 bs=0;
+			Int32 bs=0;
 			byte[] bt=null;
 		
 			if(m_video != null) m_video.BufferChanged += Video_BufferChanged;
@@ -190,6 +190,15 @@ namespace Emu.CPU {
 			return regInfoString((UInt16)reg, brackets);
 		}
 		#endregion
+		#region function: HardReset, Reset, SoftReset
+		public virtual void HardReset(bool run = false) {
+			
+		}
+		public virtual void Reset() {}
+		public virtual void SoftReset(bool run = false) {
+			
+		}
+		#endregion
 		protected virtual void DoRuntimeError(string err) {
 			OnRuntimeError(new errorEventArgs(err));
 		}
@@ -198,7 +207,6 @@ namespace Emu.CPU {
 		public virtual bool DoCycle_Main() { return false; }
 		public virtual bool DoCycle_Debug() { return false; }
 		public virtual bool DoCycle_Debug_NoConsole() { return false; }
-		public virtual void Reset() {}
 		public virtual void SoftReset() {}
 		public virtual void SetDoCycle(DoCycleDelegate val) {
 			DoCycle = val;
@@ -216,6 +224,7 @@ namespace Emu.CPU {
 					break;
 			}
 		}
+		
 	}
 
 }

@@ -56,8 +56,32 @@ namespace Emu.Memory {
 		#endregion
 		#region state stuff
 		public virtual state GetState() { return UpdateState(new state()); }
-		public virtual void SetState(state State) {}
-		public virtual state UpdateState(state State) { return State; }
+		public virtual void SetState(state State) {
+			int i;
+			try {
+				i = State.ints["MEM-SIZ"];
+				if(_bank.Length != i)
+					bank = new Byte[i];
+				
+				SetMemory(State.byteArrays["MEM-WORKING"], 0);
+				
+				_ramSize = State.longs["MEM-RAM-SIZ"];
+				_romSize = State.longs["MEM-ROM-SIZ"];
+				_startRamAddress = State.ints["MEM-RAM-START"];
+				_startRomAddress = State.ints["MEM-ROM-START"];
+				
+			}
+			catch(Exception ex) { Msg.Box("Error: State was all messed up and stuff.\n\n\n\n" + ex.Message); }
+		}
+		public virtual state UpdateState(state State) {
+			State.byteArrays.Add("MEM-WORKING", _bank);
+			State.ints.Add("MEM-RAM-START", _startRamAddress);
+			State.ints.Add("MEM-ROM-START", _startRomAddress);
+			State.longs.Add("MEM-RAM-SIZ", _ramSize);
+			State.longs.Add("MEM-ROM-SIZ", _romSize);
+			State.ints.Add("MEM-SIZ", _bank.Length);
+			return State;
+		}
 		#endregion
 		#region function: SetMemory....
 		public virtual void SetMemory(byte[] val, UInt64 startPos) {
@@ -84,10 +108,18 @@ namespace Emu.Memory {
 			}
 		}
 		#endregion
+		#region function: HardReset, Reset, SoftReset
+		public virtual void HardReset(bool run = false) {
+			
+		}
 		public virtual void Reset(bool clearBank = true) {
 			if(clearBank) ClearBank();
 		
 		}
+		public virtual void SoftReset(bool run = false) {
+			
+		}
+		#endregion
 		public virtual void ClearBank() {
 			for(UInt64 i = 0, l = _size; i < l; i++)
 				_bank[i] = 0x0;

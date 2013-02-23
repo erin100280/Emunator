@@ -36,6 +36,22 @@ namespace Emunator.Controls
 			this.TSMnuItm_File = new System.Windows.Forms.ToolStripMenuItem();
 			this.TSMnuItm_File_Open = new System.Windows.Forms.ToolStripMenuItem();
 			this.TSSep_File_1 = new System.Windows.Forms.ToolStripSeparator();
+			this.loadStateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.selectStateSlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot0toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot1toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot2toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot3toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot4toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot5toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot6toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot7toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot8toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.stateSlot9toolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveStateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.importStateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exportStateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.TSMnuItm_File_Exit = new System.Windows.Forms.ToolStripMenuItem();
 			this.machineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.runToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,6 +61,7 @@ namespace Emunator.Controls
 			this.stopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.debuggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.dumpMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.editVideoMemoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,7 +73,7 @@ namespace Emunator.Controls
 			this.picSep = new System.Windows.Forms.PictureBox();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.pnl_display = new System.Windows.Forms.Panel();
-			this.debuggerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
 			this.menuStrip_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picSep)).BeginInit();
 			this.SuspendLayout();
@@ -81,6 +98,12 @@ namespace Emunator.Controls
 			this.TSMnuItm_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.TSMnuItm_File_Open,
 									this.TSSep_File_1,
+									this.loadStateToolStripMenuItem,
+									this.selectStateSlotToolStripMenuItem,
+									this.saveStateToolStripMenuItem,
+									this.importStateToolStripMenuItem,
+									this.exportStateToolStripMenuItem,
+									this.toolStripSeparator1,
 									this.TSMnuItm_File_Exit});
 			this.TSMnuItm_File.ForeColor = System.Drawing.Color.White;
 			this.TSMnuItm_File.Name = "TSMnuItm_File";
@@ -90,19 +113,133 @@ namespace Emunator.Controls
 			// TSMnuItm_File_Open
 			// 
 			this.TSMnuItm_File_Open.Name = "TSMnuItm_File_Open";
-			this.TSMnuItm_File_Open.Size = new System.Drawing.Size(143, 22);
+			this.TSMnuItm_File_Open.Size = new System.Drawing.Size(164, 22);
 			this.TSMnuItm_File_Open.Text = "&Open";
 			// 
 			// TSSep_File_1
 			// 
 			this.TSSep_File_1.Name = "TSSep_File_1";
-			this.TSSep_File_1.Size = new System.Drawing.Size(140, 6);
+			this.TSSep_File_1.Size = new System.Drawing.Size(161, 6);
+			// 
+			// loadStateToolStripMenuItem
+			// 
+			this.loadStateToolStripMenuItem.Name = "loadStateToolStripMenuItem";
+			this.loadStateToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
+			this.loadStateToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.loadStateToolStripMenuItem.Text = "&Load State";
+			this.loadStateToolStripMenuItem.Click += new System.EventHandler(this.LoadStateToolStripMenuItemClick);
+			// 
+			// selectStateSlotToolStripMenuItem
+			// 
+			this.selectStateSlotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.stateSlot0toolStripMenuItem,
+									this.stateSlot1toolStripMenuItem,
+									this.stateSlot2toolStripMenuItem,
+									this.stateSlot3toolStripMenuItem,
+									this.stateSlot4toolStripMenuItem,
+									this.stateSlot5toolStripMenuItem,
+									this.stateSlot6toolStripMenuItem,
+									this.stateSlot7toolStripMenuItem,
+									this.stateSlot8toolStripMenuItem,
+									this.stateSlot9toolStripMenuItem});
+			this.selectStateSlotToolStripMenuItem.Name = "selectStateSlotToolStripMenuItem";
+			this.selectStateSlotToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.selectStateSlotToolStripMenuItem.Text = "Select State Slo&t";
+			// 
+			// stateSlot0toolStripMenuItem
+			// 
+			this.stateSlot0toolStripMenuItem.Checked = true;
+			this.stateSlot0toolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.stateSlot0toolStripMenuItem.Name = "stateSlot0toolStripMenuItem";
+			this.stateSlot0toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot0toolStripMenuItem.Text = "0";
+			// 
+			// stateSlot1toolStripMenuItem
+			// 
+			this.stateSlot1toolStripMenuItem.Name = "stateSlot1toolStripMenuItem";
+			this.stateSlot1toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot1toolStripMenuItem.Text = "1";
+			// 
+			// stateSlot2toolStripMenuItem
+			// 
+			this.stateSlot2toolStripMenuItem.Name = "stateSlot2toolStripMenuItem";
+			this.stateSlot2toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot2toolStripMenuItem.Text = "2";
+			// 
+			// stateSlot3toolStripMenuItem
+			// 
+			this.stateSlot3toolStripMenuItem.Name = "stateSlot3toolStripMenuItem";
+			this.stateSlot3toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot3toolStripMenuItem.Text = "3";
+			// 
+			// stateSlot4toolStripMenuItem
+			// 
+			this.stateSlot4toolStripMenuItem.Name = "stateSlot4toolStripMenuItem";
+			this.stateSlot4toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot4toolStripMenuItem.Text = "4";
+			// 
+			// stateSlot5toolStripMenuItem
+			// 
+			this.stateSlot5toolStripMenuItem.Name = "stateSlot5toolStripMenuItem";
+			this.stateSlot5toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot5toolStripMenuItem.Text = "5";
+			// 
+			// stateSlot6toolStripMenuItem
+			// 
+			this.stateSlot6toolStripMenuItem.Name = "stateSlot6toolStripMenuItem";
+			this.stateSlot6toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot6toolStripMenuItem.Text = "6";
+			// 
+			// stateSlot7toolStripMenuItem
+			// 
+			this.stateSlot7toolStripMenuItem.Name = "stateSlot7toolStripMenuItem";
+			this.stateSlot7toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot7toolStripMenuItem.Text = "7";
+			// 
+			// stateSlot8toolStripMenuItem
+			// 
+			this.stateSlot8toolStripMenuItem.Name = "stateSlot8toolStripMenuItem";
+			this.stateSlot8toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot8toolStripMenuItem.Text = "8";
+			// 
+			// stateSlot9toolStripMenuItem
+			// 
+			this.stateSlot9toolStripMenuItem.Name = "stateSlot9toolStripMenuItem";
+			this.stateSlot9toolStripMenuItem.Size = new System.Drawing.Size(91, 22);
+			this.stateSlot9toolStripMenuItem.Text = "9";
+			// 
+			// saveStateToolStripMenuItem
+			// 
+			this.saveStateToolStripMenuItem.Name = "saveStateToolStripMenuItem";
+			this.saveStateToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
+			this.saveStateToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.saveStateToolStripMenuItem.Text = "&Save State";
+			this.saveStateToolStripMenuItem.Click += new System.EventHandler(this.SaveStateToolStripMenuItemClick);
+			// 
+			// importStateToolStripMenuItem
+			// 
+			this.importStateToolStripMenuItem.Name = "importStateToolStripMenuItem";
+			this.importStateToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.importStateToolStripMenuItem.Text = "&Import State";
+			this.importStateToolStripMenuItem.Click += new System.EventHandler(this.ImportStateToolStripMenuItemClick);
+			// 
+			// exportStateToolStripMenuItem
+			// 
+			this.exportStateToolStripMenuItem.Name = "exportStateToolStripMenuItem";
+			this.exportStateToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+			this.exportStateToolStripMenuItem.Text = "&Export State";
+			this.exportStateToolStripMenuItem.Click += new System.EventHandler(this.ExportStateToolStripMenuItemClick);
+			// 
+			// toolStripSeparator1
+			// 
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(161, 6);
 			// 
 			// TSMnuItm_File_Exit
 			// 
 			this.TSMnuItm_File_Exit.Name = "TSMnuItm_File_Exit";
 			this.TSMnuItm_File_Exit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.F4)));
-			this.TSMnuItm_File_Exit.Size = new System.Drawing.Size(143, 22);
+			this.TSMnuItm_File_Exit.Size = new System.Drawing.Size(164, 22);
 			this.TSMnuItm_File_Exit.Text = "E&xit";
 			this.TSMnuItm_File_Exit.Click += new System.EventHandler(this.TSMnuItm_File_ExitClick);
 			// 
@@ -169,20 +306,28 @@ namespace Emunator.Controls
 			// debugToolStripMenuItem
 			// 
 			this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.debuggerToolStripMenuItem,
 									this.dumpMemoryToolStripMenuItem,
 									this.editMemoryToolStripMenuItem,
-									this.editVideoMemoryToolStripMenuItem,
-									this.debuggerToolStripMenuItem});
+									this.editVideoMemoryToolStripMenuItem});
 			this.debugToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
 			this.debugToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
 			this.debugToolStripMenuItem.Text = "&Debug";
 			// 
+			// debuggerToolStripMenuItem
+			// 
+			this.debuggerToolStripMenuItem.Name = "debuggerToolStripMenuItem";
+			this.debuggerToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
+			this.debuggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+			this.debuggerToolStripMenuItem.Text = "&Debugger";
+			this.debuggerToolStripMenuItem.Click += new System.EventHandler(this.DebuggerToolStripMenuItemClick);
+			// 
 			// dumpMemoryToolStripMenuItem
 			// 
 			this.dumpMemoryToolStripMenuItem.Name = "dumpMemoryToolStripMenuItem";
 			this.dumpMemoryToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-			this.dumpMemoryToolStripMenuItem.Text = "&Dump Memory";
+			this.dumpMemoryToolStripMenuItem.Text = "D&ump Memory";
 			// 
 			// editMemoryToolStripMenuItem
 			// 
@@ -195,7 +340,7 @@ namespace Emunator.Controls
 			// 
 			this.editVideoMemoryToolStripMenuItem.Name = "editVideoMemoryToolStripMenuItem";
 			this.editVideoMemoryToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-			this.editVideoMemoryToolStripMenuItem.Text = "Edit Video Memory";
+			this.editVideoMemoryToolStripMenuItem.Text = "Edit &Video Memory";
 			this.editVideoMemoryToolStripMenuItem.Click += new System.EventHandler(this.EditVideoMemoryToolStripMenuItemClick);
 			// 
 			// toolsToolStripMenuItem
@@ -210,7 +355,7 @@ namespace Emunator.Controls
 			// hexEditorToolStripMenuItem
 			// 
 			this.hexEditorToolStripMenuItem.Name = "hexEditorToolStripMenuItem";
-			this.hexEditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.hexEditorToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
 			this.hexEditorToolStripMenuItem.Text = "&Hex Editor";
 			this.hexEditorToolStripMenuItem.Click += new System.EventHandler(this.HexEditorToolStripMenuItemClick);
 			// 
@@ -264,13 +409,6 @@ namespace Emunator.Controls
 			this.pnl_display.Size = new System.Drawing.Size(540, 159);
 			this.pnl_display.TabIndex = 4;
 			// 
-			// debuggerToolStripMenuItem
-			// 
-			this.debuggerToolStripMenuItem.Name = "debuggerToolStripMenuItem";
-			this.debuggerToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-			this.debuggerToolStripMenuItem.Text = "Debugger";
-			this.debuggerToolStripMenuItem.Click += new System.EventHandler(this.DebuggerToolStripMenuItemClick);
-			// 
 			// theMainControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +425,23 @@ namespace Emunator.Controls
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.SaveFileDialog saveFileDialog;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem exportStateToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem importStateToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem saveStateToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot9toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot8toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot7toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot6toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot5toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot4toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot3toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot2toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot1toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem stateSlot0toolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem selectStateSlotToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem loadStateToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem debuggerToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem editVideoMemoryToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem resetToolStripMenuItem;

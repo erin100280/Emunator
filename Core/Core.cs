@@ -38,11 +38,9 @@ namespace Emu.Core {
 	public delegate void void_UInt16_delegate(UInt16 val);
 	public delegate void void_UInt32_delegate(UInt32 val);
 	public delegate void void_UInt64_delegate(UInt64 val);
-	
 	public delegate Point point_delegate();
 	public delegate Size size_delegate();
-	
-	
+
 	#region class: consoleRef
 	public class consoleRef {
 		protected ConsoleControl.consoleControl _console;

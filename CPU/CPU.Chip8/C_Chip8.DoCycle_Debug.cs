@@ -105,7 +105,7 @@ namespace Emu.CPU {
 		   		default:
 						#region DBG
 						#if (DBG_SHOW_COMMAND)
-							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc);
+							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc.ToString("X"));
 						#endif
 						#endregion
 	   				DoRuntimeError("Invalid opcode");
@@ -213,7 +213,7 @@ namespace Emu.CPU {
 		   		default:
 						#region DBG
 						#if (DBG_SHOW_COMMAND)
-							WriteDoCycle("0x00E.", "ERROR - opcode = " + oc);
+							WriteDoCycle("0x00F.", "ERROR - opcode = " + oc.ToString("X"));
 						#endif
 						#endregion
 	   				DoRuntimeError("Invalid opcode");
@@ -226,7 +226,7 @@ namespace Emu.CPU {
 	   		default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-						WriteDoCycle("0x00..", "ERROR - opcode = " + oc);
+					WriteDoCycle("0x0...", "ERROR - opcode = " + oc.ToString("X"));
 					#endif
 					#endregion
    				DoRuntimeError("Invalid opcode");
@@ -711,6 +711,19 @@ namespace Emu.CPU {
 						m_counter += 2;
 					break;
 				#endregion
+				#region default - ERROR
+         	default:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+					WriteDoCycle("0xE...", "ERROR - opcode = " + oc.ToString("X"));
+					#endif
+					#endregion
+   				DoRuntimeError(
+						"Invalid opcode in 0xE... at: "+m_lastCounter.ToString()
+					+	" / "+(m_lastCounter+1).ToString()
+					);
+   				break;
+				#endregion
 				}
 				break;
 			#endregion
@@ -825,7 +838,7 @@ namespace Emu.CPU {
 					m_indexRegister = (ushort)(regs[(oc & 0x0F00) >> 8] * 0x5);
 					break;
 				#endregion
-					//---------------------------------------------
+
 				#region 0xFX33 - SEE: info (end of file)
 				case 0x0033:
 					I = m_indexRegister;
@@ -847,7 +860,6 @@ namespace Emu.CPU {
 	            m_bank[I + 2] = (byte)((val % 100) % 10);
 					break;
 				#endregion
-								//----------------------------------------------
 				#region 0xFX55 - store V0 through VX in mem starting at I
 				case 0x0055:
 					#region DBG
@@ -918,7 +930,7 @@ namespace Emu.CPU {
          	default:
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0xF...", "ERROR - opcode = " + oc);
+					WriteDoCycle("0xF...", "ERROR - opcode = " + oc.ToString("X"));
 					#endif
 					#endregion
    				DoRuntimeError(
@@ -934,7 +946,7 @@ namespace Emu.CPU {
       	default:
 				#region DBG
 				#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("no...", "ERROR - opcode = " + oc);
+				WriteDoCycle("0x....", "ERROR - opcode = " + oc.ToString("X"));
 				#endif
 				#endregion
 				DoRuntimeError(

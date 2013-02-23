@@ -25,7 +25,7 @@ namespace Emu.Machine {
 		public M_Chip8(): base("Machine.Chip8") { InitM_Chip8(); }
 		protected virtual void InitM_Chip8() {
 			Disp_Raster dr;
-
+			stateName = "CHIP8";
 			interval = 1;
 			InstructsPerMilisec = 2;
 			refreshVal = 8;

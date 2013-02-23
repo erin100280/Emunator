@@ -88,15 +88,19 @@ namespace Emu.Display {
 		#endregion
 		#region On....
 		protected virtual void OnDisplayArgChanged(EventArgs e) {
+			Refresh();
 			if(DisplayArgChanged != null) DisplayArgChanged(this, e);
 		}
 		protected virtual void OnDisplayModeChanged(EventArgs e) {
+			Refresh();
 			if(DisplayModeChanged != null) DisplayModeChanged(this, e);
 		}
 		protected virtual void OnVideoChanged(EventArgs e) {
+			Refresh();
 			if(VideoChanged!=null) VideoChanged(this, e);
 		}
 		protected virtual void OnResolutionChanged(EventArgs e) {
+			//sg.Box("buff changed");
 			Refresh();
 			if(ResolutionChanged != null) ResolutionChanged(this, e);
 		}
@@ -119,6 +123,7 @@ namespace Emu.Display {
 		#region override function: Refresh
 		public override void Refresh() {
 			void_delegate vd;
+			m_buffer = video.buffer;
 			if(base.InvokeRequired) {
 				vd = new void_delegate(base.Refresh);
 				this.Invoke(vd);

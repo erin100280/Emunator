@@ -102,7 +102,10 @@ namespace Emu.Display {
 			Refresh();
 			base.OnResize(e);
 		}
-
+		protected override void OnResolutionChanged(EventArgs e) {
+			base.OnResolutionChanged(e);
+		}
+		
 		
 		#endregion
 		#region override protected function: PaintStreen, RenderScreen

@@ -159,10 +159,8 @@ namespace Emu.CPU {
 		public virtual void WriteDoCycle(UInt64 counter, string op, string desc) {
 			string val = ("DoCycle"
 			+	"["
-			+		"PC=" + counter.ToString().PadLeft(3, '0')
-			//+	", "
-			//+		"$=" + (m_romStartAddress + counter)
-			//					.ToString().PadLeft(4, '0')
+			+		"PC=0x" + counter.ToString("X") + " // " 
+			+						counter.ToString().PadLeft(3, '0')
 			+	"]"
 			);
 			

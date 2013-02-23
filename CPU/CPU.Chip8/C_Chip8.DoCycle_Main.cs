@@ -144,7 +144,8 @@ namespace Emu.CPU {
 								m_buffer[i] = bytes[ii];
 							}
 		            }
-						break;
+						m_video.updated = true;
+		            break;
 	   			#endregion
 	   			#region 0x00FC  Scroll 4 pixels left
 					case 0x000C:
@@ -171,6 +172,7 @@ namespace Emu.CPU {
 								m_buffer[i] = bytes[ii];
 							}
 		            }
+						m_video.updated = true;
 						break;
 	   			#endregion
 	   			#region 0x00FD  Quit the emulator
@@ -182,6 +184,7 @@ namespace Emu.CPU {
 						#endregion
 						return false;
 	   			#endregion
+	   				//====//====//====//====//====//====//====//====//
 	   			#region 0x00FE  CHIP-8 graphics mode
 					case 0x000E:
 						#region DBG
@@ -189,11 +192,11 @@ namespace Emu.CPU {
 						WriteDoCycle("0x00FE", "CHIP-8 graphics mode");
 						#endif
 						#endregion
-						//sg.Box("0x00FE");
-						video.resolution = new Size(64, 32);
-						m_buffer = video.buffer;
-						m_bufferSize = video.bufferSize;
-						video.ClearBuffer();
+						//video.resolution = new Size(64, 32);
+						//m_buffer = video.buffer;
+						//m_bufferSize = video.bufferSize;
+						//video.ClearBuffer();
+						m_video.updated = true;
 						break;
 	   			#endregion
 	   			#region 0x00FF  SCHIP graphics mode
@@ -207,6 +210,7 @@ namespace Emu.CPU {
 						m_buffer = video.buffer;
 						m_bufferSize = video.bufferSize;
 						video.ClearBuffer();
+						m_video.updated = true;
 						break;
 	   			#endregion
 					#region default
@@ -318,7 +322,6 @@ namespace Emu.CPU {
 				regs[(oc & 0x0F00) >> 8]=(byte)(oc & 0x00FF);
       		break;
 			#endregion
-				//**
 			#region 0x7XNN - add NN to VX
       	case 0x7000:
 				#region DBG
@@ -618,7 +621,6 @@ namespace Emu.CPU {
 				m_counter=(ushort)((oc & 0x0FFF) + regs[0x0]);
 				break;
 			#endregion
-					//--------------------------------------------------------
 			#region 0xCXYN - set VX to (randomNumber & NN)
 			case 0xC000:
 				Random r = new Random();
@@ -838,7 +840,22 @@ namespace Emu.CPU {
 					m_indexRegister = (ushort)(regs[(oc & 0x0F00) >> 8] * 0x5);
 					break;
 				#endregion
-					//---------------------------------------------
+				#region 0xFX30 SCHIP?: set I to address of superFont data for key hex val VX
+				case 0x0030:
+					#region DBG
+					#if (DBG_SHOW_COMMAND)
+						WriteDoCycle("0xFX30"
+						,	"set I[" + m_indexRegister + "]"
+						+	" to s-font addr for char in"
+						+	" VX" + regInfoString((oc & 0x0F00) >> 8)
+						+	"val=" + ((regs[(oc & 0x0F00) >> 8] * 0x10) + 0xF0)
+						);
+					#endif
+					#endregion
+					m_indexRegister = (ushort)
+									((regs[(oc & 0x0F00) >> 8] * 0x10) + 0xF0);
+					break;
+				#endregion
 				#region 0xFX33 - SEE: info (end of file)
 				case 0x0033:
 					I = m_indexRegister;
@@ -860,7 +877,6 @@ namespace Emu.CPU {
 	            m_bank[I + 2] = (byte)((val % 100) % 10);
 					break;
 				#endregion
-								//----------------------------------------------
 				#region 0xFX55 - store V0 through VX in mem starting at I
 				case 0x0055:
 					#region DBG

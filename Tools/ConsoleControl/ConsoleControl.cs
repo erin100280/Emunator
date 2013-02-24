@@ -23,7 +23,11 @@ namespace ConsoleControl {
     /// </summary>
 	[ToolboxBitmap(typeof(resfinder), "ConsoleControl.ConsoleControl.bmp")]
 	public partial class consoleControl : UserControl {
+		public delegate void void_string_color_delegate(string val, Color clr);
+		public delegate void void_string_delegate(string val);
 		#region vars
+		public void_string_color_delegate WriteOutput;
+		public Color color = Color.Black;
 		#endregion
 		#region constructors
 		#region meta
@@ -35,6 +39,8 @@ namespace ConsoleControl {
 		protected virtual void  InitConsoleControl() {
 			//  Initialise the component.
 			InitializeComponent();
+			
+			WriteOutput = new void_string_color_delegate(WriteOutput_Safe);
 			
 			//  Show diagnostics disabled by default.
 			ShowDiagnostics = false;
@@ -64,7 +70,7 @@ namespace ConsoleControl {
 			set { base.BackColor = richTextBoxConsole.BackColor = value; }
 		} 
 		#endregion
-		#region misc.
+		#region function: processInterace_OnProcess....
 		#region meta
 		/// <summary>
 		/// Handles the OnProcessError event of the processInterace control.
@@ -75,12 +81,11 @@ namespace ConsoleControl {
 		void processInterace_OnProcessError(object sender, ProcessInterface.ProcessEventArgs args)
 		{
 		//  Write the output, in red
-		WriteOutput(args.Content, Color.Red);
+		WriteLine(args.Content, Color.Red);
 		
 		//  Fire the output event.
 		FireConsoleOutputEvent(args.Content);
 		}
-		
 		#region meta
 		/// <summary>
 		/// Handles the OnProcessOutput event of the processInterace control.
@@ -91,12 +96,12 @@ namespace ConsoleControl {
 		void processInterace_OnProcessOutput(object sender, ProcessInterface.ProcessEventArgs args)
 		{
 		//  Write the output, in white
-		WriteOutput(args.Content, Color.White);
+		color = Color.White;
+		WriteOutput(args.Content, color);
 		
 		//  Fire the output event.
 		FireConsoleOutputEvent(args.Content);
 		}
-		
 		#region meta
 		/// <summary>
 		/// Handles the OnProcessInput event of the processInterace control.
@@ -108,7 +113,6 @@ namespace ConsoleControl {
 		{
 		throw new NotImplementedException();
 		}
-		
 		#region meta
 		/// <summary>
 		/// Handles the OnProcessExit event of the processInterace control.
@@ -121,7 +125,12 @@ namespace ConsoleControl {
 		//  Are we showing diagnostics?
 		if (ShowDiagnostics)
 		{
-		WriteOutput(System.Environment.NewLine + processInterace.ProcessFileName + " exited.", Color.FromArgb(255, 0, 255, 0));
+			this.color = Color.FromArgb(255, 0, 255, 0);
+			WriteOutput(
+				System.Environment.NewLine + processInterace.ProcessFileName
+			+	" exited."
+			,	Color.FromArgb(255, 0, 255, 0)
+			);
 		}
 		
 		//  Read only again.
@@ -130,7 +139,8 @@ namespace ConsoleControl {
 		richTextBoxConsole.ReadOnly = true;
 		}));
 		}
-		
+		#endregion
+		#region misc.
 		#region meta
 		/// <summary>
 		/// Initialises the key mappings.
@@ -218,9 +228,16 @@ namespace ConsoleControl {
 		/// <param name="color">The color.</param>
 		#endregion
 		public void WriteLine(string output, Color color) {
-			if(!string.IsNullOrEmpty(richTextBoxConsole.Text))
+			string txt;
+			if(richTextBoxConsole.InvokeRequired)
+				txt = (string)Invoke(richTextBoxConsole.GetText);
+			else txt = richTextBoxConsole.Text;
+			if(!string.IsNullOrEmpty(txt))
 				output = "\n" + output;
-			WriteOutput(output, color);
+			this.color = color;
+			if(this.InvokeRequired || richTextBoxConsole.InvokeRequired)
+				this.Invoke(WriteOutput, output, color);
+         else WriteOutput(output, color);
 		}
 		#region meta
 		/// <summary>
@@ -229,7 +246,7 @@ namespace ConsoleControl {
 		/// <param name="output">The output.</param>
 		/// <param name="color">The color.</param>
 		#endregion
-		public void WriteOutput(string output, Color color) {
+		public void WriteOutput_Safe(string output, Color color) {
 			if (string.IsNullOrEmpty(lastInput) == false && 
 			(output == lastInput || output.Replace("\r\n", "") == lastInput))
 			return;
@@ -293,13 +310,17 @@ namespace ConsoleControl {
 		public void StartProcess(string fileName, string arguments)
 		{
 		//  Are we showing diagnostics?
-		if (ShowDiagnostics)
-		{
-		WriteOutput("Preparing to run " + fileName, Color.FromArgb(255, 0, 255, 0));
-		if (!string.IsNullOrEmpty(arguments))
-		WriteOutput(" with arguments " + arguments + "." + Environment.NewLine, Color.FromArgb(255, 0, 255, 0));
-		else
-		WriteOutput("." + Environment.NewLine, Color.FromArgb(255, 0, 255, 0));
+		if (ShowDiagnostics) {
+			Color clr = Color.FromArgb(255, 0, 255, 0);
+			WriteOutput("Preparing to run " + fileName, clr);
+			if (!string.IsNullOrEmpty(arguments))
+				WriteOutput(
+					" with arguments " + arguments + "."
+				+	Environment.NewLine
+				,	clr
+				);
+			else
+				WriteOutput("." + Environment.NewLine, clr);
 		}
 		
 		//  Start the process.

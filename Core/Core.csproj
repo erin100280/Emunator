@@ -56,6 +56,10 @@
     <Compile Include="Core.convert.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Core.metaData.cs" />
+    <Compile Include="Core.Settings\displaySizeMode.cs" />
+    <Compile Include="Core.Settings\settings.cs" />
+    <Compile Include="Core.Settings\displaySettings.cs" />
+    <Compile Include="Core.Settings\machineSettings.cs" />
     <Compile Include="Core.StateBase.cs" />
     <Compile Include="Core.utils.cs" />
     <Compile Include="FileSystem\file %28static%29.cs" />
@@ -66,8 +70,10 @@
     <Compile Include="TEMPlates.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core.Settings\Settings.settings" />
     <Folder Include="FileSystem" />
     <Folder Include="Controls" />
+    <Folder Include="Core.Settings" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Controls\PropertyList.resx">

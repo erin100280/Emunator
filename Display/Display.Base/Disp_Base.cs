@@ -1,21 +1,26 @@
-﻿/* User: Erin
+﻿#region header
+/* User: Erin
  * Date: 1/30/2013
  * Time: 8:02 PM
  */
+#endregion
+#region using
 using Emu.Core;
+using Emu.Core.Settings;
 using Emu.Video;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+#endregion
 
 namespace Emu.Display {
 	public class Disp_Base : UserControl {
 		#region vars
 		protected Int32 _displayArg =2;
-		protected displayMode _displayMode = displayMode.original;
+		protected displaySizeMode _displayMode = displaySizeMode.original;
 		protected Size _curResolution;
-		protected byte[] m_buffer = null;
+		public byte[] m_buffer = null;
 		protected int m_bufferSize = 0;
 		protected Vid_Base m_video = null;
 		protected metaData m_meta = null;
@@ -42,7 +47,7 @@ namespace Emu.Display {
 				}
 			}
 		}
-		public displayMode displayMode {
+		public displaySizeMode displaySizeMode {
 			get { return _displayMode; }
 			set {
 				if(_displayMode != value) {
@@ -124,6 +129,9 @@ namespace Emu.Display {
 		public override void Refresh() {
 			void_delegate vd;
 			m_buffer = video.buffer;
+			if(m_buffer != null)
+				m_bufferSize = m_buffer.Length;
+
 			if(base.InvokeRequired) {
 				vd = new void_delegate(base.Refresh);
 				this.Invoke(vd);

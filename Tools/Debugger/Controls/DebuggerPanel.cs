@@ -55,6 +55,20 @@ namespace Emu.Debugger.Controls {
 			hexBox_memory_program.GroupSeparatorVisible = true;
 			hexBox_memory_program.ColumnInfoVisible = true;
 
+			hexBox_memory_video.VScrollBarVisible = true;
+			hexBox_memory_video.StringViewVisible = true;
+			hexBox_memory_video.LineInfoVisible = true;
+			hexBox_memory_video.HexCasing = HexCasing.Upper;
+			hexBox_memory_video.GroupSeparatorVisible = true;
+			hexBox_memory_video.ColumnInfoVisible = true;
+
+			hexBox_memory_working.VScrollBarVisible = true;
+			hexBox_memory_working.StringViewVisible = true;
+			hexBox_memory_working.LineInfoVisible = true;
+			hexBox_memory_working.HexCasing = HexCasing.Upper;
+			hexBox_memory_working.GroupSeparatorVisible = true;
+			hexBox_memory_working.ColumnInfoVisible = true;
+
 			machine = _Machine;
 			module = mod;
 			
@@ -175,8 +189,8 @@ namespace Emu.Debugger.Controls {
 			_module.UpdateGui_misc(propertyList_misc);
 			_module.UpdateGui_programMemory(hexBox_memory_program);
 			_module.UpdateGui_registers(propertyList_registers);
-			_module.UpdateGui_videoMemory(null);
-			_module.UpdateGui_workingMemory(null);
+			_module.UpdateGui_videoMemory(hexBox_memory_video);
+			_module.UpdateGui_workingMemory(hexBox_memory_working);
 			
 			i = _module.GetPC();
 			lbl_pcDecimal.Text = i.ToString();
@@ -190,8 +204,8 @@ namespace Emu.Debugger.Controls {
 			_module.UpdateValues_misc(propertyList_misc);
 			_module.UpdateValues_programMemory(hexBox_memory_program);
 			_module.UpdateValues_registers(propertyList_registers);
-			_module.UpdateValues_videoMemory(null);
-			_module.UpdateValues_workingMemory(null);
+			_module.UpdateValues_videoMemory(hexBox_memory_video);
+			_module.UpdateValues_workingMemory(hexBox_memory_working);
 		}
 		#endregion
 		

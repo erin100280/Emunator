@@ -22,19 +22,14 @@ namespace Emu.CPU {
 	public partial class C_Chip8 : C_Base {
 		public override bool DoCycle_Debug() {
 			#region vars
-			//ebug.WriteLine("C_Chip8.DoCycle()");
-			//string str;
 			Size res;//, siz;
 			byte[] bytes;
 			int i, ii, ix, iy, l, len;
 			byte[] regs = m_vRegisters;
-			//byte bt;
-			UInt64 romSA = m_romStartAddress;
-			//ushort oc=m_opcode=(ushort)(m_bank[m_romStartAddress+m_counter] << 8
-			//			| m_bank[m_romStartAddress+m_counter+1]);
 			ushort oc=m_opcode=(ushort)(m_bank[m_counter] << 8
 						| m_bank[m_counter+1]);
-			ushort x, y, h, pxl, I = m_indexRegister;
+			ushort ushH, ushW, x, y, h, pxl, I = m_indexRegister;
+			string s;
 			#endregion
 			#region DBG
 			#if(DBG)
@@ -42,8 +37,8 @@ namespace Emu.CPU {
 			#endif
 			#endregion
 
-			m_lastCounter=m_counter;
-			m_counter+=2;
+			m_lastCounter = m_counter;
+			m_counter += 2;
 			
 			if(m_delayTimer > 0) m_delayTimer--;
 			if(m_soundTimer > 0) m_soundTimer--;
@@ -81,9 +76,9 @@ namespace Emu.CPU {
 						WriteDoCycle("0x00E0", "clear screen");
 						#endif
 						#endregion
-						for(i=0, l=(int)m_video.bufferSize; i<l; i++)
-	   					m_buffer[i]=0x0;
-	   				m_video.updated=true;
+						for(i=0, l = (int)m_video.bufferSize; i < l; i++)
+	   					m_buffer[i] = 0x0;
+	   				m_video.updated = true;
 	   				break;
 	   			#endregion
 	   			#region 0x00EE  return from sub
@@ -91,7 +86,9 @@ namespace Emu.CPU {
 						#region DBG
 						#if (DBG_SHOW_COMMAND)
 						WriteDoCycle("0x00EE"
-		            ,	"return from sub to: " + m_stack[m_stackCount-1]
+		            ,	"return from sub to: "
+		            +	m_stack[m_stackCount - 1].ToString("X")
+		            +	" / " + m_stack[m_stackCount - 1]
 						);
 						#endif
 						#endregion
@@ -243,11 +240,12 @@ namespace Emu.CPU {
       	case 0x1000:
 				#region DBG
 				#if (DBG_SHOW_COMMAND)
-					WriteDoCycle("0x1NNN", "jump to " + (int)(oc & 0x0FFF));
+					WriteDoCycle("0x1NNN", "jump to "
+					+	(oc & 0x0FFF).ToString("X")
+					+	" / " + (oc & 0x0FFF)
+					);
 				#endif
 				#endregion
-				//m_counter=(ushort)((int)romSA + (oc & 0x0FFF));
-				//m_counter=(ushort)((int)(oc & 0x0FFF) - (int)m_romStartAddress);
 				m_counter=(ushort)(oc & 0x0FFF);
       		break;
 			#endregion
@@ -257,14 +255,13 @@ namespace Emu.CPU {
 				#if (DBG_SHOW_COMMAND)
 					WriteDoCycle("0x2NNN", "run sub NNN[" 
 									+ (oc & 0x0FFF).ToString("X")
-									+ " // " + (oc & 0x0FFF)
+									+ " / " + (oc & 0x0FFF)
 									+ "]"
 								);
 				#endif
 				#endregion
       		m_stack[m_stackCount]=m_counter;
       		m_stackCount++;
-      		//m_counter=(ushort)((int)romSA + (oc & 0x0FFF));
       		m_counter=(ushort)(oc & 0x0FFF);
       		break;
 			#endregion
@@ -420,7 +417,6 @@ namespace Emu.CPU {
 //*/
          		break;
 				#endregion
-								//**
    			#region 0x8XY4 - add VY to VX.
 			   					//Set VF to 01 if carry, 00 if no carry
 	   		case 0x0004:
@@ -458,7 +454,6 @@ namespace Emu.CPU {
 //*/
          		break;
    			#endregion
-						//-------------------------------------------
    			#region 0x8XY5 - set VX to (VX - VY).
 									//Set VF to 00 if borrow, 01 if no borrow
 	   		case 0x0005:
@@ -605,11 +600,11 @@ namespace Emu.CPU {
 					WriteDoCycle("0xANNN"
 					,	"set I["
 					+		m_indexRegister.ToString("X")
-					+		" // " + m_indexRegister
+					+		" / " + m_indexRegister
 					+	"]"
 					+	" to NNN["
 					+		(oc & 0x0FFF).ToString("X")
-					+		" // " + (oc & 0x0FFF)
+					+		" / " + (oc & 0x0FFF)
 					+ "]"
 					);
 				#endif
@@ -624,18 +619,19 @@ namespace Emu.CPU {
 					WriteDoCycle("0xBNNN"
 					,	" jump to address NNN["
 					+		(oc & 0x0FFF).ToString("X")
-					+		" // " + (oc & 0x0FFF)
+					+		" / " + (oc & 0x0FFF)
 					+ "]"
 
 					+	" + V0" + regInfoString(0)
 					+	" - val=" + ((oc & 0x0FFF) + regs[0]).ToString("X")
-					+		" // " + ((oc & 0x0FFF) + regs[0])
+					+		" / " + ((oc & 0x0FFF) + regs[0])
 					);
 				#endif
 				#endregion
 				m_counter=(ushort)((oc & 0x0FFF) + regs[0x0]);
 				break;
 			#endregion
+				//**--**--
 			#region 0xCXYN - set VX to (randomNumber & NN)
 			case 0xC000:
 				Random r = new Random();
@@ -671,7 +667,47 @@ namespace Emu.CPU {
 					+	"; ht=N[" + (oc & 0x000F) + "]"
 					+	"; start addr=I["
 					+		m_indexRegister.ToString("X")
-					+		" // " + m_indexRegister
+					+		" / " + m_indexRegister
+					+	"]"
+					);
+				#endif
+				#endregion
+				x=regs[(oc & 0x0F00) >>8];
+				y=regs[(oc & 0x00F0) >>4];
+				h=(ushort)(oc & 0x000F);
+				ushH = (ushort)video.resolution.Height;
+				ushW = (ushort)video.resolution.Width;
+				
+				regs[0xF]=0; //collision flag
+				for(iy=0; iy<h; iy++) {
+					pxl=m_bank[m_indexRegister + iy];
+					for(ix=0; ix<8; ix++) {
+						if((pxl & (0x80 >> ix)) != 0) {
+							if((x + ix + ((y + iy) * ushW)) < (ushW * ushH)) {
+								if(m_buffer[(x + ix + ((y + iy) * ushW))] == 1)
+									regs[0xF] = 1;//collision occured
+								m_buffer[x + ix + ((y + iy) * ushW)] ^= 1;
+							}
+						}
+					}
+				}
+				m_video.updated=true;
+				break;
+			#endregion
+			#region BAK 0xDXYN - draw sprite at VX,VY with height of N
+			               //starting at address I
+/*
+			case 0xD000:	
+				#region DBG
+				#if (DBG_SHOW_COMMAND)
+					WriteDoCycle("0xDXYN"
+					,	"draw sprite at"
+					+	" VX" + regInfoString((oc & 0x0F00) >> 8)
+					+	", VY" + regInfoString((oc & 0x00F0) >> 4)
+					+	"; ht=N[" + (oc & 0x000F) + "]"
+					+	"; start addr=I["
+					+		m_indexRegister.ToString("X")
+					+		" / " + m_indexRegister
 					+	"]"
 					);
 				#endif
@@ -695,6 +731,7 @@ namespace Emu.CPU {
 				}
 				m_video.updated=true;
 				break;
+//*/
 			#endregion
 			#region 0xE... - 0xEX9E, 0xEXA1
 			case 0xE000:
@@ -820,9 +857,14 @@ namespace Emu.CPU {
 							i = 1;
 						WriteDoCycle("0xFX1E"
 						,	"add VX" + regInfoString((oc & 0x0F00) >> 8)
-						+	"to I[" + m_indexRegister + "]"
+						+	"to I["
+						+		m_indexRegister.ToString("X")
+						+		" / " + m_indexRegister
+						+	"]"
 						+	" overflow=" + i
-						+	" val=" + (m_indexRegister + regs[(oc & 0x0F00) >> 8])
+						+	" val="
+						+	(m_indexRegister + regs[(oc & 0x0F00) >> 8]).ToString("X")
+						+	" / " + (m_indexRegister + regs[(oc & 0x0F00) >> 8])
 						);
 					#endif
 					#endregion
@@ -848,10 +890,15 @@ namespace Emu.CPU {
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
 						WriteDoCycle("0xFX29"
-						,	"set I[" + m_indexRegister + "]"
+						,	"set I["
+						+		m_indexRegister.ToString("X")
+						+		" / " + m_indexRegister
+						+	"]"
 						+	" to sprite addr for char in"
 						+	" VX" + regInfoString((oc & 0x0F00) >> 8)
-						+	"val=" + (regs[(oc & 0x0F00) >> 8] * 0x5)
+						+	"val="
+						+	(regs[(oc & 0x0F00) >> 8] * 0x5).ToString("X")
+						+	" / " + (regs[(oc & 0x0F00) >> 8] * 0x5)
 						);
 					#endif
 					#endregion
@@ -863,10 +910,15 @@ namespace Emu.CPU {
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
 						WriteDoCycle("0xFX30"
-						,	"set I[" + m_indexRegister + "]"
+						,	"set I["
+						+		m_indexRegister.ToString("X")
+						+		" / " + m_indexRegister
+						+	"]"
 						+	" to s-font addr for char in"
 						+	" VX" + regInfoString((oc & 0x0F00) >> 8)
-						+	"val=" + ((regs[(oc & 0x0F00) >> 8] * 0x10) + 0xF0)
+						+	"val="
+						+	((regs[(oc & 0x0F00) >> 8] * 0x10) + 0xF0).ToString("X")
+						+	" / " + ((regs[(oc & 0x0F00) >> 8] * 0x10) + 0xF0)
 						);
 					#endif
 					#endregion
@@ -877,6 +929,7 @@ namespace Emu.CPU {
 				#region 0xFX33 - SEE: info (end of file)
 				case 0x0033:
 					I = m_indexRegister;
+					s = m_indexRegister.ToString("X");
 					byte val = regs[(oc & 0x0F00) >> 8];
 					#region DBG
 					#if (DBG_SHOW_COMMAND)
@@ -884,9 +937,9 @@ namespace Emu.CPU {
 						,	"store bin-coded representation of"
 						+	" VX" + regInfoString((oc & 0x0F00) >> 8)
 						+	" with msd(most significant digit)[" + (val / 100)
-						+	" at I[" + I + "]"
-						+	" , (msd+1)[" +((val / 10) % 10)+ "] at (I+1)["+(I+1)+"]"
-						+	" , (msd+2)[" +((val % 100) % 10)+ "] at (I+2)["+(I+2)+"]"
+						+	" at I[" + s + " / " + I + "]"
+						+	" , (msd+1)[" +((val / 10) % 10)+ "] at (I+1)"
+						+	" , (msd+2)[" +((val % 100) % 10)+ "] at (I+2)"
 						);
 					#endif
 					#endregion
@@ -902,7 +955,10 @@ namespace Emu.CPU {
 						WriteDoCycle("0xFX55"
 						,	"store V0" + regInfoString(0)
 						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
-						+	" in memory starting at addr I[" + I + "]"
+						+	" in memory starting at addr I["
+						+		m_indexRegister.ToString("X")
+						+		" / " + m_indexRegister
+						+	"]"
 						);
 					#endif
 					#endregion
@@ -919,8 +975,15 @@ namespace Emu.CPU {
 						WriteDoCycle("0xFX65"
 						,	"fill V0" + regInfoString(0)
 						+	" to VX" + regInfoString((oc & 0x0F00) >> 8)
-						+	" with memory from addr I[" + I + "]"
-						+	" to addr (I+X[" + (I + ((oc & 0x0F00) >> 8)) + "]"
+						+	" with memory from addr I["
+						+		m_indexRegister.ToString("X")
+						+		" / " + m_indexRegister
+						+	"]"
+
+						+	" to addr (I+X["
+						+		(m_indexRegister + ((oc & 0x0F00) >> 8)).ToString("X")
+						+		" / " + (m_indexRegister + ((oc & 0x0F00) >> 8))
+						+	"]"
 						);
 					#endif
 					#endregion

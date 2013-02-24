@@ -9,6 +9,7 @@ using Emunator.Forms;
 using Be.HexEditor;
 using Be.Windows.Forms;
 using Emu.Core;
+using Emu.Core.Settings;
 using Emu.Debugger;
 using Emu.Debugger.Controls;
 using Emu.Debugger.Modules;
@@ -17,10 +18,16 @@ using Emu.Machine;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 #endregion
 
 namespace Emunator.Controls {
+	public enum romFileType {
+		unknown
+	,	chip8
+	}
+	
 	#region meta
 	/// <summary>
 	/// theMainControl is the main control.
@@ -30,6 +37,8 @@ namespace Emunator.Controls {
 		#region vars
 		protected DebuggerForm _debuggerForm = null;
 		protected DebuggerModule_Base _debuggerModule = null;
+		public string lastDir_openRom = "";
+		public bool startOnOpen = false;
 		#endregion
 		#region constructors
 		public theMainControl() { InitTheMainControl(); }
@@ -104,6 +113,41 @@ namespace Emunator.Controls {
 			}
 			Application.Exit();
 		}
+		void TSMnuItm_File_OpenClick(object sender, EventArgs e) {
+			bool paused = false;
+			bool running = false;
+
+			if(machine != null) {
+				paused = machine.paused;
+				running = machine.running;
+				if(running && !paused)
+					machine.Pause();
+			}
+
+			openFileDialog.Title = "Open Rom";
+			openFileDialog.FileName = "";
+			if(lastDir_openRom !="")
+				openFileDialog.InitialDirectory = lastDir_openRom;
+			openFileDialog.Filter = (""
+			+	"all files(*.*)|*.*"
+			+	"|all known types|*.c8;*.ch8;*.sc"
+			+	"|CHIP-8, SuperChip(*.c8;*.ch8;*.sc)|*.c8;*.ch8;*.sc"
+			);
+		
+			if(openFileDialog.ShowDialog() != DialogResult.Cancel) {
+				if(!LoadFile(openFileDialog.FileName)) {
+					if(running && !paused)
+						machine.Resume();
+				}
+			}
+			else {
+				if(running && !paused)
+					machine.Resume();
+			}
+		
+			this.Focus();
+
+		}
 		#endregion
 		#region Machine
 		void PauseToolStripMenuItemClick(object sender, EventArgs e) {
@@ -114,6 +158,8 @@ namespace Emunator.Controls {
 		}
 		void RunToolStripMenuItemClick(object sender, EventArgs e) {
 			machine.Run();
+			Refresh();
+			machine.display.Refresh();
 		}
 		void StepToolStripMenuItemClick(object sender, EventArgs e) {
 			machine.StepInto();
@@ -136,7 +182,8 @@ namespace Emunator.Controls {
 		}
 		void TstyToolStripMenuItemClick(object sender, EventArgs e) {
 			display.displayArg = 6;
-			display.displayMode = displayMode.times;
+			display.displaySizeMode = displaySizeMode.times;
+			Refresh();
 			display.Refresh();
 		}
 		#endregion
@@ -167,10 +214,12 @@ namespace Emunator.Controls {
 			return val;
 		}
 		public virtual void LoadMachine_Chip8() {
+			displaySettings ds = settings.main.Chip8.display;
 			machine_Chip8 = (M_Chip8)LoadMachine(new M_Chip8());
 			machine.keyboard.ConnectTo(this);
-			//machine.keyboard.ConnectTo(this.ParentForm);
-			
+			machine.display.displaySizeMode = ds._sizeMode;
+			machine.display.displayArg = ds._sizeModeInt;
+			machine.display.Focus();
 		}
 		#endregion
 		#region function: UnloadMachine
@@ -193,7 +242,6 @@ namespace Emunator.Controls {
 			machine_Chip8 = null;
 		}
 		#endregion
-		
 		#region function: LoadDebugger....
 		public virtual void LoadDebugger() {
 			if(machine != null) {
@@ -210,6 +258,56 @@ namespace Emunator.Controls {
 			_debuggerModule = new DebuggerModule_Chip8();
 			_debuggerForm = new DebuggerForm(machine, _debuggerModule);
 			_debuggerForm.ShowDialog();
+		}
+		#endregion
+		#region function: GetFileType, LoadFile
+		public virtual romFileType GetFileType(string fil) {
+			romFileType rv = romFileType.unknown;
+			FileInfo fi = new FileInfo(fil);
+			
+			if(!fi.Exists) {}
+			else {
+				//sg.Box("fi.Extension = " + fi.Extension.ToLower());
+				switch(fi.Extension) {
+					case ".c8": case ".ch8": case ".sc":
+						rv = romFileType.chip8;
+						break;
+					
+					default: break;
+				}
+			}
+			
+			
+			return rv;
+		}
+		public virtual bool LoadFile(string fil) {
+			return LoadFile(fil, romFileType.unknown);
+		}
+		public virtual bool LoadFile(string fil, romFileType type) {
+			bool rv = true;
+			
+			if(type == romFileType.unknown)
+				type = GetFileType(fil);
+
+			if(type == romFileType.unknown) {
+				Msg.Box("Could not load file \"" + fil + "\".\nUnknown file-type");
+				rv = false;
+			}
+			else {
+				if(machine != null && machine.running) machine.Stop();
+				switch(type) {
+					case romFileType.chip8:
+						LoadMachine_Chip8();
+						machine.LoadRom(fil);
+						break;
+					default: break;
+				}
+				if(startOnOpen) machine.Run();
+				Refresh();
+				display.Refresh();
+			}
+			
+			return rv;
 		}
 		#endregion
 		

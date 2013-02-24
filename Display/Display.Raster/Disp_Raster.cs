@@ -6,6 +6,7 @@
 #endregion
 #region using
 using Emu.Core;
+using Emu.Core.Settings;
 using Emu.Video;
 using SdlDotNet;
 using SdlDotNet.Core;
@@ -132,8 +133,8 @@ namespace Emu.Display {
 		}
 		protected override void RenderScreen() {
 			switch(_displayMode) {
-				#region displayMode - original, times
-				case displayMode.original: case displayMode.times:
+				#region displaySizeMode - original, times
+				case displaySizeMode.original: case displaySizeMode.times:
 					unsafe {
 						_backBuffer.Lock();
 						Int32 *pxls = (Int32 *)_backBuffer.Pixels;
@@ -149,7 +150,7 @@ namespace Emu.Display {
 					break;
 				#endregion
 				#region
-				case displayMode.stretch:
+				case displaySizeMode.stretch:
 				
 					break;
 				#endregion
@@ -172,12 +173,12 @@ namespace Emu.Display {
 				}
 
 				switch(_displayMode) {
-					#region displayMode.original
-					case displayMode.original:
+					#region displaySizeMode.original
+					case displaySizeMode.original:
 						break;
 					#endregion
-					#region displayMode.stretch
-					case displayMode.times:
+					#region displaySizeMode.stretch
+					case displaySizeMode.times:
 						if(_displayArg < 1) _displayArg = 1;
 						sz = new Size(
 							res.Width * _displayArg

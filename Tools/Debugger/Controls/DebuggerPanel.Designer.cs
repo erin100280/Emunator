@@ -88,7 +88,9 @@ namespace Emu.Debugger.Controls {
 			this.tabPage_memory_program = new System.Windows.Forms.TabPage();
 			this.hexBox_memory_program = new Be.Windows.Forms.HexBox();
 			this.tabPage_memory_working = new System.Windows.Forms.TabPage();
+			this.hexBox_memory_working = new Be.Windows.Forms.HexBox();
 			this.tabPage_memory_video = new System.Windows.Forms.TabPage();
+			this.hexBox_memory_video = new Be.Windows.Forms.HexBox();
 			this.groupBox_details = new System.Windows.Forms.GroupBox();
 			this.splitContainer_base = new System.Windows.Forms.SplitContainer();
 			this.groupBox_console = new System.Windows.Forms.GroupBox();
@@ -117,6 +119,8 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_memory.SuspendLayout();
 			this.tabControl_memory.SuspendLayout();
 			this.tabPage_memory_program.SuspendLayout();
+			this.tabPage_memory_working.SuspendLayout();
+			this.tabPage_memory_video.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer_base)).BeginInit();
 			this.splitContainer_base.Panel1.SuspendLayout();
 			this.splitContainer_base.Panel2.SuspendLayout();
@@ -749,6 +753,7 @@ namespace Emu.Debugger.Controls {
 			// 
 			// tabPage_memory_working
 			// 
+			this.tabPage_memory_working.Controls.Add(this.hexBox_memory_working);
 			this.tabPage_memory_working.Location = new System.Drawing.Point(4, 22);
 			this.tabPage_memory_working.Name = "tabPage_memory_working";
 			this.tabPage_memory_working.Padding = new System.Windows.Forms.Padding(3);
@@ -757,14 +762,38 @@ namespace Emu.Debugger.Controls {
 			this.tabPage_memory_working.Text = "Working";
 			this.tabPage_memory_working.UseVisualStyleBackColor = true;
 			// 
+			// hexBox_memory_working
+			// 
+			this.hexBox_memory_working.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.hexBox_memory_working.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.hexBox_memory_working.InfoForeColor = System.Drawing.Color.Empty;
+			this.hexBox_memory_working.Location = new System.Drawing.Point(3, 3);
+			this.hexBox_memory_working.Name = "hexBox_memory_working";
+			this.hexBox_memory_working.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+			this.hexBox_memory_working.Size = new System.Drawing.Size(448, 164);
+			this.hexBox_memory_working.TabIndex = 2;
+			// 
 			// tabPage_memory_video
 			// 
+			this.tabPage_memory_video.Controls.Add(this.hexBox_memory_video);
 			this.tabPage_memory_video.Location = new System.Drawing.Point(4, 22);
 			this.tabPage_memory_video.Name = "tabPage_memory_video";
+			this.tabPage_memory_video.Padding = new System.Windows.Forms.Padding(3);
 			this.tabPage_memory_video.Size = new System.Drawing.Size(454, 170);
 			this.tabPage_memory_video.TabIndex = 2;
 			this.tabPage_memory_video.Text = "Video";
 			this.tabPage_memory_video.UseVisualStyleBackColor = true;
+			// 
+			// hexBox_memory_video
+			// 
+			this.hexBox_memory_video.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.hexBox_memory_video.Font = new System.Drawing.Font("Courier New", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.hexBox_memory_video.InfoForeColor = System.Drawing.Color.Empty;
+			this.hexBox_memory_video.Location = new System.Drawing.Point(3, 3);
+			this.hexBox_memory_video.Name = "hexBox_memory_video";
+			this.hexBox_memory_video.ShadowSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(60)))), ((int)(((byte)(188)))), ((int)(((byte)(255)))));
+			this.hexBox_memory_video.Size = new System.Drawing.Size(448, 164);
+			this.hexBox_memory_video.TabIndex = 3;
 			// 
 			// groupBox_details
 			// 
@@ -860,6 +889,8 @@ namespace Emu.Debugger.Controls {
 			this.groupBox_memory.ResumeLayout(false);
 			this.tabControl_memory.ResumeLayout(false);
 			this.tabPage_memory_program.ResumeLayout(false);
+			this.tabPage_memory_working.ResumeLayout(false);
+			this.tabPage_memory_video.ResumeLayout(false);
 			this.splitContainer_base.Panel1.ResumeLayout(false);
 			this.splitContainer_base.Panel2.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer_base)).EndInit();
@@ -868,6 +899,8 @@ namespace Emu.Debugger.Controls {
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private Be.Windows.Forms.HexBox hexBox_memory_video;
+		private Be.Windows.Forms.HexBox hexBox_memory_working;
 		private System.Windows.Forms.Label lbl_cycleCount;
 		private System.Windows.Forms.Label lbl_cycleCountValue;
 		private System.Windows.Forms.ToolStripMenuItem x1000ToolStripMenuItem;

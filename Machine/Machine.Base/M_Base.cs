@@ -8,6 +8,7 @@
 using Emu;
 using Emu.Core;
 using Emu.Core.FileSystem;
+using Emu.Core.Settings;
 using Emu.CPU;
 using Emu.Device.Input.Keyboard;
 using Emu.Display;
@@ -91,9 +92,9 @@ namespace Emu.Machine {
 			get { return m_display.displayArg; }
 			set { m_display.displayArg = value; }
 		}
-		public virtual displayMode displayMode {
-			get { return m_display.displayMode; }
-			set { m_display.displayMode = value; }
+		public virtual displaySizeMode displaySizeMode {
+			get { return m_display.displaySizeMode; }
+			set { m_display.displaySizeMode = value; }
 		}
 
 		public virtual C_Base cpu {
@@ -380,6 +381,10 @@ namespace Emu.Machine {
 				
 				}
 			}
+		
+			Msg.Box("wow");
+			Msg.Box("Running = " + running);
+			Msg.Box("paused = " + paused);
 		}
 		#endregion
 		#region function: HardReset, Reset, SoftReset

@@ -73,8 +73,12 @@ namespace Emu.Debugger.Modules {
 			hb.ScrollByteIntoView(pc);
 			hb.Select(pc, 1);
 		}
-		public override void UpdateGui_videoMemory(HexBox hb) {}
-		public override void UpdateGui_workingMemory(HexBox hb) {}
+		public override void UpdateGui_videoMemory(HexBox hb) {
+			hb.ByteProvider = new DynamicByteProvider(machine.video.buffer);
+		}
+		public override void UpdateGui_workingMemory(HexBox hb) {
+			hb.ByteProvider = new DynamicByteProvider(machine.display.m_buffer);
+		}
 		#endregion
 		#region function: UpdateValues....
 		public override void UpdateValues_misc(PropertyList list) {}

@@ -115,6 +115,7 @@ namespace Emunator.Controls
 			this.TSMnuItm_File_Open.Name = "TSMnuItm_File_Open";
 			this.TSMnuItm_File_Open.Size = new System.Drawing.Size(164, 22);
 			this.TSMnuItm_File_Open.Text = "&Open";
+			this.TSMnuItm_File_Open.Click += new System.EventHandler(this.TSMnuItm_File_OpenClick);
 			// 
 			// TSSep_File_1
 			// 

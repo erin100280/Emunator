@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-    	this.richTextBoxConsole = new System.Windows.Forms.RichTextBox();
+    	this.richTextBoxConsole = new ConsoleControl.RicherTextBox();
     	this.SuspendLayout();
     	// 
     	// richTextBoxConsole
@@ -57,6 +57,6 @@
 
     #endregion
 
-    private System.Windows.Forms.RichTextBox richTextBoxConsole;
+    private ConsoleControl.RicherTextBox richTextBoxConsole;
   }
 }

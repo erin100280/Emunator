@@ -1,0 +1,16 @@
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Core\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\Core\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\Core\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Core\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\Emu.Core.Controls.PropertyList.resources
+C:\Dev\Projects\Emunator\Core\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\Core\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\Core\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\Core\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\GenerateResource.read.0.tlog
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\GenerateResource.write.0.tlog
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Dev\Projects\Emunator\Core\obj\x86\Debug\GenerateResource.write.1.tlog

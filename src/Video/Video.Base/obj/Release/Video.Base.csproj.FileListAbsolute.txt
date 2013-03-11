@@ -1,0 +1,10 @@
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\Emu.Video.dll
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\Emu.Core.dll
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\SdlDotNet.dll
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\SdlDotNet.xml
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\Video\Video.Base\bin\Release\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\src\Video\Video.Base\obj\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Video\Video.Base\obj\Release\Emu.Video.dll

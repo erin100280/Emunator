@@ -1,0 +1,17 @@
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.IC.MOS.6530.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.IC.MOS.6530.pdb
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.IC.Base.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.Memory.Base.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.Memory.Base.pdb
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Emu.IC.Base.pdb
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\obj\Debug\Emu.IC.MOS.6530.dll
+C:\Dev\Projects\Emunator\src\IC\MOS\MOS.6530\obj\Debug\Emu.IC.MOS.6530.pdb

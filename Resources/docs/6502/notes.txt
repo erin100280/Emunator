@@ -1,0 +1,12 @@
+Processor Status (P)
+	8bit register containing bool values for 8 status flags.
+	Map:
+		0: Carry Flag
+		1: Zero Flag
+		2: Interrupt Disable Flag
+		3: Decimal Mode Flag
+		4: Break Command Flag
+		5: Expansion Flag - always set
+		6: Overflow Flag
+		7: Negative Flag
+

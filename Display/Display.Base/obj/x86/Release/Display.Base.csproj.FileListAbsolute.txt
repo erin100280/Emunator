@@ -1,5 +1,0 @@
-C:\Dev\Projects\Emunator\Display\Display.Base\bin\Release\Emu.Display.Base.dll
-C:\Dev\Projects\Emunator\Display\Display.Base\bin\Release\Emu.Core.dll
-C:\Dev\Projects\Emunator\Display\Display.Base\bin\Release\Emu.Video.dll
-C:\Dev\Projects\Emunator\Display\Display.Base\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Dev\Projects\Emunator\Display\Display.Base\obj\x86\Release\Emu.Display.Base.dll

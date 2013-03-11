@@ -1,0 +1,5 @@
+C:\Dev\Projects\Emunator\src\Temp\BitTest\bin\Debug\BitTest.exe
+C:\Dev\Projects\Emunator\src\Temp\BitTest\bin\Debug\BitTest.pdb
+C:\Dev\Projects\Emunator\src\Temp\BitTest\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Temp\BitTest\obj\x86\Debug\BitTest.exe
+C:\Dev\Projects\Emunator\src\Temp\BitTest\obj\x86\Debug\BitTest.pdb

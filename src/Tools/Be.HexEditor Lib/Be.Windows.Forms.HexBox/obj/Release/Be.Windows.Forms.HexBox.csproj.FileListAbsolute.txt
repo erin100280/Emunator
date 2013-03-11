@@ -1,0 +1,13 @@
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\bin\Release\Be.Windows.Forms.HexBox.dll
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\Be.Windows.Forms.HexBox.resources
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\Be.Windows.Forms.Properties.Resources.resources
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Dev\Projects\Emunator\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\Be.Windows.Forms.HexBox.dll
+C:\Dev\Projects\Emunator\src\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\bin\Release\Be.Windows.Forms.HexBox.dll
+C:\Dev\Projects\Emunator\src\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\Be.Windows.Forms.HexBox.resources
+C:\Dev\Projects\Emunator\src\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\GenerateResource-ResGen.read.1.tlog
+C:\Dev\Projects\Emunator\src\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\GenerateResource-ResGen.write.1.tlog
+C:\Dev\Projects\Emunator\src\Tools\Be.HexEditor Lib\Be.Windows.Forms.HexBox\obj\Release\Be.Windows.Forms.HexBox.dll

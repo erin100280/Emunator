@@ -1,0 +1,10 @@
+C:\Dev\Projects\Emunator\binDebug\Emunator.exe
+C:\Dev\Projects\Emunator\binDebug\Emunator.pdb
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.Controls.theMainControl.resources
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.Forms.DebuggerForm.resources
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.MainForm.resources
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.exe
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.pdb
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\GenerateResource.read.6.tlog
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\GenerateResource.write.6.tlog

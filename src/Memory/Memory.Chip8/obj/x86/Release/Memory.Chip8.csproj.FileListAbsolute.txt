@@ -1,0 +1,16 @@
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Release\Emu.Memory.Chip8.dll
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Release\Emu.Core.dll
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\bin\Release\Emu.Memory.Base.dll
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Memory\Memory.Chip8\obj\x86\Release\Emu.Memory.Chip8.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\Emu.Memory.Chip8.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\Emu.Core.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\Emu.Memory.Base.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\SdlDotNet.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\SdlDotNet.xml
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\bin\Release\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Memory\Memory.Chip8\obj\x86\Release\Emu.Memory.Chip8.dll

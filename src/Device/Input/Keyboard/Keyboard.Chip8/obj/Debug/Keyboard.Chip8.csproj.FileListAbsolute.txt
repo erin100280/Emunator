@@ -1,0 +1,17 @@
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Chip8.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Chip8.pdb
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Device.Base.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Base.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Device.Base.pdb
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Emu.Device.Input.Keyboard.Base.pdb
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\obj\Debug\Emu.Device.Input.Keyboard.Chip8.dll
+C:\Dev\Projects\Emunator\src\Device\Input\Keyboard\Keyboard.Chip8\obj\Debug\Emu.Device.Input.Keyboard.Chip8.pdb

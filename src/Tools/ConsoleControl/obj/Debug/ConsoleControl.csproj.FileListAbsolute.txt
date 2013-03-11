@@ -1,0 +1,16 @@
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\obj\Debug\ConsoleControl.ConsoleControl.resources
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\obj\Debug\GenerateResource.read.1.tlog
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\obj\Debug\GenerateResource.write.1.tlog
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\obj\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\Tools\ConsoleControl\obj\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\obj\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\obj\Debug\ConsoleControl.consoleControl.resources
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\obj\Debug\GenerateResource.read.1.tlog
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\obj\Debug\GenerateResource.write.1.tlog
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\obj\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\Tools\ConsoleControl\obj\Debug\ConsoleControl.pdb

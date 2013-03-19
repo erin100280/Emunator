@@ -567,7 +567,7 @@ namespace Emu.Debugger.Controls {
 			this.numericUpDown_pc.Hexadecimal = true;
 			this.numericUpDown_pc.Location = new System.Drawing.Point(315, 39);
 			this.numericUpDown_pc.Maximum = new decimal(new int[] {
-									4095,
+									664095,
 									0,
 									0,
 									0});

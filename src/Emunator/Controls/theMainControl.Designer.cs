@@ -68,11 +68,12 @@ namespace Emunator.Controls
 			this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.loadRomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tstyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.test6502ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.picSep = new System.Windows.Forms.PictureBox();
 			this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
 			this.pnl_display = new System.Windows.Forms.Panel();
 			this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-			this.test6502ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.testC64ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip_main.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.picSep)).BeginInit();
 			this.SuspendLayout();
@@ -348,7 +349,8 @@ namespace Emunator.Controls
 			this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.loadRomToolStripMenuItem,
 									this.tstyToolStripMenuItem,
-									this.test6502ToolStripMenuItem});
+									this.test6502ToolStripMenuItem,
+									this.testC64ToolStripMenuItem});
 			this.testToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.testToolStripMenuItem.Name = "testToolStripMenuItem";
 			this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
@@ -367,6 +369,13 @@ namespace Emunator.Controls
 			this.tstyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.tstyToolStripMenuItem.Text = "tsty";
 			this.tstyToolStripMenuItem.Click += new System.EventHandler(this.TstyToolStripMenuItemClick);
+			// 
+			// test6502ToolStripMenuItem
+			// 
+			this.test6502ToolStripMenuItem.Name = "test6502ToolStripMenuItem";
+			this.test6502ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.test6502ToolStripMenuItem.Text = "test6502";
+			this.test6502ToolStripMenuItem.Click += new System.EventHandler(this.Test6502ToolStripMenuItemClick);
 			// 
 			// picSep
 			// 
@@ -394,12 +403,12 @@ namespace Emunator.Controls
 			this.pnl_display.Size = new System.Drawing.Size(540, 159);
 			this.pnl_display.TabIndex = 4;
 			// 
-			// test6502ToolStripMenuItem
+			// testC64ToolStripMenuItem
 			// 
-			this.test6502ToolStripMenuItem.Name = "test6502ToolStripMenuItem";
-			this.test6502ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.test6502ToolStripMenuItem.Text = "test6502";
-			this.test6502ToolStripMenuItem.Click += new System.EventHandler(this.Test6502ToolStripMenuItemClick);
+			this.testC64ToolStripMenuItem.Name = "testC64ToolStripMenuItem";
+			this.testC64ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.testC64ToolStripMenuItem.Text = "test C64";
+			this.testC64ToolStripMenuItem.Click += new System.EventHandler(this.TestC64ToolStripMenuItemClick);
 			// 
 			// theMainControl
 			// 
@@ -417,6 +426,7 @@ namespace Emunator.Controls
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem testC64ToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem test6502ToolStripMenuItem;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;

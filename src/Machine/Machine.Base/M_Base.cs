@@ -24,6 +24,10 @@ using System.Windows.Forms;
 namespace Emu.Machine {
 	public class M_Base {
 		#region vars
+		#region settings
+		public settings _settings;
+		public pathSettings _pathSettings;
+		#endregion
 		public string stateName = "base";
 		public UInt32 InstructsPerMilisec = 0;
 		protected Keyboard_Base _keyboard = null;
@@ -73,6 +77,9 @@ namespace Emu.Machine {
 					, Mem_Base prgMem = null, Mem_Base wrkMem = null
 					, Vid_Base vid=null, Disp_Base disp=null) {
 
+			_settings = settings.main;
+			_pathSettings = _settings.paths;
+			
 			meta = new metaData(name);
 			_timer = new System.Timers.Timer();
 			_timer.Elapsed += new ElapsedEventHandler(_timer_Elapsed);

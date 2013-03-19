@@ -7,7 +7,7 @@ using System;
 using System.IO;
 
 namespace Emu.Core.FileSystem {
-		public partial class file {
+	public partial class file {
 		#region static function: GetFileInfo
 		public static file GetFileInfo(string filename) {
 			file rv = new file();
@@ -34,6 +34,42 @@ namespace Emu.Core.FileSystem {
 			return rv;
 		}
 		#endregion
+		#region static function: LoadBytes
+		public static byte[] LoadBytes(string filename, byte[] defData = null) {
+			bool noGo = true;
+			byte[] rv = defData;
+
+			if(File.Exists(filename)) {
+				try {
+					//sg.Box("File.Exists(\"" + filename + "\");");
+					FileInfo fi = new FileInfo(filename);
+					BinaryReader br = new BinaryReader(new FileStream(
+						filename
+					,	FileMode.Open
+					,	FileAccess.Read
+					,	FileShare.Read
+					));
+					rv = br.ReadBytes((int)fi.Length);
+					noGo = false;
+				}
+				catch(Exception ex) { if(ex.Message == "") {} }
+			}
+
+			if(noGo) {
+				//sg.Box("noGo - " + filename);
+				if(defData == null) defData = new byte[0];
+				rv = defData;
+			}
+
+/*			string str = "";
+			foreach (var elem in rv)
+				str += elem.ToString("X");
+			Msg.Box("rv = " + str);
+//*/			
+			return rv;
+		}
+		#endregion
+	
 	}
 	
 }

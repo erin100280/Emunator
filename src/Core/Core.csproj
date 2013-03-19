@@ -88,6 +88,7 @@
     <Compile Include="Core.inputHandler.cs" />
     <Compile Include="Core.metaData.cs" />
     <Compile Include="Core.Settings\enums.cs" />
+    <Compile Include="Core.Settings\pathSettings.cs" />
     <Compile Include="Core.Settings\settings.cs" />
     <Compile Include="Core.Settings\displaySettings.cs" />
     <Compile Include="Core.Settings\machineSettings.cs" />
@@ -95,6 +96,8 @@
     <Compile Include="Core.StateBase.cs" />
     <Compile Include="Core.utils.cs" />
     <Compile Include="eTimer.cs" />
+    <Compile Include="FileSystem\dir %28static%29.cs" />
+    <Compile Include="FileSystem\dir.cs" />
     <Compile Include="FileSystem\file %28static%29.cs" />
     <Compile Include="FileSystem\Core.FileSystem.cs" />
     <Compile Include="FileSystem\file.cs" />

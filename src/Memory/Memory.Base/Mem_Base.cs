@@ -25,9 +25,9 @@ namespace Emu.Memory {
 		#endregion
 		#region constructors
 		public Mem_Base() { InitMem_Base(); }
-		public Mem_Base(uint size) { InitMem_Base(); }
+		public Mem_Base(uint size) { InitMem_Base(size); }
 		protected virtual void InitMem_Base(uint size=0) {
-			if(size==0) size=4096;
+			if(size==0) size=4;
 			_size=size;
 			_bank=new byte[_size];
 		}

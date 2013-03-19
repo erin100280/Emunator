@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectGuid>{087E11AB-2C9E-4E9D-BBB6-31290046A24E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Machine.C64</RootNamespace>
+    <AssemblyName>Machine.C64</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <Optimize>False</Optimize>
+    <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>False</DebugSymbols>
+    <DebugType>None</DebugType>
+    <Optimize>True</Optimize>
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="M_C64.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{943F9711-92BC-42BE-A558-C364A29E70D8}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CPU\CPU.6502\CPU.6502.csproj">
+      <Project>{4D7293B3-327A-4240-8960-E8A7DECB2F4B}</Project>
+      <Name>CPU.6502</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CPU\CPU.Base\CPU.Base.csproj">
+      <Project>{5FF4A9D1-D9B8-4372-80EF-0547B99FD600}</Project>
+      <Name>CPU.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Device\Device.Base\Device.Base.csproj">
+      <Project>{CF25C8A8-281A-49B8-BECE-A9A1357F0639}</Project>
+      <Name>Device.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Device\Input\Input.Base\Input.Base.csproj">
+      <Project>{30A0F6C4-A48A-4EB4-974B-684CF11B9ED7}</Project>
+      <Name>Input.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Device\Input\Keyboard\Keyboard.Base\Keyboard.Base.csproj">
+      <Project>{61D40706-669C-4EB0-BD78-4E0A7B8BE518}</Project>
+      <Name>Keyboard.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Display\Display.Base\Display.Base.csproj">
+      <Project>{912701EF-767E-4E73-A4F3-128645712D27}</Project>
+      <Name>Display.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Display\Display.Raster\Display.Raster.csproj">
+      <Project>{CDF7B856-8F30-455D-B705-287DF63CF7F7}</Project>
+      <Name>Display.Raster</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IC\IC.Base\IC.Base.csproj">
+      <Project>{52FD5369-F18A-4B14-A584-91831CEFA471}</Project>
+      <Name>IC.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IC\MOS\MOS.6530\MOS.6530.csproj">
+      <Project>{A5E455B4-7DDA-4A68-A705-D16446BA3CD2}</Project>
+      <Name>MOS.6530</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Memory\Memory.Base\Memory.Base.csproj">
+      <Project>{3C3673A3-E59E-46EC-A4C7-FC68A430EF34}</Project>
+      <Name>Memory.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Memory\Memory.ROM\Memory.ROM.csproj">
+      <Project>{3ADAF84D-B156-461D-87D9-8B642F669380}</Project>
+      <Name>Memory.ROM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tools\ConsoleControl\ConsoleControl.csproj">
+      <Project>{737CC7F2-EC7C-4800-B7EB-72637E892C42}</Project>
+      <Name>ConsoleControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Video\Video.Base\Video.Base.csproj">
+      <Project>{F45CC884-F06B-42D8-ACD9-49A84921FCFB}</Project>
+      <Name>Video.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Machine.Base\Machine.Base.csproj">
+      <Project>{6861530C-932A-4E40-8E37-F45C7CAB8A61}</Project>
+      <Name>Machine.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.Targets" />
+</Project>

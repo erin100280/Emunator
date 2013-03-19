@@ -130,6 +130,10 @@
       <Project>{6861530C-932A-4E40-8E37-F45C7CAB8A61}</Project>
       <Name>Machine.Base</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Machine\Machine.C64\Machine.C64.csproj">
+      <Project>{087E11AB-2C9E-4E9D-BBB6-31290046A24E}</Project>
+      <Name>Machine.C64</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Machine\Machine.Chip8\Machine.Chip8.csproj">
       <Project>{EF514086-7F1B-4036-91D9-BEB7F6B01424}</Project>
       <Name>Machine.Chip8</Name>
@@ -153,6 +157,10 @@
     <ProjectReference Include="..\Tools\DebuggerModules\DebuggerModule.Base\DebuggerModule.Base.csproj">
       <Project>{740C3E5B-9765-47BB-977A-A097675D5891}</Project>
       <Name>DebuggerModule.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tools\DebuggerModules\DebuggerModule.C64\DebuggerModule.C64.csproj">
+      <Project>{3622376D-9AF0-4192-BFFD-2CA59A9B4033}</Project>
+      <Name>DebuggerModule.C64</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tools\DebuggerModules\DebuggerModule.Chip8\DebuggerModule.Chip8.csproj">
       <Project>{65D31FF4-13E2-4A78-AF2E-CE0476D91D9E}</Project>

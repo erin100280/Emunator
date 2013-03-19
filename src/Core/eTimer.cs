@@ -51,7 +51,7 @@ namespace Emu.Core {
 		public virtual void HardReset(bool autoStart) {
 			base.HardReset();
 			SoftReset();
-			interval = 0.00000000000002;
+			interval = 1.0;
 			if(_timer != null)
 				_timer.Dispose();
 			_timer = new Timer(interval);

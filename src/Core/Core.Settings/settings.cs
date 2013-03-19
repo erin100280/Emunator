@@ -58,6 +58,7 @@ namespace Emu.Core.Settings {
 		#endregion
 		#region vars
 		public machineSettings _Chip8 = null;
+		public pathSettings _paths = null;
 		public systemSettings _system = null;
 		public inputHandler _inputHandler = null;
 		#endregion
@@ -71,6 +72,9 @@ namespace Emu.Core.Settings {
 
 		public event EventHandler InputHandlerChanged;
 		public event EventHandler BeforeInputHandlerChanged;
+
+		public event EventHandler PathsChanged;
+		public event EventHandler BeforePathsChanged;
 
 		public event EventHandler SystemChanged;
 		public event EventHandler BeforeSystemChanged;
@@ -88,6 +92,13 @@ namespace Emu.Core.Settings {
 		}
 		protected virtual void OnBeforeInputHandlerChanged(EventArgs e) {
 			if(BeforeInputHandlerChanged != null) BeforeInputHandlerChanged(this, e);
+		}
+
+		protected virtual void OnPathsChanged(EventArgs e) {
+			if(PathsChanged != null) PathsChanged(this, e);
+		}
+		protected virtual void OnBeforePathsChanged(EventArgs e) {
+			if(BeforePathsChanged != null) BeforePathsChanged(this, e);
 		}
 
 		protected virtual void OnSystemChanged(EventArgs e) {
@@ -123,6 +134,20 @@ namespace Emu.Core.Settings {
 					OnBeforeInputHandlerChanged(blankEventArgs);
 					_inputHandler = value;
 					OnInputHandlerChanged(blankEventArgs);
+				}
+			}
+		}
+		public virtual pathSettings paths {
+			get {
+				if(_paths == null)
+					paths = new pathSettings();
+				return _paths;
+			}
+			set {
+				if(_paths != value) {
+					OnBeforePathsChanged(blankEventArgs);
+					_paths = value;
+					OnPathsChanged(blankEventArgs);
 				}
 			}
 		}

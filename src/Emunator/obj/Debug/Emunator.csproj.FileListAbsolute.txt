@@ -8,3 +8,5 @@ C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.exe
 C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\Emunator.pdb
 C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\GenerateResource.read.6.tlog
 C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\GenerateResource.write.6.tlog
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\GenerateResource.read.1.tlog
+C:\Dev\Projects\Emunator\src\Emunator\obj\Debug\GenerateResource.write.1.tlog

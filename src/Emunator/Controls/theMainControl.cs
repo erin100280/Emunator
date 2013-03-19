@@ -213,6 +213,7 @@ namespace Emunator.Controls {
 		public virtual MenuStrip menuStrip { get; protected set; }
 		public virtual Disp_Base display { get; protected set; }
 		public virtual M_Base machine { get; protected set; }
+		public virtual M_C64 machine_C64 { get; protected set; }
 		public virtual M_Chip8 machine_Chip8 { get; protected set; }
 		public virtual M_test6502 machine_test6502 { get; protected set; }
 		
@@ -234,6 +235,14 @@ namespace Emunator.Controls {
 			display.Dock = DockStyle.Fill;
 			//OnResize(new EventArgs());
 			return val;
+		}
+		public virtual void LoadMachine_C64() {
+			displaySettings ds = settings.main.Chip8.display;
+			machine_C64 = (M_C64)LoadMachine(new M_C64());
+			machine.display.displaySizeMode = ds._sizeMode;
+			machine.display.displayArg = ds._sizeModeInt;
+			settings.main.inputHandler.mainHandler = machine.keyboard;
+			this.Focus();
 		}
 		public virtual void LoadMachine_Chip8() {
 			displaySettings ds = settings.main.Chip8.display;
@@ -328,6 +337,9 @@ namespace Emunator.Controls {
 		public virtual void RunDebugger() {
 			if(machine != null) {
 				switch(machine.meta.name) {
+					case "Machine.C64":
+						RunDebugger_C64();
+						break;
 					case "Machine.Chip8":
 						RunDebugger_Chip8();
 						break;
@@ -337,6 +349,45 @@ namespace Emunator.Controls {
 					default: break;
 				}
 			}
+		}
+		protected virtual void RunDebugger_C64() {
+			displaySizeMode dsm = displaySizeMode.original;
+
+			machine.Pause();
+
+			_debuggerModule = new DebuggerModule_C64();
+			_debuggerForm = new DebuggerForm(machine, _debuggerModule);
+
+			if(ParentForm != null)
+				ParentForm.Visible = false;
+
+			if(machine.display != null) {
+				dsm = machine.display.displaySizeMode;
+				machine.display.displaySizeMode = displaySizeMode.original;
+			}
+			
+			if(machine.cpu != null)
+				machine.cpu.DBG = machine.cpu.DBG_SHOW_COMMAND = true;
+			
+			_debuggerForm.ShowDialog();
+			machine.Pause();
+			
+			if(ParentForm != null)
+				ParentForm.Visible = true;
+
+			if(machine.display != null) {
+				if(machine.display.Parent != null)
+					machine.display.Parent.Controls.Remove(machine.display);
+				pnl_display.Controls.Add(machine.display);
+				machine.display.displaySizeMode = dsm;
+				machine.display.Refresh();
+			}
+
+			if(machine.keyboard != null)
+				settings.main.inputHandler.mainHandler = machine.keyboard;
+			else
+				settings.main.inputHandler.mainHandler = null;
+			settings.main.inputHandler.altHandler = this;				
 		}
 		protected virtual void RunDebugger_Chip8() {
 			displaySizeMode dsm = displaySizeMode.original;
@@ -454,6 +505,10 @@ namespace Emunator.Controls {
 		
 		void Test6502ToolStripMenuItemClick(object sender, EventArgs e) {
 			LoadMachine_test6502();
+		}
+		
+		void TestC64ToolStripMenuItemClick(object sender, EventArgs e) {
+			LoadMachine_C64();
 		}
 	}
 }

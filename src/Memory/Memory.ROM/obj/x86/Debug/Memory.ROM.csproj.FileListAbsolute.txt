@@ -1,0 +1,15 @@
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Memory.ROM.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Memory.ROM.pdb
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Emu.Core.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Emu.Memory.Base.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\SdlDotNet.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\ConsoleControl.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Tao.Sdl.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Emu.Core.pdb
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Emu.Memory.Base.pdb
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\SdlDotNet.xml
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\ConsoleControl.pdb
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\bin\Debug\Tao.Sdl.xml
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\obj\x86\Debug\Memory.ROM.dll
+C:\Dev\Projects\Emunator\src\Memory\Memory.ROM\obj\x86\Debug\Memory.ROM.pdb

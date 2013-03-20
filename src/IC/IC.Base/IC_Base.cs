@@ -63,7 +63,7 @@ namespace Emu.IC {
 		public override void HardReset() {
 			base.HardReset();
 			if(_memory != null && hardResetMemory)
-				_memory.HardReset(true);
+				_memory.HardReset();
 			SoftReset();
 		}
 		public override void SoftReset() {

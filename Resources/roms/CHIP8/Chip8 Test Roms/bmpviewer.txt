@@ -1,0 +1,31 @@
+BMP Viewer, 02-06-05, by hap
+works with monochrome BMPs only, of course. put the BMP data (headerless) at
+offset $30. change offset $0 (200) $00ff to $1202 for Chip-8.
+
+
+200: 00ff schip: change to 1202 for chip8
+202: 00e0 cls
+204: a201 i=0x201
+206: f065 v0=201(ff)
+208: a230 i=start of bmp data
+20a: 6140 v1=64: y
+20c: 30ff skip next if schip
+20e: 8106 v1>>1
+210: 8010 v0=v1
+212: 800e v0<<1: xmax
+214: 6200 v2=0: x
+216: 6301 v3=1
+218: 71ff v1--
+21a: d211 sprite v2,v1 1x8
+21c: 7208 v2+=8
+21e: 9200 skip next if v2!=v0
+220: 2226 call 226
+222: f31e i++
+224: 121a goto 21a
+226: 71ff v1--
+228: 6200 v2=0
+22a: 41ff skip next if v1!=0xff
+22c: 122c goto 22c
+22e: 00ee ret
+
+230: bmp data (either 128x64 or 64x32)

@@ -1,0 +1,42 @@
+set V0 to #0
+set V1 to #0
+set I to #222
+set V2 to rnd & #1
+
+if V2 == #1 then skip-next
+set I to addr #21E
+
+draw sprite at V0, V1; with height of #4
+add #4 to V0
+
+--------------------------------------------------------
+
+if V0 == #40 then skip-next
+jump to addr #204
+
+set V0 to #0
+add #4 to V1
+
+if V1 == #20 then skip-next
+jump to addr #204
+
+jump to addr #21C
+set V0 to V4
+
+--------------------------------------------------------
+
+call sub at addr #010
+call sub at addr #040
+set V0 to V1
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+<config>
+<filerompath path="C:\Emulators\Media\CHIP8\Roms\Chip8 Test Roms\Keypad Test.c8" />
+<useinterpreter enabled="True" />
+<selectedgraphicsplugin index="1" />
+<selectedaudioplugin index="1" />
+<selectedinputplugin index="1" />
+</config>

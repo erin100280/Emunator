@@ -40,22 +40,20 @@ namespace Emu.Machine {
 			#region Connect ROMs
 			#region Basic
 			_basicROM = new Mem_ROM(
-				_programMemory
+				(0xBFFF - 0xA000)
 			,	file.LoadBytes(dir.Join(
 					_pathSettings.bios_commodore_c64
 				,	"Basic.bin"
 				))
-				,	0xA000, (0xBFFF - 0xA000), 0x0000
 			);
 			#endregion
 			#region Kernal
 			_kernalROM = new Mem_ROM(
-				_programMemory
+				(0xFFFF - 0xE000)
 			,	file.LoadBytes(dir.Join(
 					_pathSettings.bios_commodore_c64
 				,	"Kernal.bin"
 				))
-				,	0xE000, (0xFFFF - 0xE000), 0x0000
 			);
 			#endregion
 			#endregion
@@ -82,6 +80,20 @@ namespace Emu.Machine {
 		#endregion
 		#region function: HardReset, SoftReset
 		public override void HardReset(bool run = false) {
+			//int ii;
+			//byte[] bnk;
+			
+			#region reset memory
+			_workingMemory.ClearBank();
+			for(int ii = 0; ii < 512; ii++) {//- power-up memory pattern
+				_workingMemory.Write(0x00, (ii * 2) * 64, 64);
+				_workingMemory.Write(0xFF, ((ii * 2) + 1) * 64, 64);
+			}
+			//bnk = _workingMemory._bank;
+			//for(ii = 0, il = bnk.Length; ii < il; ii++) {}
+			#endregion
+
+
 			SoftReset(false);
 			base.HardReset(false);
 			if(run) Run();

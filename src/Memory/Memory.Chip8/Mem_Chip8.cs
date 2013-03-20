@@ -61,36 +61,31 @@ namespace Emu.Memory {
 		#region constructors
 		public Mem_Chip8(): base(4096) { InitMem_Chip8(); }
 		protected virtual void InitMem_Chip8() {
-			_fontSet = new byte[80];
-			_sFontSet = new byte[160];
-			for(UInt16 i = 0; i < 80; i++)
-				_fontSet[i] = _defaultFontSet[i];
-			for(UInt16 i = 0; i < 160; i++)
-				_sFontSet[i] = _defaultSFontSet[i];
+		
 		}
 		#endregion
 		#region properties
 		#endregion
-		public override void HardReset(bool clearBank = true) {
-			base.HardReset(false);
+		public override void HardReset() {
+			base.HardReset();
 			UInt16 i;
 			
+			#region load fonts
+			if(_fontSet == null) {
+				_fontSet = new byte[80];
+				Array.Copy(_defaultFontSet, _fontSet, _defaultFontSet.Length);
+			}
+			if(_sFontSet == null) {
+				_sFontSet = new byte[160];
+				Array.Copy(_defaultSFontSet, _sFontSet, _defaultSFontSet.Length);
+			}
+			#endregion
+
 			_size=4096;
-			_startAddress=0x200; // 512
-			_romSize=0x1FF;
-			_startRomAddress=0x0;
-			_stopRomAddress=0x1FF;
-			_ramSize=0xE00;//? 3584 ?
-			_startRamAddress=0x200;
-			
-			if(clearBank) ClearBank();
 			for(i = 0; i < 80; i++)
 				_bank[StartChip8Font + i] = _fontSet[i];
 			for(i = 0; i < 160; i++)
 				_bank[StartSuperFont + i] = _sFontSet[i];
-			//for(i = 80; i < 160; i++)
-				//_bank[i] = _fontSet[i - 80];
-			
 		}
 	}
 }

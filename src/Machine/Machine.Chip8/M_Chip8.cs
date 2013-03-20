@@ -25,6 +25,7 @@ namespace Emu.Machine {
 		#region constructors
 		public M_Chip8(): base("Machine.Chip8") { InitM_Chip8(); }
 		protected virtual void InitM_Chip8() {
+			_memStartAdress = 0x0200;
 			Disp_Raster dr;
 			stateName = "CHIP8";
 			interval = 1;
@@ -57,7 +58,7 @@ namespace Emu.Machine {
 		#region function: Do....
 		public override Int32 DoCycle() {
 			if(m_cpu != null) {
-				Int64 v = ((Int64)cpu.romStartAddress + _programMemory.romSize);
+				Int64 v = 2000000;//v = ((Int64)cpu.romStartAddress + _programMemory.romSize);
 				if(cpu.PC >= (v)) {
 			   	return -1;
 				}
@@ -70,8 +71,8 @@ namespace Emu.Machine {
 		#endregion
 		#region function: HardReset
 		public override void HardReset(bool run = false) {
-			SoftReset(false);
 			base.HardReset(false);
+			SoftReset(false);
 			if(run) Run();
 		}
 		public override void SoftReset(bool run = false) {

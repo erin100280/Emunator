@@ -1,0 +1,142 @@
+; C8Dasm Version 1.0, Les Harris (orpheanjmp@gmail.com)
+
+; Input File: Pong (1 player).c8 (246 bytes)
+
+	ld	VA,	#02
+	ld	VB,	#0C
+	ld	VC,	#3F
+	ld	VD,	#0C
+	ld	I,	2EA
+	drw	VA,	VB,	6
+	drw	VC,	VD,	6
+	ld	VE,	#00
+	call	2D4
+	ld	V6,	#03
+	ld	V8,	#02
+ 0216:
+	ld	V0,	#60
+	ld	DT,	V0
+ 021A:
+	ld	V0,	DT
+	se	V0,	#00
+	jp	21A
+	rnd	V7,	#17
+	add	V7,	#08
+	ld	V9,	#FF
+	ld	I,	2F0
+	drw	V6,	V7,	1
+ 022A:
+	ld	I,	2EA
+	drw	VA,	VB,	6
+	drw	VC,	VD,	6
+	ld	V0,	#01
+	sknp	V0
+	add	VB,	#FE
+	ld	V0,	#04
+	sknp	V0
+	add	VB,	#02
+	ld	V0,	#1F
+	and	VB,	V0
+	drw	VA,	VB,	6
+	ld	VD,	V7
+	rnd	V0,	#0A
+	add	VD,	#FE
+	sne	V0,	#00
+	add	VD,	#02
+	ld	V0,	#00
+	ld	V0,	#1F
+	and	VD,	V0
+	drw	VC,	VD,	6
+	ld	I,	2F0
+	drw	V6,	V7,	1
+	add	V6,	V8
+	add	V7,	V9
+	ld	V0,	#3F
+	and	V6,	V0
+	ld	V1,	#1F
+	and	V7,	V1
+	sne	V6,	#02
+	jp	278
+	sne	V6,	#3F
+	jp	282
+ 026C:
+	sne	V7,	#1F
+	ld	V9,	#FF
+	sne	V7,	#00
+	ld	V9,	#01
+	drw	V6,	V7,	1
+	jp	22A
+ 0278:
+	ld	V8,	#02
+	ld	V3,	#01
+	ld	V0,	V7
+	sub	V0,	VB
+	jp	28A
+ 0282:
+	ld	V8,	#FE
+	ld	V3,	#0A
+	ld	V0,	V7
+	sub	V0,	VD
+ 028A:
+	se	VF,	#01
+	jp	2A2
+	ld	V1,	#02
+	sub	V0,	V1
+	se	VF,	#01
+	jp	2BA
+	sub	V0,	V1
+	se	VF,	#01
+	jp	2C8
+	sub	V0,	V1
+	se	VF,	#01
+	jp	2C2
+ 02A2:
+	ld	V0,	#20
+	ld	ST,	V0
+	call	2D4
+	add	VE,	V3
+	call	2D4
+	ld	V6,	#3E
+	se	V3,	#01
+	ld	V6,	#03
+	ld	V8,	#FE
+	se	V3,	#01
+	ld	V8,	#02
+	jp	216
+ 02BA:
+	add	V9,	#FF
+	sne	V9,	#FE
+	ld	V9,	#FF
+	jp	2C8
+ 02C2:
+	add	V9,	#01
+	sne	V9,	#02
+	ld	V9,	#01
+ 02C8:
+	ld	V0,	#04
+	ld	ST,	V0
+	add	V6,	#01
+	sne	V6,	#40
+	add	V6,	#FE
+	jp	26C
+ 02D4:
+	ld	I,	2F2
+	bcd	VE,	[I]
+	ld	V2,	[I]
+	ld	F,	V1
+	ld	V4,	#14
+	ld	V5,	#00
+	drw	V4,	V5,	5
+	add	V4,	#15
+	ld	F,	V2
+	drw	V4,	V5,	5
+	ret
+ 02EA:
+	ld	V0,	V8
+	ld	V0,	V8
+	ld	V0,	V8
+ 02F0:
+	ld	V0,	V0
+ 02F2:
+	dw	#0000
+	dw	#0000

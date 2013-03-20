@@ -8,28 +8,68 @@ using System;
 using System.IO;
 
 namespace Emu.Memory {
-	public class Mem_Base {
+	public class Mem_Base : baseClass {
 		#region vars
+		public const string NAME = "Mem_Base";
+		public bool _readOnly = false;
 		public string _statePrefix = "";
 		public byte[] _bank;
 		public UInt64 _size;
-		public UInt16[] _bank16;
-		public UInt64 _size16;
 
-		public ushort _startAddress;
-		public Int64 _romSize;
-		public int _startRomAddress;
-		public int _stopRomAddress;
-		public Int64 _ramSize;
-		public int _startRamAddress;
+		public byte _blankByte = 0x00;
+		public byte[] _data = null;
+		public byte[] _defData = {};
 		#endregion
 		#region constructors
-		public Mem_Base() { InitMem_Base(); }
-		public Mem_Base(uint size) { InitMem_Base(size); }
-		protected virtual void InitMem_Base(uint size=0) {
-			if(size==0) size=4;
-			_size=size;
-			_bank=new byte[_size];
+		public Mem_Base() : base(NAME) { InitMem_Base(); }
+		public Mem_Base(uint size) : base(NAME) {
+			InitMem_Base(size);
+		}
+		public Mem_Base(uint size, byte[] data) : base(NAME) {
+			InitMem_Base(size, data);
+		}
+		public Mem_Base(byte[] data) : base(NAME) {
+			InitMem_Base((UInt32)data.Length, data);
+		}
+		public Mem_Base(string name) : base(name) { InitMem_Base(); }
+		public Mem_Base(string name, uint size) : base(name) {
+			InitMem_Base(size);
+		}
+		public Mem_Base(string name, uint size, byte[] data) : base(name) {
+			InitMem_Base(size, data);
+		}
+		public Mem_Base(string name, byte[] data) : base(name) {
+			InitMem_Base((UInt32)data.Length, data);
+		}
+		protected virtual void InitMem_Base(uint size = 0, byte[] data = null) {
+			if(size == 0) size = 4;
+			_size = size;
+			_bank = new byte[_size];
+			if(data != null)
+				_defData = data;
+			HardReset();
+		}
+		#endregion
+		#region events
+		public event EventHandler BankChanged;
+		public event EventHandler BeforeBankChanged;
+
+		public event EventHandler ReadOnlyChanged;
+		public event EventHandler BeforeReadOnlyChanged;
+		#endregion
+		#region On....
+		protected virtual void OnBankChanged(EventArgs e) {
+			if(BankChanged != null) BankChanged(this, e);
+		}
+		protected virtual void OnBeforeBankChanged(EventArgs e) {
+			if(BeforeBankChanged != null) BeforeBankChanged(this, e);
+		}
+
+		protected virtual void OnReadOnlyChanged(EventArgs e) {
+			if(ReadOnlyChanged != null) ReadOnlyChanged(this, e);
+		}
+		protected virtual void OnBeforeReadOnlyChanged(EventArgs e) {
+			if(BeforeReadOnlyChanged != null) BeforeReadOnlyChanged(this, e);
 		}
 		#endregion
 		#region properties
@@ -45,42 +85,15 @@ namespace Emu.Memory {
 				}
 			}
 		}
-
-		public virtual UInt64 size16 { get { return _size16; } }
-		public virtual UInt16[] bank16 {
-			get { return _bank16; }
+		public virtual bool readOnly {
+			get { return _readOnly; }
 			set {
-				if(_bank16 != value) {
-					EventArgs e = new EventArgs();
-					OnBeforeBank16Changed(e);
-					_bank16 = value;
-					OnBank16Changed(e);
+				if(_readOnly != value) {
+					OnBeforeReadOnlyChanged(blankEventArgs);
+					_readOnly = value;
+					OnReadOnlyChanged(blankEventArgs);
 				}
 			}
-		}
-
-		public virtual Int64 romSize { get { return _romSize; } }
-		#endregion
-		#region events
-		public event EventHandler BankChanged;
-		public event EventHandler BeforeBankChanged;
-
-		public event EventHandler Bank16Changed;
-		public event EventHandler BeforeBank16Changed;
-		#endregion
-		#region On....
-		protected virtual void OnBankChanged(EventArgs e) {
-			if(BankChanged != null) BankChanged(this, e);
-		}
-		protected virtual void OnBeforeBankChanged(EventArgs e) {
-			if(BeforeBankChanged != null) BeforeBankChanged(this, e);
-		}
-
-		protected virtual void OnBank16Changed(EventArgs e) {
-			if(Bank16Changed != null) Bank16Changed(this, e);
-		}
-		protected virtual void OnBeforeBank16Changed(EventArgs e) {
-			if(BeforeBank16Changed != null) BeforeBank16Changed(this, e);
 		}
 		#endregion
 		#region state stuff
@@ -93,21 +106,11 @@ namespace Emu.Memory {
 					bank = new Byte[i];
 				
 				SetMemory(State.byteArrays[_statePrefix + "MEM-WORKING"], 0);
-				
-				_ramSize = State.longs[_statePrefix + "MEM-RAM-SIZ"];
-				_romSize = State.longs[_statePrefix + "MEM-ROM-SIZ"];
-				_startRamAddress = State.ints[_statePrefix + "MEM-RAM-START"];
-				_startRomAddress = State.ints[_statePrefix + "MEM-ROM-START"];
-				
 			}
 			catch(Exception ex) { Msg.Box("Error: State was all messed up and stuff.\n\n\n\n" + ex.Message); }
 		}
 		public virtual state UpdateState(state State) {
 			State.byteArrays.Add(_statePrefix + "MEM-WORKING", _bank);
-			State.ints.Add(_statePrefix + "MEM-RAM-START", _startRamAddress);
-			State.ints.Add(_statePrefix + "MEM-ROM-START", _startRomAddress);
-			State.longs.Add(_statePrefix + "MEM-RAM-SIZ", _ramSize);
-			State.longs.Add(_statePrefix + "MEM-ROM-SIZ", _romSize);
 			State.ints.Add(_statePrefix + "MEM-SIZ", _bank.Length);
 			return State;
 		}
@@ -131,23 +134,39 @@ namespace Emu.Memory {
 		}
 		public virtual void SetMemory(file val, UInt64 startPos) {
 			if(val.exists) {
-				_romSize = val.fileSize;
 				for(UInt64 i = 0, l = (UInt64)val.fileSize; i < l; i++)
 					_bank[startPos + i] = val.ReadByte();
 			}
 		}
 		#endregion
 		#region function: HardReset, SoftReset
-		public virtual void HardReset(bool clearBank = true) {
-			if(clearBank) ClearBank();
+		public override void HardReset() {
+			base.HardReset();
+			_data = new byte[_defData.Length];
+			Array.Copy(_defData, _data, _defData.Length);
+			SoftReset();
 		}
-		public virtual void SoftReset() {}
+		public override void SoftReset() {
+			base.SoftReset();
+			if(_bank != null) {
+				for(Int32 iI = 0, iL = (Int32)_size; iI < iL; iI++)
+					_bank[iI] = _blankByte;
+				Array.Copy(_data, _bank, _data.Length);
+			}
+		}
 		#endregion
 		#region function: ClearBank
-		public virtual void ClearBank() {
+		public virtual void ClearBank() { ClearBank(0x00); }
+		public virtual void ClearBank(byte bt) {
 			for(UInt64 i = 0, l = _size; i < l; i++)
-				_bank[i] = 0x0;
-		
+				_bank[i] = bt;
+		}
+		#endregion
+		#region function Write
+		public virtual void Write(byte val, int start, int len) {
+			int aLen = _bank.Length;
+			while(len-- >= 0)
+				_bank[start + len] = val;
 		}
 		#endregion
 	}
